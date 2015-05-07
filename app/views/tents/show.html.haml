@@ -3,6 +3,11 @@
 %p
   %b Number:
   = @tent.number
+%p
+  %b Children:
+  %ul
+  - @tent.children.each do |child|
+    %li= link_to child.first_name + ' ' + child.last_name, child
 
 = link_to 'Edit', edit_tent_path(@tent)
 \|
