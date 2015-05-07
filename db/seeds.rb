@@ -24,6 +24,6 @@ end
 
 Scout.delete_all
 (1..15).each do |no|
-  Scout.create({first_name: "GL_#{no}", last_name: "GL_#{no}", birthday: Date.today - 21.years})  
+  Scout.create({first_name: "GL_#{no}", last_name: "GL_#{no}", birthday: Date.today - 21.years, tent: Tent.all[rand(0..11)]})  
 end
 

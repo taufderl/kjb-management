@@ -1,13 +1,12 @@
 %h1 Listing scouts
 
-%table
+%table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th First name
       %th Last name
       %th Birthday
-      %th
-      %th
+      %th Tent
       %th
 
   %tbody
@@ -16,9 +15,14 @@
         %td= scout.first_name
         %td= scout.last_name
         %td= scout.birthday
-        %td= link_to 'Show', scout
-        %td= link_to 'Edit', edit_scout_path(scout)
-        %td= link_to 'Destroy', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          - if scout.tent
+            = scout.tent.number
+          - else
+            -
+        %td
+          = link_to 'Edit', edit_scout_path(scout), class: "btn btn-default btn-xs"
+          = link_to 'Destroy', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 

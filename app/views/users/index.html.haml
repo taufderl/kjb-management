@@ -1,20 +1,18 @@
 %h1 Listing users
 
-%table
+%table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th Name
-      %th
-      %th
       %th
 
   %tbody
     - @users.each do |user|
       %tr
-        %td= user.name
-        %td= link_to 'Show', user
-        %td= link_to 'Edit', edit_user_path(user)
-        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to user.name, user
+        %td
+          = link_to 'Edit', edit_user_path(user), class: "btn btn-default btn-xs"
+          = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 

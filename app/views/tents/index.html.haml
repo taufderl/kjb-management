@@ -1,20 +1,22 @@
 %h1 Listing tents
 
-%table
+%table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th Number
-      %th
-      %th
+      %th Children
       %th
 
   %tbody
     - @tents.each do |tent|
       %tr
-        %td= tent.number
-        %td= link_to 'Show', tent
-        %td= link_to 'Edit', edit_tent_path(tent)
-        %td= link_to 'Destroy', tent, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to tent.number, tent
+        %td
+          = tent.children.map {|a| a.first_name + ' ' + a.last_name[0] + '.'}.join(', ')
+          
+        %td
+          = link_to 'Edit', edit_tent_path(tent), class: "btn btn-default btn-xs"
+          = link_to 'Destroy', tent, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 

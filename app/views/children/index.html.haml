@@ -1,24 +1,28 @@
 %h1 Listing children
 
-%table
+%table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th First name
       %th Last name
       %th Birthday
-      %th
-      %th
+      %th Tent
       %th
 
   %tbody
     - @children.each do |child|
       %tr
-        %td= child.first_name
-        %td= child.last_name
+        %td= link_to child.first_name, child
+        %td= link_to child.last_name, child
         %td= child.birthday
-        %td= link_to 'Show', child
-        %td= link_to 'Edit', edit_child_path(child)
-        %td= link_to 'Destroy', child, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          - if child.tent
+            = child.tent.number
+          - else
+            -
+        %td
+          = link_to 'Edit', edit_child_path(child), class: "btn btn-default btn-xs"
+          = link_to 'Destroy', child, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
 
 %br
 
