@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Account.delete_all
+Account.create([{name: 'Lagerkasse Bar'}, {name: 'Lagerkasse Girokonto'}, {name: 'Gruppenleiterkasse'}])
+
+User.delete_all
+User.create([{name: 'Lena'}, {name: 'Johannes'}])
+
+Tent.delete_all
+
+(1..12).each do |no|
+  Tent.create(number: no)
+end

@@ -1,0 +1,25 @@
+%h1 Listing scouts
+
+%table
+  %thead
+    %tr
+      %th First name
+      %th Last name
+      %th Birthday
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scouts.each do |scout|
+      %tr
+        %td= scout.first_name
+        %td= scout.last_name
+        %td= scout.birthday
+        %td= link_to 'Show', scout
+        %td= link_to 'Edit', edit_scout_path(scout)
+        %td= link_to 'Destroy', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Scout', new_scout_path

@@ -2,9 +2,104 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title KjbManagement
+    %title= t('page.title')
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    :javascript
+      $(document).ready(function(){
+      $('#thedatepicker').datepicker({orientation: 'right'});
+      });
     = csrf_meta_tags
+    = favicon_link_tag 'favicon.png', type: 'image/png'
+
   %body
-    = yield
+    %nav.navbar.navbar-static-top.navbar-inverse.navbar-collapse{:role => "navigation"}
+      .navbar-header
+        %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        
+        = link_to t('page.title'), dashboard_path, html_options = {class: "navbar-brand #{'active' if params[:controller] == 'dashboard'}"}
+      - if current_user
+        #navbar-main.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li{:class => "#{'active' if params[:controller] == 'dashboard'}"}= link_to t('links.dashboard'), dashboard_path
+            %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = t('pages.main_account.title')
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to t('pages.main_account.overview'), dashboard_path
+                %li= link_to t('pages.main_account.billing'), dashboard_path
+            %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = t('pages.scouts_account.title')
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to t('pages.scouts_account.overview'), dashboard_path
+                %li= link_to t('pages.scouts_account.billing'), dashboard_path
+                %li= link_to t('pages.scouts_account.input'), dashboard_path
+            %li{:class => "#{'active' if params[:controller] == 'shop'}"}= link_to t('pages.shop'), :shop
+            %li{:class => "dropdown #{'active' if params[:controller] == 'lists'}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                = t('pages.data')
+                %b.caret
+              %ul.dropdown-menu
+                %li= link_to t('controller.children'), :children
+                %li= link_to t('controller.tents'), :tents
+                %li= link_to t('controller.scouts'), :scouts
+                %li= link_to t('controller.accounts'), :accounts
+                %li= link_to t('controller.users'), :users
+                %li.divider
+                %li= link_to t('controller.import'), :import
+                
+          
+          %ul.nav.navbar-nav.navbar-right
+            %form.navbar-form{style: "width: 200px;", action: select_date_path, method: :post}
+              %input.hidden{name: :authenticity_token, value: form_authenticity_token}
+              .input-group
+                %input.form-control#thedatepicker{name: :date, type: :text, value: session[:date]}
+                  %span.input-group-btn
+                    %button.btn.btn-primary
+                      %span.glyphicon.glyphicon-calendar
+          
+          / NAVBAR
+          %ul.nav.navbar-nav.navbar-right
+            - if session[:user]
+              %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = session[:user]
+                  %b.caret
+                %ul.dropdown-menu
+                  - User.all.each do |u|
+                    %li= link_to u.name, select_user_path(user: u.name), method: :post
+            - else
+              %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = t('pages.please_select_user')
+                  %b.caret
+                %ul.dropdown-menu
+                  - User.all.each do |u|
+                    %li= link_to u.name, select_user_path(user: u.name), method: :post
+
+                    
+        / /.nav-collapse
+    .container
+      .row
+        - flash.each do |key, value|
+          %div{:class => "#{flash_class(key)}"}
+            %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+            %p= value
+      .row
+        .col-md-12
+          = yield
+      / /row
+    / /container
+    /%footer
+    /  %div
+    /    %p.copyright.pull-right
+    /      © Tim auf der Landwehr 2015 -
+    /      %a{:href => "http://taufderl.de"} taufderl.de
+

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @scout.first_name
+%p
+  %b Last name:
+  = @scout.last_name
+%p
+  %b Birthday:
+  = @scout.birthday
+
+= link_to 'Edit', edit_scout_path(@scout)
+\|
+= link_to 'Back', scouts_path

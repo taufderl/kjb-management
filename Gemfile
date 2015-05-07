@@ -34,9 +34,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 # haml
-gem 'haml'
+gem 'haml-rails'
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem "bootstrap-datepicker-rails"
+gem 'rails-i18n'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,4 +1,28 @@
 Rails.application.routes.draw do
+  get 'scouts_bookkeeping/index'
+
+  get 'scouts_bookkeeping/billing'
+
+  get 'scouts_bookkeeping/input'
+
+  get 'main_bookkeeping/index'
+
+  get 'main_bookkeeping/billing'
+
+  get 'shop/index', as: :shop
+  get 'import/index', as: :import
+
+  resources :users
+  resources :accounts
+  resources :scouts
+  resources :tents
+  root 'dashboard#index'
+  
+  get 'dashboard/index', as: :dashboard
+  post 'dashboard/select_user', as: :select_user
+  post 'dashboard/select_date', as: :select_date
+
+  resources :children
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

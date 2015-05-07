@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Number:
+  = @tent.number
+
+= link_to 'Edit', edit_tent_path(@tent)
+\|
+= link_to 'Back', tents_path
