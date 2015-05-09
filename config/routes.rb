@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'main_bookkeeping/index'
   get 'main_bookkeeping/billing'
 
+  
+  
   get 'shop' => 'shop#index', as: :shop
   post 'shop/select_time_of_day', as: :select_time_of_day
   get 'shop/autocomplete_child_first_name'
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
   resources :scouts
   resources :tents
   
-  get 'dashboard/index', as: :dashboard
+  root 'dashboard#index', as: 'dashboard'
   post 'dashboard/select_user', as: :select_user
   post 'dashboard/select_date', as: :select_date
 

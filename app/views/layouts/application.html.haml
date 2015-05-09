@@ -22,70 +22,69 @@
           %span.icon-bar
         
         = link_to t('page.title'), dashboard_path, html_options = {class: "navbar-brand #{'active' if params[:controller] == 'dashboard'}"}
-      - if current_user
-        #navbar-main.collapse.navbar-collapse
-          %ul.nav.navbar-nav
-            %li{:class => "#{'active' if params[:controller] == 'dashboard'}"}= link_to t('links.dashboard'), dashboard_path
-            %li{:class => "dropdown #{'active' if params[:controller] == 'main_bookkeeping'}"}
+      #navbar-main.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li{:class => "#{'active' if params[:controller] == 'dashboard'}"}= link_to t('links.dashboard'), dashboard_path
+          %li{:class => "dropdown #{'active' if params[:controller] == 'main_bookkeeping'}"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = t('pages.main_account.title')
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to t('pages.main_account.overview'), main_bookkeeping_index_path
+              %li= link_to t('pages.main_account.billing'), main_bookkeeping_billing_path
+          %li{:class => "dropdown #{'active' if params[:controller] == 'scouts_bookkeeping'}"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = t('pages.scouts_account.title')
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to t('pages.scouts_account.overview'), scouts_bookkeeping_index_path
+              %li= link_to t('pages.scouts_account.billing'), scouts_bookkeeping_billing_path
+              %li= link_to t('pages.scouts_account.input'), scouts_bookkeeping_input_path
+          %li{:class => "#{'active' if params[:controller] == 'shop'}"}= link_to t('pages.shop.title'), :shop
+          %li{:class => "dropdown #{'active' if ['children', 'tents', 'scouts', 'accounts', 'users', 'import'].include? params[:controller]}"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = t('pages.data')
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to t('controller.children'), :children
+              %li= link_to t('controller.tents'), :tents
+              %li= link_to t('controller.scouts'), :scouts
+              %li= link_to t('controller.accounts'), :accounts
+              %li= link_to t('controller.users'), :users
+              %li= link_to t('controller.goods'), :goods
+              %li.divider
+              %li= link_to t('controller.import'), :import
+              %li.divider
+              %li= link_to t('controller.settings'), :settings
+              
+        
+        %ul.nav.navbar-nav.navbar-right
+          %form.navbar-form{style: "width: 200px;", action: select_date_path, method: :post}
+            %input.hidden{name: :authenticity_token, value: form_authenticity_token}
+            .input-group
+              %input.form-control#thedatepicker{name: :date, type: :text, value: session[:date]}
+                %span.input-group-btn
+                  %button.btn.btn-primary
+                    %span.glyphicon.glyphicon-calendar
+        
+        / NAVBAR
+        %ul.nav.navbar-nav.navbar-right
+          - if session[:user]
+            %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = t('pages.main_account.title')
+                = session[:user]
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to t('pages.main_account.overview'), main_bookkeeping_index_path
-                %li= link_to t('pages.main_account.billing'), main_bookkeeping_billing_path
-            %li{:class => "dropdown #{'active' if params[:controller] == 'scouts_bookkeeping'}"}
+                - User.all.each do |u|
+                  %li= link_to u.name, select_user_path(user: u.name), method: :post
+          - else
+            %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = t('pages.scouts_account.title')
+                = t('pages.please_select_user')
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to t('pages.scouts_account.overview'), scouts_bookkeeping_index_path
-                %li= link_to t('pages.scouts_account.billing'), scouts_bookkeeping_billing_path
-                %li= link_to t('pages.scouts_account.input'), scouts_bookkeeping_input_path
-            %li{:class => "#{'active' if params[:controller] == 'shop'}"}= link_to t('pages.shop.title'), :shop
-            %li{:class => "dropdown #{'active' if ['children', 'tents', 'scouts', 'accounts', 'users', 'import'].include? params[:controller]}"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = t('pages.data')
-                %b.caret
-              %ul.dropdown-menu
-                %li= link_to t('controller.children'), :children
-                %li= link_to t('controller.tents'), :tents
-                %li= link_to t('controller.scouts'), :scouts
-                %li= link_to t('controller.accounts'), :accounts
-                %li= link_to t('controller.users'), :users
-                %li= link_to t('controller.goods'), :goods
-                %li.divider
-                %li= link_to t('controller.import'), :import
-                %li.divider
-                %li= link_to t('controller.settings'), :settings
-                
-          
-          %ul.nav.navbar-nav.navbar-right
-            %form.navbar-form{style: "width: 200px;", action: select_date_path, method: :post}
-              %input.hidden{name: :authenticity_token, value: form_authenticity_token}
-              .input-group
-                %input.form-control#thedatepicker{name: :date, type: :text, value: session[:date]}
-                  %span.input-group-btn
-                    %button.btn.btn-primary
-                      %span.glyphicon.glyphicon-calendar
-          
-          / NAVBAR
-          %ul.nav.navbar-nav.navbar-right
-            - if session[:user]
-              %li.dropdown
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = session[:user]
-                  %b.caret
-                %ul.dropdown-menu
-                  - User.all.each do |u|
-                    %li= link_to u.name, select_user_path(user: u.name), method: :post
-            - else
-              %li{:class => "dropdown #{'active' if params[:controller] == 'users'}"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = t('pages.please_select_user')
-                  %b.caret
-                %ul.dropdown-menu
-                  - User.all.each do |u|
-                    %li= link_to u.name, select_user_path(user: u.name), method: :post
+                - User.all.each do |u|
+                  %li= link_to u.name, select_user_path(user: u.name), method: :post
 
                     
         / /.nav-collapse
