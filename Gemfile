@@ -16,7 +16,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-#gem 'jquery-ui-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -41,7 +41,7 @@ gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem 'rails-i18n'
 gem 'autonumeric-rails'
-#gem 'rails4-autocomplete'
+gem 'rails4-autocomplete'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

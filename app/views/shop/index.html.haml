@@ -1,2 +1,102 @@
-%h1 Bauchladen
+.page-header
+  %h1
+    = t('pages.shop.title')
+    %small= session[:date]
 
+.well.col-md-12
+  = form_for :child_consumption, url: new_child_consumption_path, method: :post do |f|
+    .col-md-3
+      .form-group
+        = f.label t('shop.child')
+        = f.autocomplete_field :child_first_name, shop_autocomplete_child_first_name_path, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
+        = f.text_field :child_id, hidden: true
+      .form-group
+        = f.label (t('shop.soft_drink') + ' ' + (number_to_currency Good.get_price(:soft_drink, session[:date])))
+        = f.number_field :soft_drink, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.label t('shop.other')
+        .input-group#form-control
+          %span.input-group-addon#form-control= number_to_currency 0.5
+          = f.number_field :fifty_cent, class: 'form-control'
+      .form-group
+        = f.label t('shop.other')
+        .input-group#form-control
+          %span.input-group-addon#form-control= number_to_currency 0.2
+          = f.number_field :twenty_cent, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.label t('shop.other')
+        .input-group#form-control
+          %span.input-group-addon#form-control= number_to_currency 0.1
+          = f.number_field :ten_cent, class: 'form-control'
+      .form-group
+        = f.label t('shop.other')
+        .input-group#form-control
+          %span.input-group-addon#form-control= number_to_currency 0.05
+          = f.number_field :five_cent, class: 'form-control'
+    .col-md-2
+      .form-group
+        = f.label t('shop.total')
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-search{"aria-hidden" => true}
+          = f.number_field :total, class: 'form-control', disabled: true
+      .form-group
+        = f.label 'Actions'
+        .btn-group#form-control{role: :group}
+          .dropdown.btn-group#form-control
+            %button.btn.btn-default.dropdown-toggle#time_of_day_dropdown{"aria-expanded"=> true, "data-toggle" => "dropdown"}
+              - if session[:time_of_day]
+                = t('time_of_day.'+session[:time_of_day])
+              - else
+                = t('shop.please_select_time_of_day')
+              %b.caret
+            %ul.dropdown-menu
+              %li{role: :presentation}= link_to t('time_of_day.noon'), select_time_of_day_path(time_of_day: :noon), method: :post
+              %li{role: :presentation}= link_to t('time_of_day.evening'), select_time_of_day_path(time_of_day: :evening), method: :post
+          = f.submit t('buttons.send'), class: 'btn btn-primary'
+    .col-md-3
+      %img.img-rounded{src: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+'}
+
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th Name
+      %th
+        = t('goods.soft_drink')
+        = number_to_currency Good.get_price(:soft_drink, session[:date])
+      %th= t('goods.other')
+      %th
+      %th
+      %th
+      %th= t('goods.total') 
+      %th Balance
+    %tr
+      %th= t('pages.childs_account.total')
+      %th= @child_consumptions.map{|sc| sc.soft_drink.to_i}.sum
+      %th= number_to_currency @child_consumptions.map{|sc| sc.other.to_f }.sum
+      %th
+      %th
+      %th
+      %th= number_to_currency @child_consumptions.each.map { |sc| sc.total }.sum
+      %th= number_to_currency @child_consumptions.each.map { |sc| sc.child.account_balance }.sum
+      
+  %tbody
+    - @child_consumptions.each do |c|
+      %tr
+        = form_for c, {url: update_child_consumption_path(c)} do |f| 
+          %td= link_to c.child.full_name, c.child
+          %td.input-group-sm= f.number_field :soft_drink, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.text_field :other, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control consumption_other'
+          %td
+            %span.badge= c.time_of_day
+          %td
+            %span.label.label-primary= c.created_by
+            %br
+            %span.label.label-default= c.edited_by
+          %td= f.submit t('buttons.save'), class: "btn btn-default"
+          %td= number_to_currency c.total
+          %td= number_to_currency c.child.account_balance
+          
+          

@@ -11,13 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509153159) do
+ActiveRecord::Schema.define(version: 20150509190715) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "child_consumptions", force: :cascade do |t|
+    t.integer  "child_id"
+    t.date     "date"
+    t.string   "time_of_day"
+    t.integer  "soft_drink"
+    t.decimal  "other"
+    t.string   "created_by"
+    t.string   "edited_by"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "child_consumptions", ["child_id"], name: "index_child_consumptions_on_child_id"
 
   create_table "children", force: :cascade do |t|
     t.string   "first_name"

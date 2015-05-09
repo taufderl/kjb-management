@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  child_id: 
+  date: 2015-05-09
+  time_of_day: MyString
+  soft_drink: 1
+  other: 9.99
+  created_by: MyString
+  edited_by: MyString
+
+two:
+  child_id: 
+  date: 2015-05-09
+  time_of_day: MyString
+  soft_drink: 1
+  other: 9.99
+  created_by: MyString
+  edited_by: MyString

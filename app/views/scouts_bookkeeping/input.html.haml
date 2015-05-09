@@ -52,12 +52,12 @@
       %tr
         = form_for c, {url: update_scout_consumption_path(c)} do |f| 
           %td= link_to c.scout.full_name, c.scout
-          %td= f.number_field :beer, class: 'form-control consumption_amount'
-          %td= f.number_field :soft_drink, class: 'form-control consumption_amount'
-          %td= f.number_field :sausage, class: 'form-control consumption_amount'
-          %td= f.number_field :pork, class: 'form-control consumption_amount'
-          %td= f.number_field :turkey, class: 'form-control consumption_amount'
-          %td= f.text_field :other, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control consumption_other'
+          %td.input-group-sm= f.number_field :beer, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.number_field :soft_drink, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.number_field :sausage, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.number_field :pork, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.number_field :turkey, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.text_field :other, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control consumption_other'
           %td
             %span.label.label-primary= c.created_by
             %br

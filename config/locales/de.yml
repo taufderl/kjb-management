@@ -27,7 +27,6 @@ de:
     please_select_user: 'Benutzer auswaehlen!'
     please_select_date: 'Datum auswaehlen!'
     data: 'Datensatz'
-    shop: 'Bauchladen'
     main_account:
       title: 'Lagerkasse'
       billing: 'Abrechnung'
@@ -39,6 +38,9 @@ de:
       overview: 'Uebersicht'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
+    
+    shop:
+      title: "Bauchladen"
     
   controllers:
     children: 'Kinder'
@@ -57,6 +59,16 @@ de:
     start_date: "Anfangsdatum"
     end_date: "Enddatum"
     
-    
+  shop:
+    soft_drink: "Getraenk"
+    child: "Kind"
+    total: "Gesamt"
+    other: "Anderes"
+    please_select_time_of_day: "Tageszeit auswaehlen"
+  
+  time_of_day:
+    noon: "Mittag"
+    evening: "Abend"
   buttons:
     save: 'Speichern'
+    send: 'Senden'

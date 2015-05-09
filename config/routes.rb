@@ -12,15 +12,18 @@ Rails.application.routes.draw do
   get 'main_bookkeeping/index'
   get 'main_bookkeeping/billing'
 
-  get 'shop/index', as: :shop
-  
+  get 'shop' => 'shop#index', as: :shop
+  post 'shop/select_time_of_day', as: :select_time_of_day
+  get 'shop/autocomplete_child_first_name'
+  post 'shop/new_entry' => 'shop#new_entry', as: :new_child_consumption
+  patch 'shop/update_entry/:child_consumption_id' => 'shop#update_entry', as: :update_child_consumption
+
   get 'import/index', as: :import
 
   resources :users
   resources :accounts
   resources :scouts
   resources :tents
-  root 'dashboard#index'
   
   get 'dashboard/index', as: :dashboard
   post 'dashboard/select_user', as: :select_user
