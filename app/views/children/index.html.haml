@@ -17,7 +17,7 @@
         %td= child.birthday
         %td
           - if child.tent
-            = child.tent.number
+            = link_to child.tent.number, child.tent
           - else
             -
         %td

@@ -12,8 +12,8 @@
   %tbody
     - @scouts.each do |scout|
       %tr
-        %td= scout.first_name
-        %td= scout.last_name
+        %td= link_to scout.first_name, scout
+        %td= link_to scout.last_name, scout
         %td= scout.birthday
         %td
           - if scout.tent

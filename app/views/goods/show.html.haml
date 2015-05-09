@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @good.name
+%p
+  %b Price:
+  = @good.price
+%p
+  %b Date:
+  = @good.date
+
+= link_to 'Edit', edit_good_path(@good)
+\|
+= link_to 'Back', goods_path

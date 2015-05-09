@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+  resources :settings
+  resources :goods
+  
   get 'scouts_bookkeeping/index'
-
   get 'scouts_bookkeeping/billing'
-
   get 'scouts_bookkeeping/input'
+  post 'scouts_bookkeeping/new_entry/:scout_id' => 'scouts_bookkeeping#new_entry', as: :new_scout_consumption
+  patch 'scouts_bookkeeping/update_entry/:scout_consumption_id' => 'scouts_bookkeeping#update_entry', as: :update_scout_consumption
+
 
   get 'main_bookkeeping/index'
-
   get 'main_bookkeeping/billing'
 
   get 'shop/index', as: :shop

@@ -40,6 +40,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem "bootstrap-datepicker-rails"
 gem 'rails-i18n'
+gem 'autonumeric-rails'
 #gem 'rails4-autocomplete'
 
 group :development, :test do

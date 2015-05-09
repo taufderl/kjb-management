@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   def current_user
-    {email: "lena@mail.com", name: "Lena"}
+    session[:user]
   end
+
 end

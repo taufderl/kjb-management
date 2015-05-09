@@ -37,7 +37,8 @@ de:
       title: 'Gruppenleiterkasse'
       billing: 'Abrechnung'
       overview: 'Uebersicht'
-      input: 'Eingabe Verbrauch'
+      input: 'Verbrauch eingeben'
+      update_consumption: 'Verbrauch aendern'
     
   controllers:
     children: 'Kinder'
@@ -45,4 +46,17 @@ de:
     accounts: 'Konten'
     users: 'Benutzer'
     
-
+  goods:
+    beer: 'Bier'
+    soft_drink: 'Anti'
+    sausage: 'Wurst'
+    pork: 'Schwein'
+    turkey: 'Pute'
+    
+  settings:
+    start_date: "Anfangsdatum"
+    end_date: "Enddatum"
+    
+    
+  buttons:
+    save: 'Speichern'

@@ -1,2 +1,41 @@
-%h1 ScoutsBookkeeping#index
-%p Find me in app/views/scouts_bookkeeping/index.html.haml
+.page-header
+  %h1
+    = t('pages.scouts_account.title')
+    %small= session[:date]
+
+.col-md-6
+  %table.table.table-bordered.table-condensed.table-hover
+    %thead
+      %tr
+        %th Name
+        %th Balance
+        %th
+  
+    %tbody
+      - @scouts.each do |scout|
+        %tr
+          %td= link_to scout.full_name, scout
+          %td= number_to_currency scout.account_balance
+          %td
+            - if scout.scout_consumptions.where(date: session[:date]).any?
+              = link_to t('pages.scouts_account.update_consumption'), update_scout_consumption_path(scout.scout_consumptions.where(date: session[:date])), method: :post, class: "btn btn-default btn-xs"
+            - else
+              = link_to t('pages.scouts_account.input'), new_scout_consumption_path(scout), method: :post, class: "btn btn-primary btn-xs"
+              
+
+.col-md-6
+  %table.table.table-bordered.table-condensed.table-hover
+    %thead
+      %tr
+        %th Date
+        %th Consumption
+        %th Other
+        %th Balance
+  
+    %tbody
+      - @dates.each do |date|
+        %tr
+          %td= link_to date, "#"
+          %td= number_to_currency @consumption[date]
+          %td
+          %td= number_to_currency @balance[date]

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require autonumeric
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
