@@ -1,0 +1,13 @@
+= form_for @children_account do |f|
+  - if @children_account.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@children_account.errors.count, "error")} prohibited this children_account from being saved:"
+      %ul
+        - @children_account.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :children
+    = f.text_field :children
+  .actions
+    = f.submit 'Save'

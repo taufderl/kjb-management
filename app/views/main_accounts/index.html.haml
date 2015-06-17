@@ -1,0 +1,19 @@
+%h1 Listing main_accounts
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @main_accounts.each do |main_account|
+      %tr
+        %td= link_to 'Show', main_account
+        %td= link_to 'Edit', edit_main_account_path(main_account)
+        %td= link_to 'Destroy', main_account, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Main account', new_main_account_path

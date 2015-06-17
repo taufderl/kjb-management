@@ -1,0 +1,2 @@
+module ScoutsAccountsHelper
+end

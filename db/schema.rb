@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150509190715) do
+ActiveRecord::Schema.define(version: 20150617170722) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "type"
+    t.string   "actable"
   end
 
   create_table "child_consumptions", force: :cascade do |t|
@@ -44,6 +46,25 @@ ActiveRecord::Schema.define(version: 20150509190715) do
 
   add_index "children", ["tent_id"], name: "index_children_on_tent_id"
 
+  create_table "children_accounts", force: :cascade do |t|
+    t.integer  "children_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "children_accounts", ["children_id"], name: "index_children_accounts_on_children_id"
+
+  create_table "disbursements", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "accounts_id"
+    t.boolean  "cleared"
+    t.decimal  "amount",      precision: 10, scale: 2
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "disbursements", ["accounts_id"], name: "index_disbursements_on_accounts_id"
+
   create_table "goods", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price",      precision: 10, scale: 2
@@ -51,6 +72,11 @@ ActiveRecord::Schema.define(version: 20150509190715) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "type"
+  end
+
+  create_table "main_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "scout_consumptions", force: :cascade do |t|
@@ -81,6 +107,14 @@ ActiveRecord::Schema.define(version: 20150509190715) do
   end
 
   add_index "scouts", ["tent_id"], name: "index_scouts_on_tent_id"
+
+  create_table "scouts_accounts", force: :cascade do |t|
+    t.integer  "scouts_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "scouts_accounts", ["scouts_id"], name: "index_scouts_accounts_on_scouts_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "key"

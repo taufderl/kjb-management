@@ -34,11 +34,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 
+# Timezone-data fix fuer Windows
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
+
 # haml
 gem 'haml-rails'
-gem "less-rails"
-gem "twitter-bootstrap-rails"
-gem "bootstrap-datepicker-rails"
+# gem "less-rails"
+# gem "twitter-bootstrap-rails"
+# gem "bootstrap-datepicker-rails"
 gem 'rails-i18n'
 gem 'autonumeric-rails'
 gem 'rails4-autocomplete'

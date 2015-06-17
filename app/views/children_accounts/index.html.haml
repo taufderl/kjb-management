@@ -1,0 +1,21 @@
+%h1 Listing children_accounts
+
+%table
+  %thead
+    %tr
+      %th Children
+      %th
+      %th
+      %th
+
+  %tbody
+    - @children_accounts.each do |children_account|
+      %tr
+        %td= children_account.children
+        %td= link_to 'Show', children_account
+        %td= link_to 'Edit', edit_children_account_path(children_account)
+        %td= link_to 'Destroy', children_account, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Children account', new_children_account_path

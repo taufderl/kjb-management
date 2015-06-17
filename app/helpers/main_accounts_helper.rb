@@ -1,0 +1,2 @@
+module MainAccountsHelper
+end

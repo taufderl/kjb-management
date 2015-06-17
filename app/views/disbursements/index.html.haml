@@ -1,0 +1,27 @@
+%h1 Listing disbursements
+
+%table
+  %thead
+    %tr
+      %th Date
+      %th Accounts
+      %th Cleared
+      %th Amount
+      %th
+      %th
+      %th
+
+  %tbody
+    - @disbursements.each do |disbursement|
+      %tr
+        %td= disbursement.date
+        %td= disbursement.accounts
+        %td= disbursement.cleared
+        %td= disbursement.amount
+        %td= link_to 'Show', disbursement
+        %td= link_to 'Edit', edit_disbursement_path(disbursement)
+        %td= link_to 'Destroy', disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Disbursement', new_disbursement_path
