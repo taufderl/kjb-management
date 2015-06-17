@@ -1,0 +1,13 @@
+= form_for @scouts_account do |f|
+  - if @scouts_account.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@scouts_account.errors.count, "error")} prohibited this scouts_account from being saved:"
+      %ul
+        - @scouts_account.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :scouts
+    = f.text_field :scouts
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Date:
+  = @booking.date
+%p
+  %b Accounts:
+  = @booking.accounts
+%p
+  %b Amount:
+  = @booking.amount
+%p
+  %b Note1:
+  = @booking.note1
+%p
+  %b Note2:
+  = @booking.note2
+%p
+  %b Remarks:
+  = @booking.remarks
+%p
+  %b Created by:
+  = @booking.created_by
+%p
+  %b Updated by:
+  = @booking.updated_by
+%p
+  %b Accounting number:
+  = @booking.accounting_number
+
+= link_to 'Edit', edit_booking_path(@booking)
+\|
+= link_to 'Back', bookings_path

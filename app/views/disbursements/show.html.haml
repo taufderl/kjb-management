@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Date:
+  = @disbursement.date
+%p
+  %b Accounts:
+  = @disbursement.accounts
+%p
+  %b Cleared:
+  = @disbursement.cleared
+%p
+  %b Amount:
+  = @disbursement.amount
+
+= link_to 'Edit', edit_disbursement_path(@disbursement)
+\|
+= link_to 'Back', disbursements_path

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Children:
+  = @children_account.children
+
+= link_to 'Edit', edit_children_account_path(@children_account)
+\|
+= link_to 'Back', children_accounts_path

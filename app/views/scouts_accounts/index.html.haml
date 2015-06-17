@@ -1,0 +1,21 @@
+%h1 Listing scouts_accounts
+
+%table
+  %thead
+    %tr
+      %th Scouts
+      %th
+      %th
+      %th
+
+  %tbody
+    - @scouts_accounts.each do |scouts_account|
+      %tr
+        %td= scouts_account.scouts
+        %td= link_to 'Show', scouts_account
+        %td= link_to 'Edit', edit_scouts_account_path(scouts_account)
+        %td= link_to 'Destroy', scouts_account, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Scouts account', new_scouts_account_path

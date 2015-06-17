@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :bookings
+  resources :scouts_accounts
+  resources :children_accounts
+  resources :main_accounts
+  resources :main_accounts
+  resources :disbursements
   resources :settings
   resources :goods
   

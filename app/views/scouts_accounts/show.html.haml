@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Scouts:
+  = @scouts_account.scouts
+
+= link_to 'Edit', edit_scouts_account_path(@scouts_account)
+\|
+= link_to 'Back', scouts_accounts_path
