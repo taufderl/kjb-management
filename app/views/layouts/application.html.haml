@@ -7,10 +7,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     :javascript
       $(document).ready(function(){
-        $('#thedatepicker').datepicker({orientation: 'right', format: 'yyyy-mm-dd' });
+        $('#thedatepicker').datepicker({orientation: 'right', format: 'dd.mm.yyyy' });
       });
     = csrf_meta_tags
-    = favicon_link_tag 'favicon.png', type: 'image/png'
+    = favicon_link_tag 'favicon.ico', type: 'image/png'
 
   %body
     %nav.navbar.navbar-static-top.navbar-inverse.navbar-collapse{:role => "navigation"}

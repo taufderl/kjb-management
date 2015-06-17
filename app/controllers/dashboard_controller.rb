@@ -7,13 +7,13 @@ class DashboardController < ApplicationController
     if params[:user]
       session[:user] = params[:user]
     end
-    redirect_to :dashboard
+    redirect_to :back
   end
   
   def select_date
     if params[:date]
       session[:date] = params[:date]
     end
-    redirect_to :dashboard
+    redirect_to :back
   end
 end

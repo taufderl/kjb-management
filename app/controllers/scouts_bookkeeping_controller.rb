@@ -18,13 +18,15 @@ class ScoutsBookkeepingController < ApplicationController
   end
 
   def input
-    @scout_consumptions = ScoutConsumption.where(date: session[:date]).joins(:scout)
+    date = Date.strptime(session[:date], "%d.%m.%Y")
+    @scout_consumptions = ScoutConsumption.where(date: date).joins(:scout)
     @scouts = Scout.all - @scout_consumptions.map {|sc| sc.scout}
   end
   
   def new_entry
+    date = Date.strptime(session[:date], "%d.%m.%Y")
     scout = Scout.find(params[:scout_id])
-    ScoutConsumption.create(scout: scout, date: session[:date], created_by: session[:user])
+    ScoutConsumption.create(scout: scout, date: date, created_by: session[:user])
     redirect_to :scouts_bookkeeping_input
   end
   

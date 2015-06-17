@@ -11,9 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
+//= require bootstrap
 //= require autonumeric
 //= require jquery_ujs
 //= require jquery-ui
 //= require autocomplete-rails
 //= require turbolinks
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.de.js
 //= require_tree .
