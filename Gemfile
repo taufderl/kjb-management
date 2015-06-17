@@ -37,6 +37,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Timezone-data fix fuer Windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
+# multi-table inheritance
+gem 'active_record-acts_as'
+
 
 # haml
 gem 'haml-rails'

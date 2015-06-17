@@ -11,15 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617170722) do
+ActiveRecord::Schema.define(version: 20150617171207) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "type"
-    t.string   "actable"
+    t.integer  "actable_id"
+    t.string   "actable_type"
   end
+
+  create_table "bookings", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "accounts_id"
+    t.decimal  "amount"
+    t.string   "note1"
+    t.string   "note2"
+    t.string   "remarks"
+    t.integer  "accounting_number"
+    t.integer  "created_by_ID"
+    t.integer  "updated_by_ID"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "bookings", ["accounts_id"], name: "index_bookings_on_accounts_id"
 
   create_table "child_consumptions", force: :cascade do |t|
     t.integer  "child_id"

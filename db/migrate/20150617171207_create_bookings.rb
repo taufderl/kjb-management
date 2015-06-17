@@ -4,12 +4,12 @@ class CreateBookings < ActiveRecord::Migration
       t.date :date
       t.references :accounts, index: true, foreign_key: true
       t.decimal :amount
-      t.String :note1
-      t.String :note2
-      t.String :remarks
-      t.user :created_by
-      t.user :updated_by
-      t.string :accounting_number
+      t.string :note1
+      t.string :note2
+      t.string :remarks
+      t.integer :accounting_number
+      t.integer :created_by_ID
+      t.integer :updated_by_ID
 
       t.timestamps null: false
     end
