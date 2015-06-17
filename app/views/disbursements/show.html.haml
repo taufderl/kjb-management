@@ -12,6 +12,10 @@
 %p
   %b Amount:
   = @disbursement.amount
+ 
+%p
+  %b User:
+  = @disbursement.user
 
 = link_to 'Edit', edit_disbursement_path(@disbursement)
 \|

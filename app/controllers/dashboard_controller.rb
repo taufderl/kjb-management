@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def index
+    @disbursement = Disbursement.new
   end
   
   def select_user

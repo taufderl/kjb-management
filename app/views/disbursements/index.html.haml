@@ -7,6 +7,7 @@
       %th Accounts
       %th Cleared
       %th Amount
+      %th User
       %th
       %th
       %th
@@ -18,6 +19,7 @@
         %td= disbursement.accounts
         %td= disbursement.cleared
         %td= disbursement.amount
+        %td= disbursement.user
         %td= link_to 'Show', disbursement
         %td= link_to 'Edit', edit_disbursement_path(disbursement)
         %td= link_to 'Destroy', disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }
