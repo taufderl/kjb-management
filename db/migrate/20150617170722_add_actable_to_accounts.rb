@@ -1,5 +1,5 @@
 class AddActableToAccounts < ActiveRecord::Migration
-  def change
-    add_column :accounts, :actable, :string
+  change_table :accounts do |t|
+    t.actable
   end
 end
