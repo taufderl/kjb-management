@@ -1,5 +1,5 @@
 class Booking < ActiveRecord::Base
-  belongs_to :accounts
+  belongs_to :account
   
   def created_by
     User.find(self.created_by_ID)

@@ -2,6 +2,8 @@ class DashboardController < ApplicationController
   def index
     @disbursements = Disbursement.where(cleared: false)
     @disbursement = Disbursement.new
+    @news = News.new
+    @latest_news = News.last(5).reverse
   end
   
   def select_user

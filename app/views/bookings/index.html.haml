@@ -4,7 +4,7 @@
   %thead
     %tr
       %th Date
-      %th Accounts
+      %th Account
       %th Amount
       %th Note1
       %th Note2
@@ -20,7 +20,7 @@
     - @bookings.each do |booking|
       %tr
         %td= booking.date
-        %td= booking.accounts
+        %td= booking.account
         %td= booking.amount
         %td= booking.note1
         %td= booking.note2

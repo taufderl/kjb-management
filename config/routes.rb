@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :news
   resources :bookings
   resources :scouts_accounts
   resources :children_accounts
