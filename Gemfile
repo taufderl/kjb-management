@@ -45,11 +45,12 @@ gem 'active_record-acts_as'
 gem 'haml-rails'
 # gem "less-rails"
 # gem "twitter-bootstrap-rails"
-# gem "bootstrap-datepicker-rails"
+gem "bootstrap-datepicker-rails"
 gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem 'autonumeric-rails'
 gem 'rails4-autocomplete'
+#gem 'bootstrap-typeahead-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
