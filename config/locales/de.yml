@@ -24,8 +24,8 @@ de:
     title: 'KJB Zeltlager Management'
     
   pages:
-    please_select_user: 'Benutzer auswaehlen!'
-    please_select_date: 'Datum auswaehlen!'
+    please_select_user: 'Benutzer auswählen!'
+    please_select_date: 'Datum auswählen!'
     data: 'Datensatz'
     main_account:
       title: 'Lagerkasse'
@@ -38,6 +38,15 @@ de:
       overview: 'Uebersicht'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
+      
+    disbursement:
+      title: 'ausgelegtes Geld'
+      new_disbursement: 'Geldausgabe'
+      listing_disbursements: 'ausgelegtes Geld'
+      account: 'Konto'
+      amount: 'Betrag'
+      user: 'ausgegeben von'
+      date: 'Datum'
     
     shop:
       title: "Bauchladen"

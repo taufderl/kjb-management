@@ -1,0 +1,22 @@
+%h4 
+  =t('pages.disbursement.listing_disbursements')
+
+%table
+  %thead
+    %tr
+      %th 
+        = t('pages.disbursement.date')
+      %th 
+        = t('pages.disbursement.account')
+      %th 
+        = t('pages.disbursement.amount')
+      %th 
+        = t('pages.disbursement.user')
+
+  %tbody
+    - @disbursements.each.find(!!:cleared) do |disbursement|
+      %tr
+        %td= disbursement.date
+        %td= disbursement.accounts
+        %td= number_to_currency disbursement.amount
+        %td= disbursement.user

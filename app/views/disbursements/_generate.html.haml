@@ -1,4 +1,5 @@
-%h4 new disbursement
+%h4
+  = t('pages.disbursement.new_disbursement')
 
 = form_for @disbursement do |f|
   - if @disbursement.errors.any?
@@ -9,19 +10,10 @@
           %li= msg
           
   .field
-    = f.label :date
-    = f.date_select :date
-  .field
-    = f.label :accounts
+    = f.label t('pages.disbursement.account')
     = f.collection_select(:accounts, Account.all, :id, :name)
   .field
-    = f.label :cleared
-    = f.check_box :cleared
-  .field
-    = f.label :amount
+    = f.label t('pages.disbursement.amount')
     = f.text_field :amount
-  .field
-    = f.label :user
-    = f.number_field :user_id
   .actions
-    = f.submit 'Save'
+    = f.submit t('buttons.save')

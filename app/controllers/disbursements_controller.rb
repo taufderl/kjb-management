@@ -1,3 +1,5 @@
+# user und date fehlt noch!!
+
 class DisbursementsController < ApplicationController
   before_action :set_disbursement, only: [:show, :edit, :update, :destroy]
 

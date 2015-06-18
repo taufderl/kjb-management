@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def index
+    @disbursements = Disbursement.all
     @disbursement = Disbursement.new
   end
   

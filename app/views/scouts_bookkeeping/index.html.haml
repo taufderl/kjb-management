@@ -14,8 +14,8 @@
     %tbody
       - @scouts.each do |scout|
         %tr
-          %td= link_to (scout.full_name, scout)
-          %td= number_to_currency (scout.account_balance)
+          %td= link_to scout.full_name, scout
+          %td= number_to_currency scout.account_balance
           %td
             - if scout.scout_consumptions.where(date: session[:date]).any?
               = link_to t('pages.scouts_account.update_consumption'), update_scout_consumption_path(scout.scout_consumptions.where(date: session[:date])), method: :post, class: "btn btn-default btn-xs"

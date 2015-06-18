@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require autonumeric
 //= require jquery_ujs
 //= require jquery-ui
