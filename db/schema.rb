@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617201431) do
+ActiveRecord::Schema.define(version: 20150618204554) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -73,15 +73,15 @@ ActiveRecord::Schema.define(version: 20150617201431) do
 
   create_table "disbursements", force: :cascade do |t|
     t.date     "date"
-    t.integer  "accounts_id"
+    t.integer  "account_id"
     t.boolean  "cleared"
-    t.decimal  "amount",      precision: 10, scale: 2
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.decimal  "amount",     precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id"
   end
 
-  add_index "disbursements", ["accounts_id"], name: "index_disbursements_on_accounts_id"
+  add_index "disbursements", ["account_id"], name: "index_disbursements_on_account_id"
   add_index "disbursements", ["user_id"], name: "index_disbursements_on_user_id"
 
   create_table "goods", force: :cascade do |t|

@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @disbursements = Disbursement.all
+    @disbursements = Disbursement.where(cleared: false)
     @disbursement = Disbursement.new
   end
   

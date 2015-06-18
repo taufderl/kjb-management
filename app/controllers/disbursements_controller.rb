@@ -1,7 +1,7 @@
 # user und date fehlt noch!!
 
 class DisbursementsController < ApplicationController
-  before_action :set_disbursement, only: [:show, :edit, :update, :destroy]
+  before_action :set_disbursement, only: [:show, :edit, :update, :destroy, :clear]
 
   # GET /disbursements
   # GET /disbursements.json
@@ -26,11 +26,13 @@ class DisbursementsController < ApplicationController
   # POST /disbursements
   # POST /disbursements.json
   def create
-    @disbursement = Disbursement.new(disbursement_params)
-
+    dparams = disbursement_params
+    dparams[:user] = User.find_by_name(session[:user])
+    dparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
+    @disbursement = Disbursement.new(dparams)
     respond_to do |format|
       if @disbursement.save
-        format.html { redirect_to @disbursement, notice: 'Disbursement was successfully created.' }
+        format.html { redirect_to :back, notice: 'Disbursement was successfully created.' }
         format.json { render :show, status: :created, location: @disbursement }
       else
         format.html { render :new }
@@ -62,6 +64,12 @@ class DisbursementsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def clear
+    @disbursement.cleared = true
+    @disbursement.save
+    redirect_to :back
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,6 +79,6 @@ class DisbursementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disbursement_params
-      params.require(:disbursement).permit(:date, :accounts_id, :cleared, :amount, :user_id)
+      params.require(:disbursement).permit(:date, :account_id, :cleared, :amount, :user_id)
     end
 end
