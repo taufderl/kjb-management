@@ -12,8 +12,8 @@
     = f.label :date
     = f.date_select :date
   .field
-    = f.label :accounts
-    = f.collection_select(:accounts, Account.all, :id, :name)
+    = f.label :account
+    = f.collection_select(:account_id, Account.all, :id, :name)
   .field
     = f.label :cleared
     = f.check_box :cleared

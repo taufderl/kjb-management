@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :news
   resources :bookings
   resources :scouts_accounts
   resources :children_accounts
   resources :main_accounts
   resources :main_accounts
+  post 'disbursements/clear/:id' => "disbursements#clear", as: :clear_disbursement
   resources :disbursements
   resources :settings
   resources :goods

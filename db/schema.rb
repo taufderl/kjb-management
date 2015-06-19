@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617201431) do
+ActiveRecord::Schema.define(version: 20150618220649) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150617201431) do
 
   create_table "bookings", force: :cascade do |t|
     t.date     "date"
-    t.integer  "accounts_id"
+    t.integer  "account_id"
     t.decimal  "amount"
     t.string   "note1"
     t.string   "note2"
@@ -36,7 +36,15 @@ ActiveRecord::Schema.define(version: 20150617201431) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "bookings", ["accounts_id"], name: "index_bookings_on_accounts_id"
+  add_index "bookings", ["account_id"], name: "index_bookings_on_account_id"
+
+  create_table "child_accounts", force: :cascade do |t|
+    t.integer  "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "child_accounts", ["child_id"], name: "index_child_accounts_on_child_id"
 
   create_table "child_consumptions", force: :cascade do |t|
     t.integer  "child_id"
@@ -63,25 +71,17 @@ ActiveRecord::Schema.define(version: 20150617201431) do
 
   add_index "children", ["tent_id"], name: "index_children_on_tent_id"
 
-  create_table "children_accounts", force: :cascade do |t|
-    t.integer  "children_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "children_accounts", ["children_id"], name: "index_children_accounts_on_children_id"
-
   create_table "disbursements", force: :cascade do |t|
     t.date     "date"
-    t.integer  "accounts_id"
+    t.integer  "account_id"
     t.boolean  "cleared"
-    t.decimal  "amount",      precision: 10, scale: 2
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.decimal  "amount",     precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "user_id"
   end
 
-  add_index "disbursements", ["accounts_id"], name: "index_disbursements_on_accounts_id"
+  add_index "disbursements", ["account_id"], name: "index_disbursements_on_account_id"
   add_index "disbursements", ["user_id"], name: "index_disbursements_on_user_id"
 
   create_table "goods", force: :cascade do |t|
@@ -97,6 +97,23 @@ ActiveRecord::Schema.define(version: 20150617201431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "news", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "news", ["user_id"], name: "index_news_on_user_id"
+
+  create_table "scout_accounts", force: :cascade do |t|
+    t.integer  "scout_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "scout_accounts", ["scout_id"], name: "index_scout_accounts_on_scout_id"
 
   create_table "scout_consumptions", force: :cascade do |t|
     t.date     "date"
@@ -126,14 +143,6 @@ ActiveRecord::Schema.define(version: 20150617201431) do
   end
 
   add_index "scouts", ["tent_id"], name: "index_scouts_on_tent_id"
-
-  create_table "scouts_accounts", force: :cascade do |t|
-    t.integer  "scouts_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "scouts_accounts", ["scouts_id"], name: "index_scouts_accounts_on_scouts_id"
 
   create_table "settings", force: :cascade do |t|
     t.string   "key"

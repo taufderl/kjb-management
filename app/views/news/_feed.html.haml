@@ -1,0 +1,31 @@
+
+%table.table
+  %tr
+    %h4 Latest news
+    %table.table
+      %thead
+        %tr
+          %th Time
+          %th User
+          %th Comment
+      %tbody
+        - @latest_news.each do |news|
+          %tr
+            %td= news.created_at.to_formatted_s :short
+            %td= news.user ? news.user.name : nil
+            %td= news.comment
+            
+
+  %tr
+    %h4 Leave a comment
+    = form_for @news do |f|
+      - if @news.errors.any?
+        #error_explanation
+          %h2= "#{pluralize(@news.errors.count, "error")} prohibited this news from being saved:"
+          %ul
+            - @news.errors.full_messages.each do |msg|
+              %li= msg
+      .field
+        = f.text_area :comment, class: "form-control"
+      .actions
+        = f.submit 'Speichern', class: "btn btn-sm btn-primary"

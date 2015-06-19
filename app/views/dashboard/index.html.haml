@@ -1,15 +1,16 @@
-%h1 Dashboard
+%h1.page-header Dashboard
+.col-md-5.well
+  = render 'news/feed'
 
+.col-md-2
+  %p Hallo!
+  %p Schritt 1: Benutzer auswählen
+  %p Schritt 2: Datum auswählen
 
-%p Hallo!
-%p Schritt 1: Benutzer auswählen
-%p Schritt 2: Datum auswählen
-
-.col-md-8
-
-.col-md-4.well
-  = render 'disbursements/current'
-
-  %br
-    
-  = render 'disbursements/generate'
+.col-md-5.well
+  %table
+    %tbody
+      %tr
+        %td= render 'disbursements/current'
+      %tr
+        %td= render 'disbursements/generate'

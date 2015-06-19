@@ -1,7 +1,7 @@
-%h4 
-  =t('pages.disbursement.listing_disbursements')
+%h4
+  = t('pages.disbursement.listing_disbursements')
 
-%table
+%table.table
   %thead
     %tr
       %th 
@@ -12,11 +12,24 @@
         = t('pages.disbursement.amount')
       %th 
         = t('pages.disbursement.user')
+      %th 
 
   %tbody
+<<<<<<< HEAD
     - @disbursements.find(!!:cleared) do |disbursement|
+=======
+    - @disbursements.each do |disbursement|
+>>>>>>> 454dc544edd83f461fe3ce7f3df8990bcf3b621f
       %tr
-        %td= disbursement.date
-        %td= disbursement.accounts
+        %td= disbursement.date ? disbursement.date.to_formatted_s(:short) : nil
+        %td= disbursement.account ? disbursement.account.name : nil
         %td= number_to_currency disbursement.amount
-        %td= disbursement.user
+        %td= disbursement.user ? disbursement.user.name : nil
+        %td
+          = link_to clear_disbursement_path(disbursement), method: :post, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs" do 
+            %span.glyphicon.glyphicon-trash
+           
+          
+  
+       
+  

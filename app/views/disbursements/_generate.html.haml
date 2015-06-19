@@ -1,7 +1,7 @@
 %h4
   = t('pages.disbursement.new_disbursement')
 
-= form_for @disbursement do |f|
+= form_for @disbursement, html: {class: "form-inline"} do |f|
   - if @disbursement.errors.any?
     #error_explanation
       %h2= "#{pluralize(@disbursement.errors.count, "error")} prohibited this disbursement from being saved:"
@@ -9,11 +9,10 @@
         - @disbursement.errors.full_messages.each do |msg|
           %li= msg
           
-  .field
-    = f.label t('pages.disbursement.account')
-    = f.collection_select(:accounts, Account.all, :id, :name)
-  .field
-    = f.label t('pages.disbursement.amount')
-    = f.text_field :amount
-  .actions
-    = f.submit t('buttons.save')
+  .field.form-group
+    = f.label t('pages.disbursement.account'), class: "sr-only"
+    = f.collection_select(:account_id, Account.all, :id, :name, {} ,class: "input-sm form-control")
+  .field.form-group
+    = f.label t('pages.disbursement.amount'), class: "sr-only"
+    = f.text_field :amount, class: "input-sm form-control", placeholder: "Amount"
+  = f.submit t('buttons.save'), class: "btn btn-sm btn-primary"

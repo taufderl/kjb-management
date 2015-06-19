@@ -4,7 +4,7 @@
   %thead
     %tr
       %th Date
-      %th Accounts
+      %th Account
       %th Cleared
       %th Amount
       %th User
@@ -16,7 +16,7 @@
     - @disbursements.each do |disbursement|
       %tr
         %td= disbursement.date
-        %td= disbursement.accounts
+        %td= disbursement.account
         %td= disbursement.cleared
         %td= disbursement.amount
         %td= disbursement.user
