@@ -7,6 +7,8 @@ class DisbursementsController < ApplicationController
   # GET /disbursements.json
   def index
     @disbursements = Disbursement.all
+    @dates = (Date.parse(Setting.find_by(key: :start_date).value)..Date.parse(Setting.find_by(key: :end_date).value)).to_a
+    puts @dates
   end
 
   # GET /disbursements/1
@@ -27,6 +29,8 @@ class DisbursementsController < ApplicationController
   # POST /disbursements.json
   def create
     @disbursement = Disbursement.new(disbursement_params)
+    
+    # date = Date.strptime(session[:date], "%d.%m.%Y")
 
     respond_to do |format|
       if @disbursement.save

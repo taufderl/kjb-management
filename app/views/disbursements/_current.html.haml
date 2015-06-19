@@ -14,7 +14,7 @@
         = t('pages.disbursement.user')
 
   %tbody
-    - @disbursements.each.find(!!:cleared) do |disbursement|
+    - @disbursements.find(!!:cleared) do |disbursement|
       %tr
         %td= disbursement.date
         %td= disbursement.accounts
