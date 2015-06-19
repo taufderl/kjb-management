@@ -15,11 +15,9 @@
       %th 
 
   %tbody
-<<<<<<< HEAD
-    - @disbursements.find(!!:cleared) do |disbursement|
-=======
+
     - @disbursements.each do |disbursement|
->>>>>>> 454dc544edd83f461fe3ce7f3df8990bcf3b621f
+
       %tr
         %td= disbursement.date ? disbursement.date.to_formatted_s(:short) : nil
         %td= disbursement.account ? disbursement.account.name : nil
