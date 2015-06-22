@@ -36,9 +36,10 @@
       %th
         = t('booking.note2')
       %th
-        = t('booking.remarks')
-      %th
         = t('booking.created_by')
+      %th
+        = t('booking.remarks')
+
         
   %tbody
     - @bookings.each do |c|
@@ -53,7 +54,8 @@
           %td 
             = c.note2
           %td 
-            = c.remarks
+            = c.created_by.name
           %td 
-            = c.created_by ? c.created_by.name : '??'
+            = c.remarks
+
         

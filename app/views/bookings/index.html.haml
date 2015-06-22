@@ -20,13 +20,13 @@
     - @bookings.each do |booking|
       %tr
         %td= booking.date
-        %td= booking.account.name
+        %td= booking.account ? booking.account.name : booking.account
         %td= booking.amount
         %td= booking.note1
         %td= booking.note2
         %td= booking.remarks
-        %td= booking.created_by
-        %td= booking.updated_by
+        %td= booking.created_by ? booking.created_by.name : booking.created_by
+        %td= booking.updated_by ? booking.created_by.name : '-'
         %td= booking.accounting_number
         %td= link_to 'Show', booking
         %td= link_to 'Edit', edit_booking_path(booking)

@@ -16,14 +16,24 @@ class ScoutsBookkeepingController < ApplicationController
   
   def index2
     date = Date.strptime(session[:date], "%d.%m.%Y")
-    account_cash = Account.find_by_name('Gruppenleiterkasse')
-    account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')        
+    s_account_cash = Account.find_by_name('Gruppenleiterkasse')
+    s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')        
     
-    @bookings_cash = Booking.where(account: account_cash)
-    @bookings_giro = Booking.where(account: account_giro)
+    @bookings_cash = Booking.where(account: s_account_cash)
+    @bookings_giro = Booking.where(account: s_account_giro)
   end
 
-  def billing
+    def billing
+
+    date = Date.strptime(session[:date], "%d.%m.%Y")
+    @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
+    @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')       
+      
+    @bookings_cash = Booking.where(account: @s_account_cash, date: date)
+    @bookings_giro = Booking.where(account: @s_account_giro, date: date)    
+    
+    @booking = Booking.new
+    @bookings = Booking.where(date: date, account: @account)
   end
 
   def input

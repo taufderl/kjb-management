@@ -18,9 +18,10 @@
       %th
         = t('booking.note2')
       %th
-        = t('booking.remarks')
-      %th
         = t('booking.created_by')
+      %th
+        = t('booking.remarks')
+
    
   %tbody
     - @bookings_cash.each do |c|
@@ -37,10 +38,10 @@
           %td 
             = c.note2
           %td 
-            = c.remarks
+            = c.created_by.name
           %td 
-            = c.created_by ? c.created_by.name : '??'
-            
+            = c.remarks
+
 
 %h3 Girokonto
 %table.table.table-bordered.table-condensed.table-hover
@@ -57,9 +58,9 @@
       %th
         = t('booking.note2')
       %th
-        = t('booking.remarks')
-      %th
         = t('booking.created_by')
+      %th
+        = t('booking.remarks')
    
   %tbody
     - @bookings_giro.each do |c|
@@ -76,6 +77,6 @@
           %td 
             = c.note2
           %td 
-            = c.remarks
+            = c.created_by.name
           %td 
-            = c.created_by ? c.created_by.name : '??'
+            = c.remarks

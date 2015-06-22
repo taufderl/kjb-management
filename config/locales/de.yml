@@ -40,6 +40,8 @@ de:
       index: 'Uebersicht Kasse'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
+      s_account_cash: 'Barkasse'
+      s_account_giro: 'Girokonto'
       
     disbursement:
       title: 'ausgelegtes Geld'
