@@ -1,0 +1,81 @@
+.page-header
+  %h1
+    = t('pages.scouts_account.title')
+    %small= session[:date]
+ 
+%h3 Barkasse
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th 
+        = t('booking.accounting_number')
+      %th
+        = t('booking.date')
+      %th
+        = t('booking.amount')
+      %th
+        = t('booking.note1')
+      %th
+        = t('booking.note2')
+      %th
+        = t('booking.remarks')
+      %th
+        = t('booking.created_by')
+   
+  %tbody
+    - @bookings_cash.each do |c|
+      %tr
+        = form_for c do |f| 
+          %td 
+            = c.accounting_number
+          %td 
+            = c.date.to_formatted_s(:rfc822)
+          %td 
+            = number_to_currency c.amount
+          %td 
+            = c.note1
+          %td 
+            = c.note2
+          %td 
+            = c.remarks
+          %td 
+            = c.created_by_ID ? c.created_by_ID.name : '??'
+            
+
+%h3 Girokonto
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th 
+        = t('booking.accounting_number')
+      %th
+        = t('booking.date')
+      %th
+        = t('booking.amount')
+      %th
+        = t('booking.note1')
+      %th
+        = t('booking.note2')
+      %th
+        = t('booking.remarks')
+      %th
+        = t('booking.created_by')
+   
+  %tbody
+    - @bookings_giro.each do |c|
+      %tr
+        = form_for c do |f| 
+          %td 
+            = c.accounting_number
+          %td 
+            = c.date.to_formatted_s(:rfc822)
+          %td 
+            = number_to_currency c.amount
+          %td 
+            = c.note1
+          %td 
+            = c.note2
+          %td 
+            = c.remarks
+          %td 
+            = c.created_by_ID ? c.created_by_ID.name : '??'

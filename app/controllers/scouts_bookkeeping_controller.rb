@@ -13,6 +13,15 @@ class ScoutsBookkeepingController < ApplicationController
       @balance[date] = @balance[beforedate] - @consumption[date]
     end
   end
+  
+  def index2
+    date = Date.strptime(session[:date], "%d.%m.%Y")
+    account_cash = Account.find_by_name('Gruppenleiterkasse')
+    account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')        
+    
+    @bookings_cash = Booking.where(account: account_cash)
+    @bookings_giro = Booking.where(account: account_giro)
+  end
 
   def billing
   end
