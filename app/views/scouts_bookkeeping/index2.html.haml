@@ -39,7 +39,7 @@
           %td 
             = c.remarks
           %td 
-            = c.created_by_ID ? c.created_by_ID.name : '??'
+            = c.created_by ? c.created_by.name : '??'
             
 
 %h3 Girokonto
@@ -78,4 +78,4 @@
           %td 
             = c.remarks
           %td 
-            = c.created_by_ID ? c.created_by_ID.name : '??'
+            = c.created_by ? c.created_by.name : '??'
