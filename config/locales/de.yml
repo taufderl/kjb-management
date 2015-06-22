@@ -36,7 +36,8 @@ de:
     scouts_account:
       title: 'Gruppenleiterkasse'
       billing: 'Abrechnung'
-      overview: 'Uebersicht'
+      overview: 'Uebersicht Verbrauch'
+      index: 'Uebersicht Kasse'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
       
