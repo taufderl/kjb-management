@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
     bparams[:created_by] = User.find_by_name(session[:user])
     bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
     
-    bparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max+1
+    bparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       
     @booking = Booking.new(bparams)
 
