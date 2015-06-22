@@ -17,8 +17,9 @@ class MainBookkeepingController < ApplicationController
     user = User.find_by_name(session[:user])
     date = Date.strptime(session[:date], "%d.%m.%Y")
     account = Account.find_by_name('Lagerkasse Bar')
-    
-    Booking.create(account: account, created_by_ID: user, amount: cc_params[:amount], note1: cc_params[:note1], remarks: cc_params[:remarks], note2: cc_params[:note2], date: date)
+    accounting_number = Booking.where(account: account).count+1
+
+    Booking.create(account: account, created_by_ID: user, accounting_number: accounting_number, amount: cc_params[:amount], note1: cc_params[:note1], remarks: cc_params[:remarks], note2: cc_params[:note2], date: date)
     redirect_to :main_bookkeeping_billing
   end
   
