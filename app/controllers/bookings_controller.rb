@@ -23,8 +23,12 @@ class BookingsController < ApplicationController
 
   # POST /bookings
   # POST /bookings.json
-  def create
-    @booking = Booking.new(booking_params)
+  def create  
+    bparams = booking_params
+    bparams[:created_by_ID] = User.find_by_name(session[:user])
+    bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
+    
+    @booking = Booking.new(bparams)
 
     respond_to do |format|
       if @booking.save

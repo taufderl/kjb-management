@@ -18,8 +18,9 @@ Rails.application.routes.draw do
 
 
   get 'main_bookkeeping/index'
-  get 'main_bookkeeping/billing'
+  get 'main_bookkeeping/billing', as: :main_bookkeeping_billing
 
+  post 'main_bookkeeping/billing' => 'main_bookkeeping#new_entry'
   
   
   get 'shop' => 'shop#index', as: :shop

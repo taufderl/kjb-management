@@ -1,2 +1,59 @@
-%h1 MainBookkeeping#billing
-%p Find me in app/views/main_bookkeeping/billing.html.haml
+.page-header
+  %h1
+    = t('pages.mainbookkeeping.title2')
+    %small= session[:date]
+
+.well.col-md-12
+  = form_for :bookings, method: :post do |f|
+    .col-md-3
+      .form-group
+        = f.label t('booking.amount')
+        = f.text_field :amount        
+      .form-group
+        = f.label t('booking.note1')
+        = f.text_field :note1
+      .form-group
+        = f.label t('booking.note2')
+        = f.text_field :note2
+    .col-md-2
+      .field
+        = f.label t('booking.remarks')
+        = f.text_field :remarks
+    .col-md-1
+      .form-group
+        = f.submit t('buttons.send'), class: 'btn btn-primary'
+        
+
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th 
+        = t('booking.accounting_number')
+      %th
+        = t('booking.amount')
+      %th
+        = t('booking.note1')
+      %th
+        = t('booking.note2')
+      %th
+        = t('booking.remarks')
+      %th
+        = t('booking.created_by')
+        
+  %tbody
+    - @booking.each do |c|
+      %tr
+        = form_for c do |f| 
+          %td 
+            = c.accounting_number
+          %td 
+            = number_to_currency c.amount
+          %td 
+            = c.note1
+          %td 
+            = c.note2
+          %td 
+            = c.remarks
+          %td 
+            = c.created_by_ID ? c.created_by_ID.name : '??'
+        

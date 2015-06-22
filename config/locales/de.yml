@@ -27,6 +27,7 @@ de:
     please_select_user: 'Benutzer auswählen!'
     please_select_date: 'Datum auswählen!'
     data: 'Datensatz'
+    
     main_account:
       title: 'Lagerkasse'
       billing: 'Abrechnung'
@@ -48,8 +49,22 @@ de:
       user: 'ausgegeben von'
       date: 'Datum'
     
+    mainbookkeeping:
+      title: 'Lagerkasse'
+      title2: 'Abrechnung Lagerkasse'
+    
     shop:
       title: "Bauchladen"
+  
+  booking:
+    account: 'Konto'
+    amount: 'Betrag'
+    note1: 'Laden'
+    note2: 'Waren'
+    remarks: 'Bemerkung'
+    accounting_number: 'Buchungsnummer'
+    created_by: 'gebucht von'
+    date: 'Datum'
     
   controllers:
     children: 'Kinder'
