@@ -20,10 +20,10 @@
   = @booking.remarks
 %p
   %b Created by:
-  = @booking.created_by_ID.name
+  = @booking.created_by.name
 %p
   %b Updated by:
-  = @booking.updated_by_ID ? @booking.updated_by_ID.name : "-"
+  = @booking.updated_by ? @booking.updated_by.name : "-"
 %p
   %b Accounting number:
   = @booking.accounting_number

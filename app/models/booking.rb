@@ -1,11 +1,5 @@
 class Booking < ActiveRecord::Base
   belongs_to :account
-  
-  def created_by
-    User.find(self.created_by_ID)
-  end
-  
-  def updated_by
-    User.find_by_id(self.updated_by_ID)
-  end
+  belongs_to :created_by, class_name: User
+  belongs_to :updated_by, class_name: User
 end

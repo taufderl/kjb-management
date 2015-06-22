@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618220649) do
+ActiveRecord::Schema.define(version: 20150622183207) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150618220649) do
     t.string   "note2"
     t.string   "remarks"
     t.integer  "accounting_number"
-    t.integer  "created_by_ID"
-    t.integer  "updated_by_ID"
+    t.integer  "created_by_id"
+    t.integer  "updated_by_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
