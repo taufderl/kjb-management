@@ -1,16 +1,20 @@
 class MainBookkeepingController < ApplicationController
   def index
-    date = Date.strptime(session[:date], "%d.%m.%Y")
-    account = Account.find_by_name('Lagerkasse Bar')    
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
+    @m_account = Account.find_by_name('Lagerkasse Bar')    
     
-    @bookings = Booking.where(account: account)
+    @bookings = Booking.where(account: @m_account)
+    
+    @m_account_balance = Booking.where(account: @m_account).sum(:amount)
   end
 
   def billing
-    @lagerkasse = Account.find_by_name('Lagerkasse Bar')
-    date = Date.strptime(session[:date], "%d.%m.%Y")
+    @m_account = Account.find_by_name('Lagerkasse Bar')
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
     @booking = Booking.new
-    @bookings = Booking.where(date: date, account: @lagerkasse)
+    @bookings = Booking.where(date: @date, account: @m_account)
+    
+    @m_account_date_balance = Booking.where(["date <= ?", @date]).where(account: @m_account).sum(:amount)   
   end
   
   # commented out not used anymore --> see bookings_controller#new

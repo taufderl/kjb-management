@@ -68,6 +68,8 @@ de:
     accounting_number: 'Buchungsnummer'
     created_by: 'gebucht von'
     date: 'Datum'
+    balance: 'aktueller Kontostand'
+    date_balance: 'Kontostand bis zu diesem Tag'
     
   controllers:
     children: 'Kinder'

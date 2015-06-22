@@ -21,19 +21,26 @@ class ScoutsBookkeepingController < ApplicationController
     
     @bookings_cash = Booking.where(account: s_account_cash)
     @bookings_giro = Booking.where(account: s_account_giro)
+    
+    @s_account_cash_balance = Booking.where(account: s_account_cash).sum(:amount)
+    @s_account_giro_balance = Booking.where(account: s_account_giro).sum(:amount)
+    
   end
 
     def billing
 
-    date = Date.strptime(session[:date], "%d.%m.%Y")
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')       
       
-    @bookings_cash = Booking.where(account: @s_account_cash, date: date)
-    @bookings_giro = Booking.where(account: @s_account_giro, date: date)    
+    @bookings_cash = Booking.where(account: @s_account_cash, date: @date)
+    @bookings_giro = Booking.where(account: @s_account_giro, date: @date)    
+    
+    @s_account_cash_date_balance = Booking.where(["date <= ?", @date]).where(account: @s_account_cash).sum(:amount)
+    @s_account_giro_date_balance = Booking.where(["date <= ?", @date]).where(account: @s_account_giro).sum(:amount)    
     
     @booking = Booking.new
-    @bookings = Booking.where(date: date, account: @account)
+    @bookings = Booking.where(date: @date, account: @account)    
   end
 
   def input

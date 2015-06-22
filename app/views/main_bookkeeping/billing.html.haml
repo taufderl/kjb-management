@@ -20,9 +20,16 @@
         = f.label t('booking.remarks')
         = f.text_area :remarks, class: "form-control"
       .form-group
-        = f.number_field :account_id, hidden: true, value: @lagerkasse.id
+        = f.number_field :account_id, hidden: true, value: @m_account.id
         = f.submit t('buttons.send'), class: 'btn btn-primary'
-        
+ 
+%br
+%br       
+%h4
+  = t('booking.balance')
+%h4
+  = number_to_currency @m_account_date_balance
+
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead

@@ -3,6 +3,11 @@
     = t('pages.mainbookkeeping.title')
     
 
+%h4
+  = t('booking.balance')
+%h4
+  = number_to_currency @m_account_balance
+
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr

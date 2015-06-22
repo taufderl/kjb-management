@@ -31,6 +31,12 @@
 
 %h3
   = t('pages.scouts_account.s_account_cash')
+%br
+%h4
+  = t('booking.date_balance')
+%h4
+  = number_to_currency @s_account_cash_date_balance 
+
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
@@ -69,10 +75,17 @@
           %td 
             = c.remarks
 
-            
+%br
+%br            
 
 %h3 
   = t('pages.scouts_account.s_account_giro')
+%br
+%h4
+  = t('booking.date_balance')
+%h4
+  = number_to_currency @s_account_giro_date_balance  
+  
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
