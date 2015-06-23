@@ -1,0 +1,57 @@
+.page-header
+  %h1
+    = t('pages.count_cash.title')
+
+.well.col-md-12
+  .col-md-2
+    .form-group
+      = number_to_currency 200
+      = number_field @count_200, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 100
+      = number_field @count_100, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 50
+      = number_field @count_50, class: 'form-control', default: '0'
+  .col-md-2
+    .form-group
+      = number_to_currency 20
+      = number_field @count_20, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 10
+      = number_field @count_10, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 5
+      = number_field @count_5, class: 'form-control', default: '0'
+  .col-md-2
+    .form-group
+      = number_to_currency 2
+      = number_field @count_2, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 1
+      = number_field @count_1, class: 'form-control', default: '0'
+  .col-md-2
+    .form-group
+      = number_to_currency 0.5
+      = number_field @count_50ct, class: 'form-control', default: '0' 
+    .form-group
+      = number_to_currency 0.2
+      = number_field @count_20ct, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 0.1
+      = number_field @count_10ct, class: 'form-control', default: '0'
+  .col-md-2
+    .form-group
+      = number_to_currency 0.05
+      = number_field @count_5ct, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 0.02
+      = number_field @count_2ct, class: 'form-control', default: '0'
+    .form-group
+      = number_to_currency 0.01
+      = number_field @count_1ct, class: 'form-control', default: '0'
+.col-md-3
+%h4
+  .form-group
+    = t('pages.count_cash.total')
+    = number_field @total, disabled: true

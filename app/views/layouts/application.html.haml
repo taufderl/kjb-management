@@ -42,6 +42,7 @@
               %li= link_to t('pages.scouts_account.billing'), scouts_bookkeeping_billing_path
               %li= link_to t('pages.scouts_account.input'), scouts_bookkeeping_input_path
               %li= link_to t('pages.scouts_account.payment'), scouts_bookkeeping_payment_path
+              %li= link_to t('pages.count_cash.title'), scouts_bookkeeping_count_cash_path
           %li{:class => "#{'active' if params[:controller] == 'shop'}"}= link_to t('pages.shop.title'), :shop
           %li{:class => "dropdown #{'active' if ['children', 'tents', 'scouts', 'accounts', 'users', 'import'].include? params[:controller]}"}
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -54,7 +55,7 @@
               %li= link_to t('controller.accounts'), :accounts
               %li= link_to t('controller.users'), :users
               %li= link_to t('controller.goods'), :goods
-              %li= link_to 'disbursements', :disbursements
+              %li= link_to t('controller.disbursements'), :disbursements
               %li.divider
               %li= link_to t('controller.import'), :import
               %li.divider

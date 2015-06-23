@@ -63,6 +63,10 @@ de:
       
     scouts_payment:
       title: 'Ein-/Auszahlungen Gruppenleiter'
+      
+    count_cash:
+      title: 'Kassenstand zählen'
+      total: 'Kassenstand'
   
   booking:
     account: 'Konto'
@@ -79,11 +83,14 @@ de:
     payment:
       title: 'Ein-/Auszahlungen'
     
-  controllers:
+  controller:
     children: 'Kinder'
     scouts: "Gruppenleiter"
     accounts: 'Konten'
     users: 'Benutzer'
+    tents: 'Zelte'
+    goods: 'Waren'
+    disbursements: 'ausgelegtes Geld'
     
   goods:
     beer: 'Bier'
