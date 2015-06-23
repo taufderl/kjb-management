@@ -1,0 +1,109 @@
+.page-header
+  %h1
+    = t('pages.scouts_payment.title')
+    %small= session[:date]
+
+.well.col-md-12
+  = form_for @booking, method: :post do |f|
+  
+    .col-md-3 
+      .form-group
+        = f.label t('controllers.scouts')
+        = f.collection_select(:note2, @scouts, :full_name, :full_name)
+        -# = f.collection_select(:account, @scouts, @scout[:scouts_account], :full_name,{:selected => @scout.account} , class: "input-sm form-control")
+        #-
+    .col-md-3
+      .field.form-group
+        = f.label t('booking.account'), class: "sr-only"
+        = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "input-sm form-control")  
+      .form-group
+        = f.label t('booking.amount')
+        = f.text_field :amount, class: "form-control"
+    .col-md-3
+      .form-group
+        = f.text_field :note1, hidden: true, value: 'Ein-/Auszahlung'
+        -# = f.text_field :note2, hidden: true, value: @scout.full_name
+        #-
+        = f.text_field :user, hidden: true, value: User.find_by_name(session[:user])
+        
+        = f.label t('booking.remarks')
+        = f.text_area :remarks, class: "form-control"
+        = f.submit t('buttons.send'), class: 'btn btn-primary'
+        
+
+
+%h3
+  = t('booking.payment.title')
+
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th 
+        = t('booking.accounting_number')
+      %th
+        = t('booking.date')
+      %th
+        = t('booking.amount')
+      %th
+        = t('booking.created_by')
+      %th
+        = t('booking.remarks')
+        
+  %tbody
+    -#    - @payments.each do |p|
+      %tr
+        = form_for p, do |f| 
+          %td
+            = p.accounting_number
+          %td
+            = p.date
+          %td
+            = p.amount
+          %td
+            = p.created.by
+          %td
+            = p.remarks
+    #-
+
+%br            
+%h3
+  = t('pages.scouts_account.consumption')
+
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th 
+        = t('pages.disbursement.date')
+      %th
+        = t('goods.beer')
+        = number_to_currency Good.get_price(:beer, session[:date])
+      %th
+        = t('goods.soft_drink')
+        = number_to_currency Good.get_price(:soft_drink, session[:date])
+      %th
+        = t('goods.sausage')
+        = number_to_currency Good.get_price(:sausage, session[:date])
+      %th
+        = t('goods.pork')
+        = number_to_currency Good.get_price(:pork, session[:date])
+      %th
+        = t('goods.turkey')
+        = number_to_currency Good.get_price(:turkey, session[:date])
+      %th= t('goods.other')
+      %th= t('booking.created_by')
+      %th= t('goods.total') 
+      
+  %tbody
+    -# - @scout_consumptions.each do |c|
+      %tr
+        = form_for c do |f| 
+          %td= c.date
+          %td= c.beer
+          %td= c.soft_drink
+          %td= c.sausage
+          %td= c.pork
+          %td= c.turkey
+          %td= number_to_currency c.other
+          %td= c.created_by
+          %td= number_to_currency c.total     
+    #-      

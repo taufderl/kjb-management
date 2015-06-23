@@ -42,6 +42,8 @@ de:
       update_consumption: 'Verbrauch aendern'
       s_account_cash: 'Barkasse'
       s_account_giro: 'Girokonto'
+      consumption: 'Verbrauch'
+      payment: 'Ein-/Auszahlung GL'
       
     disbursement:
       title: 'ausgelegtes Geld'
@@ -58,6 +60,9 @@ de:
     
     shop:
       title: "Bauchladen"
+      
+    scouts_payment:
+      title: 'Ein-/Auszahlungen Gruppenleiter'
   
   booking:
     account: 'Konto'
@@ -70,6 +75,9 @@ de:
     date: 'Datum'
     balance: 'aktueller Kontostand'
     date_balance: 'Kontostand bis zu diesem Tag'
+    
+    payment:
+      title: 'Ein-/Auszahlungen'
     
   controllers:
     children: 'Kinder'

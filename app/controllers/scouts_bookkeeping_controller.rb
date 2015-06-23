@@ -1,4 +1,6 @@
 class ScoutsBookkeepingController < ApplicationController
+  autocomplete :scout, :first_name, full: true,  :extra_data => [:last_name]
+  
   def index
     @scouts = Scout.all
     @dates = (Date.parse(Setting.find_by(key: :start_date).value)..Date.parse(Setting.find_by(key: :end_date).value)).to_a
@@ -42,6 +44,17 @@ class ScoutsBookkeepingController < ApplicationController
     @booking = Booking.new
     @bookings = Booking.where(date: @date, account: @account)    
   end
+  
+  def payment
+    @scouts = Scout.all
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
+    @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
+    @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
+    
+    @booking = Booking.new
+    @bookings = Booking.where(date: @date, account: @account)
+  end
+  
 
   def input
     date = Date.strptime(session[:date], "%d.%m.%Y")

@@ -14,8 +14,12 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/index2'
   get 'scouts_bookkeeping/billing'
   get 'scouts_bookkeeping/input'
+  get 'scouts_bookkeeping/payment'
+  
   post 'scouts_bookkeeping/new_entry/:scout_id' => 'scouts_bookkeeping#new_entry', as: :new_scout_consumption
   patch 'scouts_bookkeeping/update_entry/:scout_consumption_id' => 'scouts_bookkeeping#update_entry', as: :update_scout_consumption
+
+  get 'scouts_bookkeeping/payment/autocomplete_scout_first_name'
 
 
   get 'main_bookkeeping/index'
