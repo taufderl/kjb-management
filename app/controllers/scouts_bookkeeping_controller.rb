@@ -56,7 +56,6 @@ class ScoutsBookkeepingController < ApplicationController
   end
   
   def count_cash
-    # @total = 200*@count_200+100*@count_100+50*@count_50+20*@count_20+10*@count_10+5*@count_5+2*@count_2+1*@count_1+0.5*@count_50ct+0.2*@count_20ct+0.1*@count_10ct+0.05*@count_5ct+0.02*@count_2ct+0.01*@count_1ct
   end
   
 
