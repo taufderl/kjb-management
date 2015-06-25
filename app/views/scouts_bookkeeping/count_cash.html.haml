@@ -2,56 +2,80 @@
   %h1
     = t('pages.count_cash.title')
 
-.well.col-md-12
-  .col-md-2
-    .form-group
-      = number_to_currency 200
-      = number_field @count_200, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 100
-      = number_field @count_100, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 50
-      = number_field @count_50, class: 'form-control', default: '0'
-  .col-md-2
-    .form-group
-      = number_to_currency 20
-      = number_field @count_20, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 10
-      = number_field @count_10, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 5
-      = number_field @count_5, class: 'form-control', default: '0'
-  .col-md-2
-    .form-group
-      = number_to_currency 2
-      = number_field @count_2, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 1
-      = number_field @count_1, class: 'form-control', default: '0'
-  .col-md-2
-    .form-group
-      = number_to_currency 0.5
-      = number_field @count_50ct, class: 'form-control', default: '0' 
-    .form-group
-      = number_to_currency 0.2
-      = number_field @count_20ct, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 0.1
-      = number_field @count_10ct, class: 'form-control', default: '0'
-  .col-md-2
-    .form-group
-      = number_to_currency 0.05
-      = number_field @count_5ct, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 0.02
-      = number_field @count_2ct, class: 'form-control', default: '0'
-    .form-group
-      = number_to_currency 0.01
-      = number_field @count_1ct, class: 'form-control', default: '0'
-.col-md-3
-%h4
-  .form-group
-    = t('pages.count_cash.total')
-    = @total
+= form_for :count do |f|
+  .well.col-md-12
+    .col-md-2
+      .form-group
+        = f.label number_to_currency 200
+        = f.number_field '200', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 100
+        = f.number_field '100', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 50
+        = f.number_field '50', class: 'form-control count-input', value: 0
+    .col-md-2
+      .form-group
+        = f.label number_to_currency 20
+        = f.number_field '20', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 10
+        = f.number_field '10', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 5
+        = f.number_field '5', class: 'form-control count-input', value: 0
+    .col-md-2
+      .form-group
+        = f.label number_to_currency 2
+        = f.number_field '2', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 1
+        = f.number_field '1', class: 'form-control count-input', value: 0
+    .col-md-2
+      .form-group
+        = f.label number_to_currency 0.5
+        = f.number_field '50ct', class: 'form-control count-input', value: 0 
+      .form-group
+        = f.label number_to_currency 0.2
+        = f.number_field '20ct', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 0.1
+        = f.number_field '10ct', class: 'form-control count-input', value: 0
+    .col-md-2
+      .form-group
+        = f.label number_to_currency 0.05
+        = f.number_field '5ct', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 0.02
+        = f.number_field '2ct', class: 'form-control count-input', value: 0
+      .form-group
+        = f.label number_to_currency 0.01
+        = f.number_field '1ct', class: 'form-control count-input', value: 0
+  .col-md-4
+  .col-md-4
+    %h4
+      .form-group
+        = t('pages.count_cash.total')
+        = f.number_field :total, disabled: true, class: "form-control count-sum"
+
+:javascript
+  compute_sum = function() {
+    sum = $("#count_1ct").val() * 0.01 + 
+      $("#count_2ct").val() * 0.02 +
+      $("#count_5ct").val() * 0.05 +
+      $("#count_10ct").val() * 0.1 +
+      $("#count_20ct").val() * 0.2 +
+      $("#count_50ct").val() * 0.5 +
+      $("#count_1").val() * 1 +
+      $("#count_2").val() * 2 +
+      $("#count_5").val() * 5 +
+      $("#count_10").val() * 10 +
+      $("#count_20").val() * 20 +
+      $("#count_50").val() * 50 +
+      $("#count_100").val() * 100 +
+      $("#count_200").val() * 200
+    $('.count-sum').val(sum);
+  };
+  $(document).ready( function() {
+    $('.count-input').on("input", compute_sum);
+  });
