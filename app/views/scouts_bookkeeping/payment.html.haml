@@ -5,11 +5,11 @@
 
 .well.col-md-12
   = form_for @booking, method: :post do |f|
-  
     .col-md-3 
       .form-group
-        = f.label t('controllers.scouts')
+        = f.label t('controller.scouts')
         = f.collection_select(:note2, @scouts, :full_name, :full_name)
+        -# = f.text_field :note2, hidden: true, value: Scout.find(@scout_id).full_name #-
         -# = f.collection_select(:account, @scouts, @scout[:scouts_account], :full_name,{:selected => @scout.account} , class: "input-sm form-control")
         #-
     .col-md-3
@@ -31,7 +31,6 @@
         = f.submit t('buttons.send'), class: 'btn btn-primary'
         
 
-
 %h3
   = t('booking.payment.title')
 
@@ -50,7 +49,7 @@
         = t('booking.remarks')
         
   %tbody
-    -#    - @payments.each do |p|
+    -# - @payments.each do |p|
       %tr
         = form_for p, do |f| 
           %td

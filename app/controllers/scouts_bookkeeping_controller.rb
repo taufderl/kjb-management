@@ -46,17 +46,22 @@ class ScoutsBookkeepingController < ApplicationController
   end
   
   def payment
+    @booking = Booking.new
     @scouts = Scout.all
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
+    @payments = Booking.all
     
-    @booking = Booking.new
-    @bookings = Booking.where(date: @date, account: @account)
+    # t_params = params[:eingabe] 
+  
+    # Booking.create(account: t_params[:account_id], amount: t_params[:amount], note1: t_params[:note1], remarks: t_params[:remarks], note2: t_params[:note2])
+    # redirect_to :main_bookkeeping_payment
+    
   end
   
   def count_cash
-    # @total = 200*@count_200+100*@count_100+50*@count_50+20*@count_20+10*@count_10+5*@count_5+2*@count_2+1*@count_1+0.5*@count_50ct+0.2*@count_20ct+0.1*@count_10ct+0.05*@count_5ct+0.02*@count_2ct+0.01*@count_1ct
+    @total = 200*@count_200.to_i+100*@count_100.to_i+50*@count_50.to_i+20*@count_20.to_i+10*@count_10.to_i+5*@count_5.to_i+2*@count_2.to_i+1*@count_1.to_i+0.5*@count_50ct.to_i+0.2*@count_20ct.to_i+0.1*@count_10ct.to_i+0.05*@count_5ct.to_i+0.02*@count_2ct.to_i+0.01*@count_1ct.to_i
   end
   
 
