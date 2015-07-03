@@ -1,11 +1,10 @@
 .page-header
   %h1
     = t('pages.count_cash.title')
-    
-  %h5 
-    = t('pages.count_cash.debit')
-  %h5
-    = number_to_currency @s_account_cash_balance
+%h5 
+  = t('pages.count_cash.debit')
+%h5
+  = number_to_currency @m_account_balance
 
 = form_for :count do |f|
   .well.col-md-12

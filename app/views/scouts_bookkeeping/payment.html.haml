@@ -4,7 +4,7 @@
     %small= session[:date]
 
 .well.col-md-12
-  = form_for @booking, method: :post do |f|
+  = form_for :booking, url: new_scouts_payment_path, method: :post do |f|
     .col-md-3 
       .form-group
         = f.label t('controller.scouts')
@@ -49,7 +49,7 @@
         = t('booking.remarks')
         
   %tbody
-    -# - @payments.each do |p|
+    -# @payments.each do |p|
       %tr
         = form_for p, do |f| 
           %td

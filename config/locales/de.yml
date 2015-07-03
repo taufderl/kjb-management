@@ -67,6 +67,7 @@ de:
     count_cash:
       title: 'Kassenstand zählen'
       total: 'Kassenstand'
+      debit: 'Kassenstand laut Buchungen'
   
   booking:
     account: 'Konto'

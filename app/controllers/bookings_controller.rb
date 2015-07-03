@@ -42,6 +42,41 @@ class BookingsController < ApplicationController
       end
     end
   end
+  
+  def self.create_payment
+    aparams = booking_params
+    aparams[:created_by] = User.find_by_name(session[:user])
+    aparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")  
+    aparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
+      
+    @booking = Booking.new(aparams)
+    
+    sparams = aparams
+    sparams[:account_id] = User.find_by_name(aparams[:note2]).scouts_account
+    sparams[:note2] = Account.find(aparams[:account_id]).name
+    
+    @booking2 = Booking.new(sparams)
+
+    respond_to do |format|
+      if @booking.save
+        format.html { redirect_to :back, notice: 'Booking (account) was successfully created.' }
+        format.json { render :show, status: :created, location: @booking }
+      else
+        format.html { render :new }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
+    end 
+    
+    respond_to do |format|
+      if @booking2.save
+        format.html { redirect_to :back, notice: 'Booking (scout) was successfully created.' }
+        format.json { render :show, status: :created, location: @booking2 }
+      else
+        format.html { render :new }
+        format.json { render json: @booking2.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json

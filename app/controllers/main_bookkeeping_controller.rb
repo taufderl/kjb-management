@@ -17,6 +17,11 @@ class MainBookkeepingController < ApplicationController
     @m_account_date_balance = Booking.where(["date <= ?", @date]).where(account: @m_account).sum(:amount)   
   end
   
+  def count_cash
+    @m_account = Account.find_by_name('Lagerkasse Bar')      
+    @m_account_balance = Booking.where(account: @m_account).sum(:amount)
+  end
+  
   # commented out not used anymore --> see bookings_controller#new
   #def new_entry
   #  cc_params = params[:bookings] 

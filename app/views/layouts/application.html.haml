@@ -32,6 +32,7 @@
             %ul.dropdown-menu
               %li= link_to t('pages.main_account.overview'), main_bookkeeping_index_path
               %li= link_to t('pages.main_account.billing'), main_bookkeeping_billing_path
+              %li= link_to t('pages.count_cash.title'), main_bookkeeping_count_cash_path
           %li{:class => "dropdown #{'active' if params[:controller] == 'scouts_bookkeeping'}"}
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = t('pages.scouts_account.title')

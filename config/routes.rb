@@ -14,19 +14,21 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/index2'
   get 'scouts_bookkeeping/billing'
   get 'scouts_bookkeeping/input'
-  get 'scouts_bookkeeping/payment'
-  
+  get 'scouts_bookkeeping/payment'  
   get 'scouts_bookkeeping/count_cash'
+  
+  post 'scouts_bookkeeping/new_payment' => 'scouts_bookkeeping#new_payment', as: :new_scouts_payment
+  post 'bookings/create_payment' => 'bookings#create_payment'
   
   post 'scouts_bookkeeping/new_entry/:scout_id' => 'scouts_bookkeeping#new_entry', as: :new_scout_consumption
   patch 'scouts_bookkeeping/update_entry/:scout_consumption_id' => 'scouts_bookkeeping#update_entry', as: :update_scout_consumption
 
-  get 'scouts_bookkeeping/payment/autocomplete_scout_first_name'
-
+  # get 'scouts_bookkeeping/payment/autocomplete_scout_first_name'
 
   get 'main_bookkeeping/index'
   get 'main_bookkeeping/billing', as: :main_bookkeeping_billing
   
+  get 'main_bookkeeping/count_cash'
   
   get 'shop' => 'shop#index', as: :shop
   post 'shop/select_time_of_day', as: :select_time_of_day
