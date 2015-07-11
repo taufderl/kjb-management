@@ -60,9 +60,14 @@ class ScoutsBookkeepingController < ApplicationController
   end
   
   def count_cash
-    date = Date.strptime(session[:date], "%d.%m.%Y")
-    s_account_cash = Account.find_by_name('Gruppenleiterkasse')      
-    @s_account_cash_balance = Booking.where(account: s_account_cash).sum(:amount)
+    @s_account_cash = Account.find_by_name('Gruppenleiterkasse')      
+    @s_account_cash_balance = Booking.where(account: @s_account_cash).sum(:amount)
+    @count = session[:scouts_account_cash] || {}
+  end
+    
+  def save_cash
+    session[:scouts_account_cash] = params[:count]
+    render text: "OK"
   end
   
 

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/input'
   get 'scouts_bookkeeping/payment'  
   get 'scouts_bookkeeping/count_cash'
+  post 'scouts_bookkeeping/save_cash'
   
   post 'scouts_bookkeeping/new_payment' => 'scouts_bookkeeping#new_payment', as: :new_scouts_payment
   post 'bookings/create_payment' => 'bookings#create_payment'
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   get 'main_bookkeeping/billing', as: :main_bookkeeping_billing
   
   get 'main_bookkeeping/count_cash'
+  post 'main_bookkeeping/save_cash'
   
   get 'shop' => 'shop#index', as: :shop
   post 'shop/select_time_of_day', as: :select_time_of_day

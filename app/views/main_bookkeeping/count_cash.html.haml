@@ -1,66 +1,65 @@
 .page-header
   %h1
     = t('pages.count_cash.title')
-%h5 
-  = t('pages.count_cash.debit')
-%h5
-  = number_to_currency @m_account_balance
+    %small
+      = t('pages.count_cash.debit')
+      = number_to_currency @m_account_balance
 
-= form_for :count do |f|
+= form_for :count , { remote: true, url: 'save_cash', html: {id: :count_cash }} do |f|
   .well.col-md-12
     .col-md-2
       .form-group
         = f.label number_to_currency 200
-        = f.number_field '200', class: 'form-control count-input', value: 0
+        = f.number_field '200', class: 'form-control count-input', value: @count['200']
       .form-group
         = f.label number_to_currency 100
-        = f.number_field '100', class: 'form-control count-input', value: 0
+        = f.number_field '100', class: 'form-control count-input', value: @count['100']
       .form-group
         = f.label number_to_currency 50
-        = f.number_field '50', class: 'form-control count-input', value: 0
+        = f.number_field '50', class: 'form-control count-input', value: @count['50']
     .col-md-2
       .form-group
         = f.label number_to_currency 20
-        = f.number_field '20', class: 'form-control count-input', value: 0
+        = f.number_field '20', class: 'form-control count-input', value: @count['20']
       .form-group
         = f.label number_to_currency 10
-        = f.number_field '10', class: 'form-control count-input', value: 0
+        = f.number_field '10', class: 'form-control count-input', value: @count['10']
       .form-group
         = f.label number_to_currency 5
-        = f.number_field '5', class: 'form-control count-input', value: 0
+        = f.number_field '5', class: 'form-control count-input', value: @count['5']
     .col-md-2
       .form-group
         = f.label number_to_currency 2
-        = f.number_field '2', class: 'form-control count-input', value: 0
+        = f.number_field '2', class: 'form-control count-input', value: @count['2']
       .form-group
         = f.label number_to_currency 1
-        = f.number_field '1', class: 'form-control count-input', value: 0
+        = f.number_field '1', class: 'form-control count-input', value: @count['1']
     .col-md-2
       .form-group
         = f.label number_to_currency 0.5
-        = f.number_field '50ct', class: 'form-control count-input', value: 0 
+        = f.number_field '50ct', class: 'form-control count-input', value: @count['50ct']
       .form-group
         = f.label number_to_currency 0.2
-        = f.number_field '20ct', class: 'form-control count-input', value: 0
+        = f.number_field '20ct', class: 'form-control count-input', value: @count['20ct']
       .form-group
         = f.label number_to_currency 0.1
-        = f.number_field '10ct', class: 'form-control count-input', value: 0
+        = f.number_field '10ct', class: 'form-control count-input', value: @count['10ct']
     .col-md-2
       .form-group
         = f.label number_to_currency 0.05
-        = f.number_field '5ct', class: 'form-control count-input', value: 0
+        = f.number_field '5ct', class: 'form-control count-input', value: @count['5ct']
       .form-group
         = f.label number_to_currency 0.02
-        = f.number_field '2ct', class: 'form-control count-input', value: 0
+        = f.number_field '2ct', class: 'form-control count-input', value: @count['2ct']
       .form-group
         = f.label number_to_currency 0.01
-        = f.number_field '1ct', class: 'form-control count-input', value: 0
+        = f.number_field '1ct', class: 'form-control count-input', value: @count['1ct']
   .col-md-4
   .col-md-4
     %h4
       .form-group
-        = t('pages.count_cash.total')
-        = f.number_field :total, disabled: true, class: "form-control count-sum"
+        = f.label t('pages.count_cash.total')
+        = f.number_field 'total', readonly: true, class: "form-control count-sum", value: @count['total']
 
 :javascript
   compute_sum = function() {
@@ -79,6 +78,7 @@
       $("#count_100").val() * 100 +
       $("#count_200").val() * 200
     $('.count-sum').val(sum);
+    $("#count_cash").submit();
   };
   $(document).ready( function() {
     $('.count-input').on("input", compute_sum);
