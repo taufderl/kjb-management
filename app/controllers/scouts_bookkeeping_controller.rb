@@ -50,7 +50,8 @@ class ScoutsBookkeepingController < ApplicationController
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
-    @payments = Booking.all  
+    @payments = Booking.all
+    @scout_consumptions = ScoutConsumption.all
   end
   
   def new_payment

@@ -4,30 +4,26 @@
     %small= session[:date]
 
 .well.col-md-12
-  = form_for :booking, url: new_scouts_payment_path, method: :post do |f|
+  = form_for :booking, url: create_payment_path, method: :post do |f|
     .col-md-3 
       .form-group
         = f.label t('controller.scouts')
-        = f.collection_select(:note2, @scouts, :full_name, :full_name)
-        -# = f.text_field :note2, hidden: true, value: Scout.find(@scout_id).full_name #-
-        -# = f.collection_select(:account, @scouts, @scout[:scouts_account], :full_name,{:selected => @scout.account} , class: "input-sm form-control")
-        #-
+        = f.collection_select(:scout_id, @scouts, :id, :full_name, {}, class: "form-control")
+      .form-group
+        = f.label t('booking.payment.title')
+        = f.collection_select(:payment_type, {in: 'Einzahlung', out: 'Auszahlung'}, :first, :last, {}, class: "form-control")
     .col-md-3
-      .field.form-group
-        = f.label t('booking.account'), class: "sr-only"
-        = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "input-sm form-control")  
+      .form-group
+        = f.label t('booking.account')
+        = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "form-control")  
       .form-group
         = f.label t('booking.amount')
         = f.text_field :amount, class: "form-control"
     .col-md-3
       .form-group
-        = f.text_field :note1, hidden: true, value: 'Ein-/Auszahlung'
-        -# = f.text_field :note2, hidden: true, value: @scout.full_name
-        #-
-        = f.text_field :user, hidden: true, value: User.find_by_name(session[:user])
-        
         = f.label t('booking.remarks')
         = f.text_area :remarks, class: "form-control"
+      .form-group 
         = f.submit t('buttons.send'), class: 'btn btn-primary'
         
 
@@ -37,6 +33,8 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
+      %th 
+        = t('booking.account')
       %th 
         = t('booking.accounting_number')
       %th
@@ -49,9 +47,12 @@
         = t('booking.remarks')
         
   %tbody
-    -# @payments.each do |p|
+    - @payments.each do |p|
       %tr
-        = form_for p, do |f| 
+        = form_for p do |f| 
+          %td
+            - if p.account
+              = p.account.name
           %td
             = p.accounting_number
           %td
@@ -59,10 +60,12 @@
           %td
             = p.amount
           %td
-            = p.created.by
+            - if p.created_by
+              = p.created_by.name
           %td
             = p.remarks
-    #-
+
+
 
 %br            
 %h3
@@ -93,9 +96,9 @@
       %th= t('goods.total') 
       
   %tbody
-    -# - @scout_consumptions.each do |c|
+    - @scout_consumptions.each do |c|
       %tr
-        = form_for c do |f| 
+        -#= form_for c do |f| 
           %td= c.date
           %td= c.beer
           %td= c.soft_drink
@@ -105,4 +108,4 @@
           %td= number_to_currency c.other
           %td= c.created_by
           %td= number_to_currency c.total     
-    #-      
+     

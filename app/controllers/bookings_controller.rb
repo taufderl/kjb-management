@@ -43,51 +43,49 @@ class BookingsController < ApplicationController
     end
   end
   
-  def self.create_payment
-    aparams = booking_params
-    aparams[:created_by] = User.find_by_name(session[:user])
-    aparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")  
-    aparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
-      
-    @booking = Booking.new(aparams)
-    
-    sparams = aparams
-    sparams[:account_id] = User.find_by_name(aparams[:note2]).scouts_account
-    sparams[:note2] = Account.find(aparams[:account_id]).name
-    
-    @booking2 = Booking.new(sparams)
-
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to :back, notice: 'Booking (account) was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end 
-    
-    respond_to do |format|
-      if @booking2.save
-        format.html { redirect_to :back, notice: 'Booking (scout) was successfully created.' }
-        format.json { render :show, status: :created, location: @booking2 }
-      else
-        format.html { render :new }
-        format.json { render json: @booking2.errors, status: :unprocessable_entity }
-      end
+  # post /bookings/create_payment
+  def create_payment
+    pp = params[:booking]
+    bparams = {}
+    bparams[:created_by] = User.find_by_name(session[:user])
+    bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
+    if pp[:payment_type] == 'in'
+      bparams[:amount] = pp[:amount]
+    elsif pp[:payment_type] == 'out'
+      bparams[:amount]= -pp[:amount]
     end
-  end
-
-  # PATCH/PUT /bookings/1
-  # PATCH/PUT /bookings/1.json
-  def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
-        format.json { render :show, status: :ok, location: @booking }
+    bparams[:remarks] = pp[:remarks]
+    if pp.include? :scout_id
+      # this is a scout payment
+      account_id = pp[:account_id]
+      accounting_number = Booking.where(account_id: account_id).map {|b| b.accounting_number}.compact.max.to_i+1
+      @account_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+      
+      account_id = Scout.find(pp[:scout_id]).account.account.id
+      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+    
+        @account_booking.save
+      if @account_booking.valid? and @scout_booking.valid?
+        @scout_booking.save
+        redirect_to :back, notice: "Payment was successfully created." + "#{@account_id}"
       else
-        format.html { render :edit }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+        redirect_to :back, error: "Could not save the payment due to an error."
+      end
+    elsif pp.include? :child_id
+      # this is a child payment
+      account_id = pp[:account_id]
+      accounting_number = Booking.where(account_id: account_id).map {|b| b.accounting_number}.compact.max.to_i+1
+      @account_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+      
+      account_id = Child.find(pp[:child_id]).account.account.id
+      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+    
+        @account_booking.save
+      if @account_booking.valid? and @scout_booking.valid?
+        @scout_booking.save
+        redirect_to :back, notice: "Payment was successfully created."
+      else
+        redirect_to :back, error: "Could not save the payment due to an error."
       end
     end
   end

@@ -16,9 +16,8 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/payment'  
   get 'scouts_bookkeeping/count_cash'
   post 'scouts_bookkeeping/save_cash'
-  post 'scouts_bookkeeping/new_payment' => 'scouts_bookkeeping#new_payment', as: :new_scouts_payment
   
-  post 'bookings/create_payment' => 'bookings#create_payment'
+  post 'bookings/create_payment' => 'bookings#create_payment', as: :create_payment
   
   post 'scouts_bookkeeping/new_entry/:scout_id' => 'scouts_bookkeeping#new_entry', as: :new_scout_consumption
   patch 'scouts_bookkeeping/update_entry/:scout_consumption_id' => 'scouts_bookkeeping#update_entry', as: :update_scout_consumption

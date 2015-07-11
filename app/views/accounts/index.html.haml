@@ -3,13 +3,14 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
+      %th ID
       %th Name
-      %th
       %th
 
   %tbody
     - @accounts.each do |account|
       %tr
+        %td= account.id
         %td= link_to account.name, account
         %td
           = link_to 'Edit', edit_account_path(account), class: "btn btn-default btn-xs"
