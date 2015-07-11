@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get 'shop/child_data/:child_id' => 'shop#child_data'
 
   get 'import/index', as: :import
+  post 'import/upload', as: :upload
 
   resources :users
   resources :accounts

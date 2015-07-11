@@ -57,15 +57,17 @@ class BookingsController < ApplicationController
     bparams[:remarks] = pp[:remarks]
     if pp.include? :scout_id
       # this is a scout payment
-      account_id = pp[:account_id]
-      accounting_number = Booking.where(account_id: account_id).map {|b| b.accounting_number}.compact.max.to_i+1
-      @account_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+      scout = Scout.find(pp[:scout_id])
       
-      account_id = Scout.find(pp[:scout_id]).account.account.id
-      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
-    
-        @account_booking.save
+      main_account = MainAccount.find(pp[:account_id])
+      accounting_number = Booking.where(account_id: pp[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
+      @account_booking = Booking.new(bparams.merge(account: main_account, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: scout.full_name))
+      
+      account_id = scout.account.account.id
+      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: main_account.name))
+      
       if @account_booking.valid? and @scout_booking.valid?
+        @account_booking.save
         @scout_booking.save
         redirect_to :back, notice: "Payment was successfully created." + "#{@account_id}"
       else
@@ -73,15 +75,17 @@ class BookingsController < ApplicationController
       end
     elsif pp.include? :child_id
       # this is a child payment
-      account_id = pp[:account_id]
-      accounting_number = Booking.where(account_id: account_id).map {|b| b.accounting_number}.compact.max.to_i+1
-      @account_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+      child = Child.find(pp[:child_id])
       
-      account_id = Child.find(pp[:child_id]).account.account.id
-      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number))
+      main_account = MainAccount.find(pp[:account_id])
+      accounting_number = Booking.where(account_id: pp[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
+      @account_booking = Booking.new(bparams.merge(account: main_account, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: child.full_name))
+      
+      account_id = child.account.account.id
+      @scout_booking = Booking.new(bparams.merge(account_id: account_id, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: main_account.name))
     
-        @account_booking.save
       if @account_booking.valid? and @scout_booking.valid?
+        @account_booking.save
         @scout_booking.save
         redirect_to :back, notice: "Payment was successfully created."
       else

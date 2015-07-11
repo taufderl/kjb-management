@@ -12,6 +12,6 @@ class Child < ActiveRecord::Base
   end
   
   def account_balance
-    self.child_consumptions.map {|sc| -sc.total }.sum
+    self.account.balance - self.child_consumptions.map {|sc| sc.total }.sum
   end
 end

@@ -1,15 +1,70 @@
-%p#notice= notice
+.row    
+  .col-md-10
+    %h1.page-header
+      = @scout.first_name
+      = @scout.last_name
+      %small
+        = @scout.birthday.strftime "%d.%m.%Y"
 
-%p
-  %b First name:
-  = @scout.first_name
-%p
-  %b Last name:
-  = @scout.last_name
-%p
-  %b Birthday:
-  = @scout.birthday
+  .col-md-2
+    %br
+    %br
+    = link_to 'Bearbeiten', edit_scout_path(@scout), class: "btn btn-primary"
 
-= link_to 'Edit', edit_scout_path(@scout)
-\|
-= link_to 'Back', scouts_path
+.row  
+  .col-md-5
+    - if @scout.tent
+      %h2
+        %b 
+          Zelt
+          = @scout.tent.number
+      %p
+        %b= @scout.tent.scouts.map {|a| a.first_name}.join(', ')
+      %p
+        = @scout.tent.children.map {|a| a.full_name}.join(', ')
+    - else
+      Zelt Zuteilung fehlt
+  
+  .col-md-5
+    %h2
+      Guthaben:
+      = number_to_currency @scout.account_balance
+
+%br
+.row
+  .col-md-8
+    %h3 Buchungen
+    %table.table.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Account
+          %th Amount
+          %th Note1
+          %th Note2
+          %th Remarks
+  
+      %tbody
+        - @scout.account.bookings.each do |booking|
+          %tr
+            %td= booking.date.strftime "%d.%m.%Y"
+            %td= booking.account ? booking.account.name : "-"
+            %td= number_to_currency booking.amount
+            %td= booking.note1
+            %td= booking.note2
+            %td= booking.remarks
+  
+  .col-md-4
+    %h3 Verbrauch
+    %table.table.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Amount
+          
+      %tbody
+        - @scout.scout_consumptions.each do |consumption|
+          %tr
+            %td= consumption.date.strftime "%d.%m.%Y"
+            %td= number_to_currency consumption.total
+    

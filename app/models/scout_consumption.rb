@@ -2,7 +2,6 @@ class ScoutConsumption < ActiveRecord::Base
   belongs_to :scout
   validates_uniqueness_of :scout_id, :scope => :date
   
-  
   def total
     self.beer.to_i * Good.get_price(:beer, self.date) + 
     self.soft_drink.to_i * Good.get_price(:soft_drink, self.date) + 

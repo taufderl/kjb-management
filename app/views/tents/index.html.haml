@@ -4,6 +4,7 @@
   %thead
     %tr
       %th Number
+      %th Scouts
       %th Children
       %th
 
@@ -12,8 +13,9 @@
       %tr
         %td= link_to tent.number, tent
         %td
+          = tent.scouts.map {|a| a.first_name}.join(', ')
+        %td
           = tent.children.map {|a| a.first_name + ' ' + a.last_name[0] + '.'}.join(', ')
-          
         %td
           = link_to 'Edit', edit_tent_path(tent), class: "btn btn-default btn-xs"
           = link_to 'Destroy', tent, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"

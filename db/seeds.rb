@@ -17,25 +17,12 @@ ChildAccount.delete_all
 
 MainAccount.create([{name: 'Lagerkasse Bar'}, {name: 'Gruppenleiterkasse Girokonto'}, {name: 'Gruppenleiterkasse'}, {name: 'Kinderkasse'}])
 
-# Main_account.delete_all
-# Main_account.create([{name: 'Lagerkasse Bar'}, {name: 'Gruppenleiterkasse Girokonto'}, {name: 'Gruppenleiterkasse'}, {name: 'Kinderkasse'}])
-
 User.delete_all
 User.create([{name: 'Johannes'}, {name: 'Lena'}, {name: 'Gast'}])
 
 Tent.delete_all
 (1..12).each do |no|
   Tent.create(number: no)
-end
-
-Child.delete_all
-(1..50).each do |no|
-  Child.create({first_name: "child_firstname_#{no}", last_name: "child_lastname_#{no}", birthday: Date.today, tent: Tent.all[rand(0..11)]})  
-end
-
-Scout.delete_all
-(1..15).each do |no|
-  Scout.create({first_name: "GL_firstname_#{no}", last_name: "GL_lastname_#{no}", birthday: Date.today - 21.years, tent: Tent.all[rand(0..11)]})  
 end
 
 Setting.delete_all

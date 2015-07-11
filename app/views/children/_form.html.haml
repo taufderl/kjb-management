@@ -8,12 +8,15 @@
 
   .field
     = f.label :first_name
-    = f.text_field :first_name
+    = f.text_field :first_name, class: "form-control"
   .field
     = f.label :last_name
-    = f.text_field :last_name
+    = f.text_field :last_name, class: "form-control"
   .field
     = f.label :birthday
-    = f.date_select :birthday
+    = f.date_select :birthday, {}, class: "form-control"
+  .field
+    = f.label :tent
+    = f.collection_select :tent_id, Tent.all, :id, :number, {} , class: "form-control"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: "btn btn-primary"

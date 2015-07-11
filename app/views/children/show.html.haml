@@ -1,18 +1,74 @@
-%p#notice= notice
+.row
+  .col-md-10
+    %h1.page-header
+      = @child.first_name
+      = @child.last_name
+      %small
+        = @child.birthday.strftime "%d.%m.%Y"
+  
+  .col-md-2
+    %br
+    %br
+    = link_to 'Bearbeiten', edit_child_path(@child), class: "btn btn-primary"
 
-%p
-  %b First name:
-  = @child.first_name
-%p
-  %b Last name:
-  = @child.last_name
-%p
-  %b Birthday:
-  = @child.birthday
-%p
-  %b Tent:
-  = @child.tent.number
+.row  
+  .col-md-4
+    - if @child.tent
+      %h2
+        %b 
+          Zelt
+          = @child.tent.number
+      %p
+        %b= @child.tent.scouts.map {|a| a.first_name}.join(', ')
+      %p
+        = @child.tent.children.map {|a| a.full_name}.join(', ')
+    - else
+      Zelt Zuteilung fehlt
+  
+  .col-md-4
+    %h2
+      Guthaben:
+      = number_to_currency @child.account_balance
+  .col-md-4
+    .well
+      = simple_format @child.phone
+      
 
-= link_to 'Edit', edit_child_path(@child)
-\|
-= link_to 'Back', children_path
+%br
+.row
+  .col-md-8
+    %h3 Buchungen
+    %table.table.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Account
+          %th Amount
+          %th Note1          
+          %th Note2
+          %th Remarks
+  
+      %tbody
+        - @child.account.bookings.each do |booking|
+          %tr
+            %td= booking.date.strftime "%d.%m.%Y"
+            %td= booking.account ? booking.account.name : "-"
+            %td= number_to_currency booking.amount
+            %td= booking.note1
+            %td= booking.note2
+            %td= booking.remarks
+  
+  .col-md-4
+    %h3 Verbrauch
+    %table.table.table-condensed.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Amount
+            
+      %tbody
+        - @child.child_consumptions.each do |consumption|
+          %tr
+            %td= consumption.date.strftime "%d.%m.%Y"
+            %td= number_to_currency consumption.total
+            
