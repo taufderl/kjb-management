@@ -13,7 +13,9 @@ class ApplicationController < ActionController::Base
   end
   
   def ask_for_user_if_not_set
-    flash[:alert] = "Please tell me who you are before you continue! Select a user in the upper right corner."
+    if not session[:user]
+      flash[:alert] = "Please tell me who you are before you continue! Select a user in the upper right corner."
+    end
   end
 
 end
