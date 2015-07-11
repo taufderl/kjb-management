@@ -1,2 +1,11 @@
-%h1 Import#index
-%p Find me in app/views/import/index.html.haml
+%h1.page-header
+  Import from file
+.well  
+  = form_for :upload, {url: :upload} do |f|
+    = f.radio_button :data, :children
+    = f.label "Kinder"
+    %br
+    = f.radio_button :data, :scouts
+    = f.label "Gruleis"
+    = f.file_field :file
+    = f.submit "Upload"

@@ -6,6 +6,7 @@
       %th First name
       %th Last name
       %th Birthday
+      %th Phone
       %th Tent
       %th
 
@@ -14,7 +15,8 @@
       %tr
         %td= link_to child.first_name, child
         %td= link_to child.last_name, child
-        %td= child.birthday
+        %td= child.birthday.strftime "%d.%m.%Y"
+        %td= truncate child.phone, length: 80
         %td
           - if child.tent
             = link_to child.tent.number, child.tent
