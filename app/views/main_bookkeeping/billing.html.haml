@@ -8,7 +8,11 @@
     .col-md-2
       .form-group
         = f.label t('booking.amount')
-        = f.text_field :amount, class: "form-control"
+        .input-group
+          %span.input-group-btn
+            %button.btn.btn-danger
+              \-
+          = f.text_field :amount, class: "form-control"
     .col-md-2
       .form-group
         = f.label t('booking.note1')
