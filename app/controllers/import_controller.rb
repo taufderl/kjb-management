@@ -17,7 +17,8 @@ class ImportController < ApplicationController
           first_name: row["Vorname"],
           last_name: row["Nachname"],
           birthday: Date.strptime(row["Geburtsdatum"].split(' ')[0], '%m/%d/%Y'),
-          phone: "Telefon: "+row["Telefon"].to_s+"\nElternTelefon: "+row["ElternTelefon"].to_s+"\nElternTelefonDienstlich: "+row["ElternTelefonDienstlich"].to_s + "\nElternErreichbarUrlaub: "+row["ElternErreichbarUrlaub"].to_s
+          phone: "Telefon: "+row["Telefon"].to_s+"\nElternTelefon: "+row["ElternTelefon"].to_s+"\nElternTelefonDienstlich: "+row["ElternTelefonDienstlich"].to_s + "\nElternErreichbarUrlaub: "+row["ElternErreichbarUrlaub"].to_s,
+          image: row["TeilnehmerImage"]
         }
         child = Child.create(data)
       end
