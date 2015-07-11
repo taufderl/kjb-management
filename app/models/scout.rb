@@ -12,6 +12,6 @@ class Scout < ActiveRecord::Base
   end
   
   def account_balance
-    self.scout_consumptions.map {|sc| -sc.total }.sum
+    self.account.balance - self.scout_consumptions.map {|sc| sc.total }.sum
   end
 end
