@@ -64,6 +64,10 @@ de:
     scouts_payment:
       title: 'Ein-/Auszahlungen Gruppenleiter'
       
+    children_bookkeeping:
+      title: Kinder
+      payment: Ein-/Auszahlungen Kinder
+      
     count_cash:
       title: 'Kassenstand zählen'
       total: 'Kassenstand'

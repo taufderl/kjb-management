@@ -50,9 +50,9 @@ class BookingsController < ApplicationController
     bparams[:created_by] = User.find_by_name(session[:user])
     bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
     if pp[:payment_type] == 'in'
-      bparams[:amount] = pp[:amount]
+      bparams[:amount] = pp[:amount].to_f
     elsif pp[:payment_type] == 'out'
-      bparams[:amount]= -pp[:amount]
+      bparams[:amount]= - pp[:amount].to_f
     end
     bparams[:remarks] = pp[:remarks]
     if pp.include? :scout_id

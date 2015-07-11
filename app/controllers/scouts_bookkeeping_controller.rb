@@ -51,13 +51,6 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
     @payments = Booking.all
-    @scout_consumptions = ScoutConsumption.all
-  end
-  
-  def new_payment
-    t_params = params[:booking] 
-    Booking.create_payment(account: t_params[:account_id], amount: t_params[:amount], note1: t_params[:note1], remarks: t_params[:remarks], note2: t_params[:note2])
-    redirect_to :main_bookkeeping_payment
   end
   
   def count_cash
@@ -70,7 +63,6 @@ class ScoutsBookkeepingController < ApplicationController
     session[:scouts_account_cash] = params[:count]
     render text: "OK"
   end
-  
 
   def input
     date = Date.strptime(session[:date], "%d.%m.%Y")

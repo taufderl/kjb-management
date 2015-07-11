@@ -1,21 +1,22 @@
-.page-header
+.page-header.col-md-12
   %h1
-    = t('pages.scouts_payment.title')
+    = t('pages.children_bookkeeping.payment')
     %small= session[:date]
-
+          
 .well.col-md-12
   = form_for :booking, url: create_payment_path, method: :post do |f|
-    .col-md-3 
+    .col-md-4
       .form-group
-        = f.label t('controller.scouts')
-        = f.collection_select(:scout_id, @scouts, :id, :full_name, {}, class: "form-control")
+        = f.label t('shop.child')
+        = f.autocomplete_field :child_full_name, shop_autocomplete_child_first_name_path, update_elements: {}, 'data-id-element' => '#booking_child_id', class: 'form-control'
+        = f.text_field :child_id, hidden: true
       .form-group
         = f.label t('booking.payment.title')
         = f.collection_select(:payment_type, {in: 'Einzahlung', out: 'Auszahlung'}, :first, :last, {}, class: "form-control")
     .col-md-3
       .form-group
         = f.label t('booking.account')
-        = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "form-control")  
+        = f.collection_select(:account_id, Account.where("name like ?", '%Kinder%'), :id, :name, {}, class: "form-control")  
       .form-group
         = f.label t('booking.amount')
         = f.text_field :amount, class: "form-control"
@@ -25,7 +26,6 @@
         = f.text_area :remarks, class: "form-control"
       .form-group 
         = f.submit t('buttons.send'), class: 'btn btn-primary'
-        
 
 %h3
   = t('booking.payment.title')
@@ -56,12 +56,11 @@
           %td
             = p.accounting_number
           %td
-            = p.date
+            = p.date.strftime("%d.%m.%Y")
           %td
-            = p.amount
+            = number_to_currency p.amount
           %td
             - if p.created_by
               = p.created_by.name
           %td
             = p.remarks
-

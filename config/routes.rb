@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'children_bookkeeping/payment'
+
   resources :news
   resources :bookings
   resources :scouts_accounts
