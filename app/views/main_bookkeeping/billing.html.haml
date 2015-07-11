@@ -5,21 +5,25 @@
 
 .well.col-md-12
   = form_for @booking, method: :post do |f|
-    .col-md-3
+    .col-md-2
       .form-group
         = f.label t('booking.amount')
         = f.text_field :amount, class: "form-control"
+    .col-md-2
       .form-group
         = f.label t('booking.note1')
         = f.text_field :note1, class: "form-control"
+    .col-md-4
       .form-group
         = f.label t('booking.note2')
         = f.text_field :note2, class: "form-control"
     .col-md-3
       .form-group
         = f.label t('booking.remarks')
-        = f.text_area :remarks, class: "form-control"
+        = f.text_field :remarks, class: "form-control"
+    .col-md-1
       .form-group
+        = f.label t('booking.actions')
         = f.number_field :account_id, hidden: true, value: @m_account.id
         = f.submit t('buttons.send'), class: 'btn btn-primary'
  

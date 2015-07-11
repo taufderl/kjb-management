@@ -84,6 +84,7 @@ de:
     date: 'Datum'
     balance: 'aktueller Kontostand'
     date_balance: 'Kontostand bis zu diesem Tag'
+    actions: Actions
     
     payment:
       title: 'Ein-/Auszahlungen'
