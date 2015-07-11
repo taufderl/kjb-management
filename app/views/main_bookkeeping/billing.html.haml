@@ -10,7 +10,7 @@
         = f.label t('booking.amount')
         .input-group
           %span.input-group-btn
-            %button.btn.btn-danger
+            %button.btn.btn-danger{type: :button}
               \-
           = f.text_field :amount, class: "form-control"
     .col-md-2
