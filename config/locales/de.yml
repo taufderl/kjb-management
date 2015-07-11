@@ -105,11 +105,13 @@ de:
     end_date: "Enddatum"
     
   shop:
-    soft_drink: "Getraenk"
+    soft_drink: "Getränk"
     child: "Kind"
     total: "Gesamt"
     other: "Anderes"
-    please_select_time_of_day: "Tageszeit auswaehlen"
+    please_select_time_of_day: "Tageszeit auswählen"
+    current_balance: "Aktueller Kontostand"
+    new_balance: Neuer Kontostand
   
   time_of_day:
     noon: "Mittag"

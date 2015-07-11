@@ -22,14 +22,14 @@
 
           
   .well.col-md-12
-    .col-md-3
+    .col-md-4
       .form-group
         = f.label t('shop.child')
-        = f.autocomplete_field :child_first_name, shop_autocomplete_child_first_name_path, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
+        = f.autocomplete_field :child_full_name, shop_autocomplete_child_first_name_path, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
         = f.text_field :child_id, hidden: true
       .form-group
-        = f.label (t('shop.soft_drink') + ' ' + (number_to_currency Good.get_price(:soft_drink, session[:date])))
-        = f.number_field :soft_drink, class: 'form-control'
+        %img.center-block.img-rounded{src: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+'}
+    
     .col-md-2
       .form-group
         = f.label t('shop.other')
@@ -54,17 +54,27 @@
           = f.number_field :five_cent, class: 'form-control'
     .col-md-2
       .form-group
+        = f.label (t('shop.soft_drink') + ' ' + (number_to_currency Good.get_price(:soft_drink, session[:date])))
+        = f.number_field :soft_drink, class: 'form-control'
+      .form-group
         = f.label t('shop.total')
         .input-group#form-control
           %span.input-group-addon#form-control
             %span.glyphicon.glyphicon-search{"aria-hidden" => true}
-          = f.number_field :total, class: 'form-control', disabled: true
+          = f.number_field :total, class: 'form-control', readonly: true
+      
+    .col-md-2
+      .form-group
+        = f.label t('shop.current_balance')
+        = f.text_field :current_balance, class: 'form-control', readonly: true
+      .form-group
+        = f.label t('shop.new_balance')
+        = f.number_field :new_balance, class: 'form-control', readonly: true
       .form-group
         = f.label 'Actions'
         .input-group#form-control
           = f.submit t('buttons.send'), class: 'btn btn-primary'
-    .col-md-3
-      %img.img-rounded{src: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA1NDY4NzUiIHk9IjcwIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MTQweDE0MDwvdGV4dD48L2c+PC9zdmc+'}
+
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -105,5 +115,14 @@
           %td= f.submit t('buttons.save'), class: "btn btn-default"
           %td= number_to_currency c.total
           %td= number_to_currency c.child.account_balance
-          
-          
+
+
+:javascript
+  $('#child_consumption_child_full_name').bind('railsAutocomplete.select', function(event, data){
+    child_id = data.item.id;
+    $.get('shop/child_data/'+child_id, function(child_data, textStatus) {
+      $('#child_consumption_current_balance').val(child_data.account_balance);
+      // TODO:add picture request here, possibly more 
+    });
+  });
+  

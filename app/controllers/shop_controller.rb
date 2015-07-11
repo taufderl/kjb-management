@@ -1,5 +1,5 @@
 class ShopController < ApplicationController
-  autocomplete :child, :first_name, full: true,  :extra_data => [:last_name]
+  autocomplete :child, :first_name, full: true,  display_value: :full_name, :extra_data => [:last_name]
   
   def index
     date = Date.strptime(session[:date], "%d.%m.%Y")
@@ -27,6 +27,11 @@ class ShopController < ApplicationController
     end
     redirect_to :shop
   end
+  
+  def child_data
+    @child = Child.find(params[:child_id])
+  end
+  
   
   private
     # Never trust parameters from the scary internet, only allow the white list through.

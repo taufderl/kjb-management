@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :scouts_accounts
   resources :children_accounts
   resources :main_accounts
-  resources :main_accounts
   post 'disbursements/clear/:id' => "disbursements#clear", as: :clear_disbursement
   resources :disbursements
   resources :settings
@@ -17,8 +16,8 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/payment'  
   get 'scouts_bookkeeping/count_cash'
   post 'scouts_bookkeeping/save_cash'
-  
   post 'scouts_bookkeeping/new_payment' => 'scouts_bookkeeping#new_payment', as: :new_scouts_payment
+  
   post 'bookings/create_payment' => 'bookings#create_payment'
   
   post 'scouts_bookkeeping/new_entry/:scout_id' => 'scouts_bookkeeping#new_entry', as: :new_scout_consumption
@@ -37,6 +36,7 @@ Rails.application.routes.draw do
   get 'shop/autocomplete_child_first_name'
   post 'shop/new_entry' => 'shop#new_entry', as: :new_child_consumption
   patch 'shop/update_entry/:child_consumption_id' => 'shop#update_entry', as: :update_child_consumption
+  get 'shop/child_data/:child_id' => 'shop#child_data'
 
   get 'import/index', as: :import
 
@@ -44,12 +44,13 @@ Rails.application.routes.draw do
   resources :accounts
   resources :scouts
   resources :tents
+  resources :children
   
   root 'dashboard#index', as: 'dashboard'
   post 'dashboard/select_user', as: :select_user
   post 'dashboard/select_date', as: :select_date
 
-  resources :children
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
