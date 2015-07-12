@@ -1,5 +1,4 @@
 class ImportController < ApplicationController
-  require 'csv'
   
   def index
   end

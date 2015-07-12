@@ -85,6 +85,13 @@ class ScoutsBookkeepingController < ApplicationController
     redirect_to :scouts_bookkeeping_input
   end
   
+  def export
+    account_cash = Account.find_by_name('Gruppenleiterkasse')
+    account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
+    @csv = Booking.to_csv({account: [account_cash, account_giro]}, {})
+    send_data @csv, filename: "Gruppenleiterkasse_Export_#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
+  end
+  
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params

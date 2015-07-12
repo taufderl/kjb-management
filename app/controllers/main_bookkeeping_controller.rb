@@ -28,4 +28,10 @@ class MainBookkeepingController < ApplicationController
     render text: "OK"
   end
   
+  def export
+    account = Account.find_by_name('Lagerkasse Bar')
+    @csv = Booking.to_csv({account: account}, {})
+    send_data @csv, filename: "Lagerkasse_Export_#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
+  end
+  
 end

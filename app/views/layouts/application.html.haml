@@ -72,12 +72,12 @@
               
         
         %ul.nav.navbar-nav.navbar-right
-          %form.navbar-form{style: "width: 200px;", action: select_date_path, method: :post}
+          %form.navbar-form{style: "width: 220px;", action: select_date_path, method: :post}
             %input.hidden{name: :authenticity_token, value: form_authenticity_token}
             .input-group
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
-              %input.form-control#thedatepicker{name: :date, type: :text, value: session[:date], style: "width: 100px;"}
+              %input.form-control#thedatepicker{name: :date, type: :text, value: session[:date], style: "width: 110px;"}
               %span.input-group-btn
                 %button.btn.btn-primary
                   %span.glyphicon.glyphicon-ok
