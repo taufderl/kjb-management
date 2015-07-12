@@ -28,7 +28,25 @@
         = f.autocomplete_field :child_full_name, shop_autocomplete_child_first_name_path, update_elements: {}, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
         = f.text_field :child_id, hidden: true
       .form-group
-        %img.center-block.img-rounded#child_image{style: "width: 140px; heigth: 140px;", src: ''}
+        %img.center-block.img-rounded#child_image{style: "width: 140px; heigth: 140px;", src: '',  "data-toggle" => "modal", 'data-target' => "#myModal"}
+        .modal.fade#myModal{tabindex: -1, role: "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden'=> true}
+          .modal-dialog
+            .modal-content
+              .modal-body
+                %img.img-responsive#child_image_overlay{src: ""}
+                
+        :javascript
+          function centerModal() {
+              $(this).css('display', 'block');
+              dialog = $(this).find(".modal-dialog");
+              offset = ($(window).height() - dialog.height()) / 2;
+              dialog.css("margin-top", offset);
+          }
+          $('.modal').on('show.bs.modal', centerModal);
+          $(window).on("resize", function () {
+              $('.modal:visible').each(centerModal);
+          });
+
     
     .col-md-2
       .form-group
@@ -123,6 +141,7 @@
     $.get('shop/child_data/'+child_id, function(child_data, textStatus) {
       $('#child_consumption_current_balance').val(child_data.account_balance);
       $('#child_image').attr("src", child_data.image);
+      $('#child_image_overlay').attr("src", child_data.image);
     });
   });
   

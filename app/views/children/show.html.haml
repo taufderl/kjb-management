@@ -30,7 +30,25 @@
       Guthaben:
       = number_to_currency @child.account_balance
   .col-md-4
-    %img.center-block.img-rounded#child_image{style: "width: 140px; heigth: 140px;", src: "#{@child.image}"}
+    %img.center-block.img-rounded#child_image{style: "width: 140px; heigth: 140px;", src: "#{@child.image}",  "data-toggle" => "modal", 'data-target' => "#myModal"}
+    .modal.fade#myModal{tabindex: -1, role: "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden'=> true}
+      .modal-dialog
+        .modal-content
+          .modal-body
+            %img.img-responsive#child_image_overlay{src: "#{@child.image}"}
+            
+    :javascript
+      function centerModal() {
+          $(this).css('display', 'block');
+          dialog = $(this).find(".modal-dialog");
+          offset = ($(window).height() - dialog.height()) / 2;
+          dialog.css("margin-top", offset);
+      }
+      $('.modal').on('show.bs.modal', centerModal);
+      $(window).on("resize", function () {
+          $('.modal:visible').each(centerModal);
+      });
+
   .col-md-4
     .well
       = simple_format @child.phone
