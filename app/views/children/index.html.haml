@@ -13,11 +13,12 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th First name
-      %th Last name
-      %th Birthday
-      %th Phone
-      %th Tent
+      %th Vorname
+      %th Nachname
+      %th Geburtsdatum
+      %th Telefon
+      %th Bild
+      %th Zelt
       %th
 
   %tbody
@@ -27,6 +28,28 @@
         %td= link_to child.last_name, child
         %td= child.birthday.strftime "%d.%m.%Y"
         %td= truncate child.phone, length: 80
+        %td
+          - if child.image
+            %img.center-block.img-rounded#child_image{style: "width: 18px; heigth: 18px;", src: "#{child.image}",  "data-toggle" => "modal", 'data-target' => "#myModal"}
+              .modal.fade#myModal{tabindex: -1, role: "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden'=> true}
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      %h3= child.full_name
+                    .modal-body
+                      %img.img-responsive#child_image_overlay{src: "#{child.image}"}
+                      
+              :javascript
+                function centerModal() {
+                    $(this).css('display', 'block');
+                    dialog = $(this).find(".modal-dialog");
+                    offset = ($(window).height() - dialog.height()) / 2;
+                    dialog.css("margin-top", offset);
+                }
+                $('.modal').on('show.bs.modal', centerModal);
+                $(window).on("resize", function () {
+                    $('.modal:visible').each(centerModal);
+                });    
         %td
           - if child.tent
             = link_to "Zelt #{child.tent.number}", child.tent

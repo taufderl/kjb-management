@@ -7,5 +7,13 @@
     %br
     = f.radio_button :data, :scouts
     = f.label "Gruleis"
+    %br
+    = f.radio_button :data, :tents
+    = f.label "Zelte"
+    %br
+    = f.radio_button :data, :tent_members
+    = f.label "Zeltmitgliedschaften"
     = f.file_field :file
     = f.submit "Upload"
+    
+= @data.inspect

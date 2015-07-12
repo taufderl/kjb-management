@@ -21,9 +21,8 @@ User.delete_all
 User.create([{name: 'Johannes'}, {name: 'Lena'}, {name: 'Gast'}])
 
 Tent.delete_all
-(1..12).each do |no|
-  Tent.create(number: no)
-end
+Scout.delete_all
+Child.delete_all
 
 Setting.delete_all
 Setting.create([ 
