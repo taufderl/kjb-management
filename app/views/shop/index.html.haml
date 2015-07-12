@@ -93,10 +93,16 @@
     .col-md-2
       .form-group
         = f.label t('shop.current_balance')
-        = f.text_field :current_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-euro
+          = f.text_field :current_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
       .form-group
         = f.label t('shop.new_balance')
-        = f.text_field :new_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-euro
+          = f.text_field :new_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
       .form-group
         = f.label 'Actions'
         .input-group#form-control

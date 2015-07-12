@@ -15,8 +15,14 @@
     = f.collection_select(:account_id, Account.where(actable_type: "MainAccount"), :id, :name, {} ,class: "input-sm form-control")
   .field
     = f.label t('pages.disbursement.amount'), class: "sr-only"
-    = f.text_field :amount, class: "input-sm form-control", placeholder: "Amount"
+    .input-group#form-control
+      %span.input-group-addon#form-control
+        %span.glyphicon.glyphicon-euro
+      = f.text_field :amount, class: "input-sm form-control", placeholder: "Amount"
   .field
     = f.label t('pages.disbursement.note'), class: "sr-only"
-    = f.text_field :note, class: "input-sm form-control", placeholder: "Note"
+    .input-group#form-control
+      %span.input-group-addon#form-control
+        %span.glyphicon.glyphicon-comment
+      = f.text_field :note, class: "input-sm form-control", placeholder: "Note"
   = f.submit t('buttons.save'), class: "btn btn-sm btn-primary"

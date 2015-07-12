@@ -11,7 +11,9 @@
         .input-group
           %span.input-group-btn
             %button.btn.btn-danger{type: :button}
-              \-
+              %span.glyphicon.glyphicon-minus
+            %button.btn.btn-success{type: :button, active: :true}
+              %span.glyphicon.glyphicon-plus
           = f.text_field :amount, class: "form-control"
     .col-md-2
       .form-group

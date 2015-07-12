@@ -67,7 +67,9 @@
             %span.label.label-primary= c.created_by
             %br
             %span.label.label-default= c.edited_by
-          %td= f.submit t('buttons.save'), class: "btn btn-default"
+          %td
+            %button.btn.btn-sm.btn-primary
+              %span.glyphicon.glyphicon-ok
           %td= number_to_currency c.total
           %td= number_to_currency c.scout.account_balance
           

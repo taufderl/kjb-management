@@ -18,7 +18,10 @@
         = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "form-control")  
       .form-group
         = f.label t('booking.amount')
-        = f.text_field :amount, class: "form-control"
+        .input-group
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-euro
+          = f.text_field :amount, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: "form-control"
     .col-md-3
       .form-group
         = f.label t('booking.remarks')
@@ -33,18 +36,14 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th 
-        = t('booking.account')
-      %th 
-        = t('booking.accounting_number')
-      %th
-        = t('booking.date')
-      %th
-        = t('booking.amount')
-      %th
-        = t('booking.created_by')
-      %th
-        = t('booking.remarks')
+      %th= t('booking.account')
+      %th= t('booking.accounting_number')
+      %th= t('booking.date')
+      %th= t('booking.amount')
+      %th= t('booking.note1')
+      %th= t('booking.note2')
+      %th= t('booking.remarks')
+      %th= t('booking.created_by')
         
   %tbody
     - @payments.each do |p|
@@ -53,12 +52,11 @@
           %td
             - if p.account
               = p.account.name
-          %td
-            = p.accounting_number
-          %td
-            = p.date
-          %td
-            = p.amount
+          %td= p.accounting_number
+          %td= p.date.strftime "%d.%m.%Y"
+          %td= number_to_currency p.amount
+          %td= p.note1
+          %td= p.note2
           %td
             - if p.created_by
               = p.created_by.name
