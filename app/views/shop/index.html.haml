@@ -50,44 +50,53 @@
     
     .col-md-2
       .form-group
-        = f.label t('shop.other')
+        = f.label t('shop.fifty_cent')
         .input-group#form-control
           %span.input-group-addon#form-control= number_to_currency 0.5
           = f.number_field :fifty_cent, class: 'form-control new-input'
       .form-group
-        = f.label t('shop.other')
+        = f.label t('shop.twenty_cent')
         .input-group#form-control
           %span.input-group-addon#form-control= number_to_currency 0.2
           = f.number_field :twenty_cent, class: 'form-control new-input'
     .col-md-2
       .form-group
-        = f.label t('shop.other')
+        = f.label t('shop.ten_cent')
         .input-group#form-control
           %span.input-group-addon#form-control= number_to_currency 0.1
           = f.number_field :ten_cent, class: 'form-control new-input'
       .form-group
-        = f.label t('shop.other')
+        = f.label t('shop.five_cent')
         .input-group#form-control
           %span.input-group-addon#form-control= number_to_currency 0.05
           = f.number_field :five_cent, class: 'form-control new-input'
     .col-md-2
       .form-group
         = f.label (t('shop.soft_drink') + ' ' + (number_to_currency Good.get_price(:soft_drink, session[:date])))
-        = f.number_field :soft_drink, class: 'form-control new-input'
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-glass
+          = f.number_field :soft_drink, class: 'form-control new-input'
+      .form-group
+        = f.label t('shop.other')
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-euro
+          = f.text_field :other, class: 'form-control new-input'
       .form-group
         = f.label t('shop.total')
         .input-group#form-control
           %span.input-group-addon#form-control
-            %span.glyphicon.glyphicon-search{"aria-hidden" => true}
+            %span.glyphicon.glyphicon-shopping-cart{"aria-hidden" => true}
           = f.number_field :total, class: 'form-control', readonly: true
       
     .col-md-2
       .form-group
         = f.label t('shop.current_balance')
-        = f.text_field :current_balance, class: 'form-control', readonly: true
+        = f.text_field :current_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
       .form-group
         = f.label t('shop.new_balance')
-        = f.number_field :new_balance, class: 'form-control', readonly: true
+        = f.text_field :new_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
       .form-group
         = f.label 'Actions'
         .input-group#form-control
@@ -146,11 +155,13 @@
   });
   
   compute_sum = function() {
+    other = parseFloat($("#child_consumption_other").val()) || 0;
     sum = $("#child_consumption_five_cent").val() * 0.05 +
       $("#child_consumption_ten_cent").val() * 0.1 +
       $("#child_consumption_twenty_cent").val() * 0.2 +
       $("#child_consumption_fifty_cent").val() * 0.5 +
-      $("#child_consumption_soft_drink").val() * "#{Good.get_price(:soft_drink, session[:date])}";
+      $("#child_consumption_soft_drink").val() * "#{Good.get_price(:soft_drink, session[:date])}" +
+      other;
     $('#child_consumption_total').val(sum);
     new_balance = $('#child_consumption_current_balance').val() - sum;
     $('#child_consumption_new_balance').val(new_balance);

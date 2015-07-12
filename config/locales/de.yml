@@ -115,6 +115,10 @@ de:
     soft_drink: "Getränk"
     child: "Kind"
     total: "Gesamt"
+    fifty_cent: 50 cent
+    twenty_cent: 20 cent
+    ten_cent: 10 cent
+    five_cent: 5 cent
     other: "Anderes"
     please_select_time_of_day: "Tageszeit auswählen"
     current_balance: "Aktueller Kontostand"
