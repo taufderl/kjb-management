@@ -18,5 +18,8 @@
   .field
     = f.label :tent
     = f.collection_select :tent_id, Tent.all, :id, :number, {} , class: "form-control"
+  .field
+    = f.label :image
+    = f.file_field :image, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

@@ -40,9 +40,15 @@ class ChildrenController < ApplicationController
   # PATCH/PUT /children/1
   # PATCH/PUT /children/1.json
   def update
+    c_params = child_params
+    if c_params[:image]
+      content_type = c_params[:image].content_type
+      c_params[:image] = "data:"+content_type +";base64,"+Base64.encode64(c_params[:image].read)
+    end
+    
     respond_to do |format|
-      if @child.update(child_params)
-        format.html { redirect_to @child, notice: 'Child was successfully updated.' }
+      if @child.update(c_params)
+        format.html { redirect_to @child, notice: 'Child was successfully updated.' + @img.to_s }
         format.json { render :show, status: :ok, location: @child }
       else
         format.html { render :edit }
@@ -69,6 +75,6 @@ class ChildrenController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def child_params
-      params.require(:child).permit(:first_name, :last_name, :birthday, :tent_id)
+      params.require(:child).permit(:first_name, :last_name, :birthday, :tent_id, :image)
     end
 end

@@ -12,7 +12,7 @@
     = link_to 'Bearbeiten', edit_child_path(@child), class: "btn btn-primary"
 
 .row  
-  .col-md-4
+  .col-md-2
     - if @child.tent
       %h2
         %b 
@@ -25,10 +25,12 @@
     - else
       Zelt Zuteilung fehlt
   
-  .col-md-4
+  .col-md-2
     %h2
       Guthaben:
       = number_to_currency @child.account_balance
+  .col-md-4
+    %img.center-block.img-rounded#child_image{style: "width: 140px; heigth: 140px;", src: "#{@child.image}"}
   .col-md-4
     .well
       = simple_format @child.phone
