@@ -8,6 +8,7 @@ class ScoutConsumption < ActiveRecord::Base
     self.sausage.to_i * Good.get_price(:sausage, self.date) + 
     self.pork.to_i * Good.get_price(:pork, self.date) + 
     self.turkey.to_i * Good.get_price(:turkey, self.date) +
+    self.corn.to_i * Good.get_price(:corn, self.date) +
     self.other.to_f
   end
 end

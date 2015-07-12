@@ -1,19 +1,29 @@
-%h1 Listing users
+.row
+  .col-md-10
+    %h1.page-header
+      Benutzer
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'Neuer Benutzer', new_user_path, class: "btn btn-primary"
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th Name
+      %th News written
+      %th Bookings created
+      %th Bookings updated
       %th
 
   %tbody
     - @users.each do |user|
       %tr
         %td= link_to user.name, user
+        %td= user.news.count
+        %td= user.bookings_created.count
+        %td= user.bookings_updated.count
         %td
           = link_to 'Edit', edit_user_path(user), class: "btn btn-default btn-xs"
           = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
-
-%br
-
-= link_to 'New User', new_user_path

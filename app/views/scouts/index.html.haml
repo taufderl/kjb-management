@@ -1,4 +1,14 @@
-%h1 Listing scouts
+.row
+  .col-md-10
+    %h1.page-header
+      Gruppenleiter
+      %small
+        = @scouts.count
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'Neuer Grulei', new_scout_path, class: "btn btn-primary"
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -17,9 +27,7 @@
         %td= scout.birthday
         %td
           - if scout.tent
-            = scout.tent.number
-          - else
-            -
+            = link_to "Zelt #{scout.tent.number}", scout.tent
         %td
           = link_to 'Edit', edit_scout_path(scout), class: "btn btn-default btn-xs"
           = link_to 'Destroy', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"

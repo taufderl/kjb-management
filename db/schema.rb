@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150711231719) do
+ActiveRecord::Schema.define(version: 20150712101941) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20150711231719) do
     t.string   "created_by"
     t.string   "edited_by"
     t.string   "notes"
+    t.integer  "corn"
   end
 
   add_index "scout_consumptions", ["scout_id"], name: "index_scout_consumptions_on_scout_id"

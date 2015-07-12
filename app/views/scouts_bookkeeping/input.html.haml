@@ -29,6 +29,9 @@
       %th
         = t('goods.turkey')
         = number_to_currency Good.get_price(:turkey, session[:date])
+      %th
+        = t('goods.corn')
+        = number_to_currency Good.get_price(:corn, session[:date])
       %th= t('goods.other')
       %th
       %th
@@ -41,6 +44,7 @@
       %th= @scout_consumptions.map{|sc| sc.sausage.to_i}.sum
       %th= @scout_consumptions.map{|sc| sc.pork.to_i}.sum
       %th= @scout_consumptions.map{|sc| sc.turkey.to_i}.sum
+      %th= @scout_consumptions.map{|sc| sc.corn.to_i}.sum
       %th= number_to_currency @scout_consumptions.map{|sc| sc.other.to_f }.sum
       %th
       %th
@@ -57,6 +61,7 @@
           %td.input-group-sm= f.number_field :sausage, class: 'form-control consumption_amount'
           %td.input-group-sm= f.number_field :pork, class: 'form-control consumption_amount'
           %td.input-group-sm= f.number_field :turkey, class: 'form-control consumption_amount'
+          %td.input-group-sm= f.number_field :corn, class: 'form-control consumption_amount'
           %td.input-group-sm= f.text_field :other, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control consumption_other'
           %td
             %span.label.label-primary= c.created_by

@@ -8,11 +8,12 @@ class Good < ActiveRecord::Base
       :sausage,
       :pork,
       :turkey,
+      :corn,
     ]
   end
   
   def self.get_price(type, date)
-    # TODO: implement proper current price mechanism
-    0.99
+    pricetag = Good.where("type = ? AND date <= ?", type, date).order(date: "DESC").first
+    pricetag.price
   end
 end

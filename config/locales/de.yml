@@ -104,6 +104,7 @@ de:
     sausage: 'Wurst'
     pork: 'Schwein'
     turkey: 'Pute'
+    corn: Mais
     
   settings:
     start_date: "Anfangsdatum"

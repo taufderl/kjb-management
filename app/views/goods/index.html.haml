@@ -1,11 +1,19 @@
-%h1 Listing goods
-
+.row
+  .col-md-10
+    %h1.page-header
+      Waren
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'Neue Ware/Preis', new_good_path, class: "btn btn-primary"
+      
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
       %th Name
-      %th Price
-      %th Date
+      %th Preis
+      %th ab Datum
       %th
 
   %tbody
@@ -13,11 +21,7 @@
       %tr
         %td= t('goods.'+good.type)
         %td= number_to_currency good.price
-        %td= good.date
+        %td= good.date.strftime "%d.%m.%Y"
         %td
           = link_to 'Edit', edit_good_path(good), class: "btn btn-default btn-xs"
           = link_to 'Destroy', good, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
-
-%br
-
-= link_to 'New Good', new_good_path
