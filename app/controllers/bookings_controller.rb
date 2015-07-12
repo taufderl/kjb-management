@@ -59,7 +59,7 @@ class BookingsController < ApplicationController
       # this is a scout payment
       scout = Scout.find(pp[:scout_id])
       
-      main_account = MainAccount.find(pp[:account_id])
+      main_account = Account.find(pp[:account_id])
       accounting_number = Booking.where(account_id: pp[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       @account_booking = Booking.new(bparams.merge(account: main_account, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: scout.full_name))
       
@@ -77,7 +77,7 @@ class BookingsController < ApplicationController
       # this is a child payment
       child = Child.find(pp[:child_id])
       
-      main_account = MainAccount.find(pp[:account_id])
+      main_account = Account.find(pp[:account_id])
       accounting_number = Booking.where(account_id: pp[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       @account_booking = Booking.new(bparams.merge(account: main_account, accounting_number: accounting_number, note1: "Ein-/Auszahlung", note2: child.full_name))
       
