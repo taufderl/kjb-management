@@ -1,23 +1,29 @@
-%h1 Listing news
+.row
+  .col-md-10
+    %h1.page-header
+      Disbursements
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'New Disbursement', new_disbursement_path, class: "btn btn-primary"
 
-%table
+%table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th User
-      %th Comment
-      %th
-      %th
+      %th Time
+      %th Benutzer
+      %th Text
       %th
 
   %tbody
     - @news.each do |news|
       %tr
-        %td= news.user
+        %td= news.created_at.to_formatted_s :short
+        %td
+          - if news.user
+            = news.user.name
         %td= news.comment
-        %td= link_to 'Show', news
-        %td= link_to 'Edit', edit_news_path(news)
-        %td= link_to 'Destroy', news, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New News', new_news_path
+        %td
+          = link_to 'Edit', edit_news_path(news), class: "btn btn-xs btn-primary"
+          = link_to 'Destroy', news, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"

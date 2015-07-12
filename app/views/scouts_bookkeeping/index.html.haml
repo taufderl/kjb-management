@@ -27,15 +27,15 @@
   %table.table.table-bordered.table-condensed.table-hover
     %thead
       %tr
-        %th Date
-        %th Consumption
-        %th Other
-        %th Balance
+        %th Datum
+        %th Verbrauch
+        %th Buchungen
+        %th Kontostand
   
     %tbody
       - @dates.each do |date|
         %tr
-          %td= link_to date, "#"
+          %td= date.strftime "%d.%m.%Y"
           %td= number_to_currency @consumption[date]
-          %td
+          %td  TODO
           %td= number_to_currency @balance[date]

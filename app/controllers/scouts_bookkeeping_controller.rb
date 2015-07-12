@@ -92,6 +92,6 @@ class ScoutsBookkeepingController < ApplicationController
     end
     
     def scout_consumption_params
-      params.require(:scout_consumption).permit(:beer, :pork, :sausage, :soft_drink, :turkey, :other)
+      params.require(:scout_consumption).permit(:beer, :pork, :sausage, :soft_drink, :turkey, :corn, :other)
     end
 end

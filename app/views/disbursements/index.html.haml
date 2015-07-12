@@ -1,29 +1,39 @@
-%h1 Listing disbursements
+.row
+  .col-md-10
+    %h1.page-header
+      Disbursements
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'New Disbursement', new_disbursement_path, class: "btn btn-primary"
 
-%table
+%table.table.table-bordered.table-condensed
   %thead
     %tr
-      %th Date
+      %th ID
+      %th Datum
       %th Account
+      %th Betrag
+      %th Notiz
+      %th Benutzer
       %th Cleared
-      %th Amount
-      %th User
-      %th
-      %th
       %th
 
   %tbody
     - @disbursements.each do |disbursement|
       %tr
-        %td= disbursement.date
-        %td= disbursement.account
+        %td= disbursement.id
+        %td= disbursement.date.strftime "%d.%m.%Y"
+        %td
+          - if disbursement.account
+            = disbursement.account.name
+        %td= number_to_currency disbursement.amount
+        %td= disbursement.note
+        %td
+          - if disbursement.user
+            = disbursement.user.name
         %td= disbursement.cleared
-        %td= disbursement.amount
-        %td= disbursement.user
-        %td= link_to 'Show', disbursement
-        %td= link_to 'Edit', edit_disbursement_path(disbursement)
-        %td= link_to 'Destroy', disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Disbursement', new_disbursement_path
+        %td
+          = link_to 'Edit', edit_disbursement_path(disbursement), class: "btn btn-xs btn-primary"
+          = link_to 'Destroy', disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"

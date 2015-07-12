@@ -83,6 +83,6 @@ class DisbursementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disbursement_params
-      params.require(:disbursement).permit(:date, :account_id, :cleared, :amount, :user_id)
+      params.require(:disbursement).permit(:date, :account_id, :cleared, :amount, :user_id, :note)
     end
 end

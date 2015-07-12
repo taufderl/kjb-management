@@ -1,6 +1,14 @@
-%h1 Listing bookings
+.row
+  .col-md-10
+    %h1.page-header
+      Buchungen
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'Neue Buchung', new_booking_path, class: "btn btn-primary"
 
-%table
+%table.table.table-condensed.table-bordered.table-hover
   %thead
     %tr
       %th Date
@@ -13,25 +21,19 @@
       %th Updated by
       %th Accounting number
       %th
-      %th
-      %th
 
   %tbody
     - @bookings.each do |booking|
       %tr
-        %td= booking.date
+        %td= booking.date.strftime "%d.%m.%Y"
         %td= booking.account ? booking.account.name : booking.account
-        %td= booking.amount
+        %td= number_to_currency booking.amount
         %td= booking.note1
         %td= booking.note2
         %td= booking.remarks
         %td= booking.created_by ? booking.created_by.name : booking.created_by
         %td= booking.updated_by ? booking.created_by.name : '-'
         %td= booking.accounting_number
-        %td= link_to 'Show', booking
-        %td= link_to 'Edit', edit_booking_path(booking)
-        %td= link_to 'Destroy', booking, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Booking', new_booking_path
+        %td
+          = link_to 'Edit', edit_booking_path(booking), class: "btn btn-xs btn-primary"
+          = link_to 'Destroy', booking, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"

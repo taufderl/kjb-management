@@ -51,7 +51,8 @@ de:
       listing_disbursements: 'ausgelegtes Geld'
       account: 'Konto'
       amount: 'Betrag'
-      user: 'ausgegeben von'
+      user: 'Benutzer'
+      note: 'Notiz'
       date: 'Datum'
     
     mainbookkeeping:

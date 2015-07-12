@@ -1,6 +1,7 @@
 %h4
   = t('pages.disbursement.new_disbursement')
 
+
 = form_for @disbursement, html: {class: "form-inline"} do |f|
   - if @disbursement.errors.any?
     #error_explanation
@@ -8,11 +9,14 @@
       %ul
         - @disbursement.errors.full_messages.each do |msg|
           %li= msg
-          
-  .field.form-group
+
+  .field
     = f.label t('pages.disbursement.account'), class: "sr-only"
-    = f.collection_select(:account_id, Account.all, :id, :name, {} ,class: "input-sm form-control")
-  .field.form-group
+    = f.collection_select(:account_id, Account.where(actable_type: "MainAccount"), :id, :name, {} ,class: "input-sm form-control")
+  .field
     = f.label t('pages.disbursement.amount'), class: "sr-only"
     = f.text_field :amount, class: "input-sm form-control", placeholder: "Amount"
+  .field
+    = f.label t('pages.disbursement.note'), class: "sr-only"
+    = f.text_field :note, class: "input-sm form-control", placeholder: "Note"
   = f.submit t('buttons.save'), class: "btn btn-sm btn-primary"
