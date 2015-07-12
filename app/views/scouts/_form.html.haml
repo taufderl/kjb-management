@@ -17,6 +17,6 @@
     = f.date_select :birthday, {}, class: "form-control"
   .field
     = f.label :tent
-    = f.collection_select :tent_id, Tent.all, :id, :number, {} , class: "form-control"
+    = f.collection_select :tent_id, Tent.all, :id, :number, {include_blank: "Hat kein Zelt"} , class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"

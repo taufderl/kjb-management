@@ -1,14 +1,20 @@
-%p#notice= notice
-
-%p
-  %b Number:
-  = @tent.number
-%p
-  %b Children:
-  %ul
-  - @tent.children.each do |child|
-    %li= link_to child.first_name + ' ' + child.last_name, child
-
-= link_to 'Edit', edit_tent_path(@tent)
-\|
-= link_to 'Back', tents_path
+.row
+  .col-md-10
+    %h1.page-header
+      Zelt
+      = @tent.number
+      %small
+        = @tent.scouts.map {|s| s.first_name }.join ", "
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to 'Edit', edit_tent_path(@tent), class: "btn btn-primary"
+      = link_to 'Overview', tents_path, class: "btn btn-success"
+    
+    
+.row  
+  %h3
+    %ul
+    - @tent.children.each do |child|
+      %li= link_to child.first_name + ' ' + child.last_name, child

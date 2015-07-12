@@ -1,25 +1,34 @@
-%h1 Listing tents
+.row
+  .col-md-10
+    %h1.page-header
+      Zelte
+  .col-md-2
+    %br
+    %br
+    = link_to 'Neues Zelt', new_tent_path, class: "btn btn-primary"
+
+    
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th Number
-      %th Scouts
-      %th Children
+      %th Nummer
+      %th Gruleis
+      %th Kinder
+      %th Anzahl Kinder
       %th
 
   %tbody
     - @tents.each do |tent|
       %tr
-        %td= link_to tent.number, tent
+        %td
+          
+          = link_to "Zelt #{tent.number}", tent
         %td
           = tent.scouts.map {|a| a.first_name}.join(', ')
         %td
           = tent.children.map {|a| a.first_name + ' ' + a.last_name[0] + '.'}.join(', ')
+        %td= tent.children.count
         %td
           = link_to 'Edit', edit_tent_path(tent), class: "btn btn-default btn-xs"
           = link_to 'Destroy', tent, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
-
-%br
-
-= link_to 'New Tent', new_tent_path
