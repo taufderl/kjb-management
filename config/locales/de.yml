@@ -31,13 +31,13 @@ de:
     main_account:
       title: 'Lagerkasse'
       billing: 'Abrechnung'
-      overview: 'Uebersicht'
+      overview: 'Übersicht'
       
     scouts_account:
       title: 'Gruppenleiterkasse'
       billing: 'Abrechnung'
-      overview: 'Uebersicht Verbrauch'
-      index: 'Uebersicht Kasse'
+      overview: 'Úbersicht Verbrauch'
+      index: 'Übersicht Kasse'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
       s_account_cash: 'Barkasse'
@@ -63,11 +63,11 @@ de:
       title: "Bauchladen"
       
     scouts_payment:
-      title: 'Ein-/Auszahlungen Gruppenleiter'
+      title: 'Ein-/Auszahlungen'
       
     children_bookkeeping:
       title: Kinder
-      payment: Ein-/Auszahlungen Kinder
+      payment: Ein-/Auszahlungen
       
     count_cash:
       title: 'Kassenstand zählen'

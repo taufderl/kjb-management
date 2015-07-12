@@ -13,10 +13,10 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th First name
-      %th Last name
-      %th Birthday
-      %th Tent
+      %th Vorname
+      %th Nachname
+      %th Geburtstag
+      %th Zelt
       %th
 
   %tbody
@@ -24,7 +24,7 @@
       %tr
         %td= link_to scout.first_name, scout
         %td= link_to scout.last_name, scout
-        %td= scout.birthday
+        %td= scout.birthday.strftime "%d.%m.%Y"
         %td
           - if scout.tent
             = link_to "Zelt #{scout.tent.number}", scout.tent
