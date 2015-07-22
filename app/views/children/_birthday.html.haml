@@ -1,9 +1,8 @@
 %h4
-  = t('pages.children.birthday')
+  = t('pages.children.birthdays')
   
-%h4
-  = @date
-  
-%h6
-  - @birthday_child.each do |a|
-    = a.full_name
+- @birthdays.each do |date, children|
+  %h4= date.strftime "%d. %B"
+  %ul
+  - children.each do |c|
+    %li= "#{c.full_name} (#{c.age+1} Jahre)"

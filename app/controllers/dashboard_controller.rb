@@ -12,20 +12,27 @@ class DashboardController < ApplicationController
     # @birthday_child.insert(Child.where{Date.strptime(birthday.strftime("%F"),"%Y-%m-%d").to_formatted_s(:short).eql? @date})
     
     # Versuch 2
-    @recent_month = Date.strptime(session[:date], "%d.%m.%Y").mon
-    @recent_day = Date.strptime(session[:date], "%d.%m.%Y").mday
-    @children = Child.all
-    @birthday_child = Array.new
+    #@recent_month = Date.strptime(session[:date], "%d.%m.%Y").mon
+    #@recent_day = Date.strptime(session[:date], "%d.%m.%Y").mday
+    #@children = Child.all
+    #@birthday_child = Array.new
     
-    for element in @children do
-      if (element.birthday.mon == @recent_month && element.birthday.mday == @recent_day)
-        @birthday_child.insert(element)
+    #for element in @children do
+    #  if (element.birthday.mon == @recent_month && element.birthday.mday == @recent_day)
+    #    @birthday_child.insert(element)
+    #  end
+    #end
+    @dates = Date.today..Date.today+10.days
+    @birthdays = {}
+    @dates.each do |date|
+      children = Child.where(birthday: date)
+      if children.any?
+        @birthdays[date] = children
       end
     end
-   
   end
   
-  def select_users
+  def select_user
     if params[:user]
       session[:user] = params[:user]
     end

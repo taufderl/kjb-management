@@ -75,7 +75,7 @@ de:
       debit: 'Kassenstand laut Buchungen'
   
     children:
-      birthday: 'Geburtstag'
+      birthdays: 'Geburtstage'
   
   booking:
     account: 'Konto'

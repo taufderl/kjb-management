@@ -16,6 +16,7 @@
       %th Vorname
       %th Nachname
       %th Geburtsdatum
+      %th Alter
       %th Telefon
       %th Bild
       %th Zelt
@@ -27,6 +28,7 @@
         %td= link_to child.first_name, child
         %td= link_to child.last_name, child
         %td= child.birthday.strftime "%d.%m.%Y"
+        %td= child.age
         %td= truncate child.phone, length: 80
         %td
           - if child.image
