@@ -1,0 +1,9 @@
+%h4
+  = t('pages.children.birthday')
+  
+%h4
+  = @date
+  
+%h6
+  - @birthday_child.each do |a|
+    = a.full_name

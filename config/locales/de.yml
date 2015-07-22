@@ -74,6 +74,9 @@ de:
       total: 'Kassenstand'
       debit: 'Kassenstand laut Buchungen'
   
+    children:
+      birthday: 'Geburtstag'
+  
   booking:
     account: 'Konto'
     amount: 'Betrag'
