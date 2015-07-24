@@ -39,11 +39,16 @@
               %b.caret
             %ul.dropdown-menu
               %li= link_to t('pages.scouts_account.index'), scouts_bookkeeping_index2_path
-              %li= link_to t('pages.scouts_account.overview'), scouts_bookkeeping_index_path
               %li= link_to t('pages.scouts_account.billing'), scouts_bookkeeping_billing_path
+              %li= link_to t('pages.count_cash.title'), scouts_bookkeeping_count_cash_path
+          %li{:class => "dropdown #{'active' if params[:controller] == 'scouts_bookkeeping'}"}
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = t('pages.scouts_account.title2')
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to t('pages.scouts_account.overview'), scouts_bookkeeping_index_path
               %li= link_to t('pages.scouts_account.input'), scouts_bookkeeping_input_path
               %li= link_to t('pages.scouts_account.payment'), scouts_bookkeeping_payment_path
-              %li= link_to t('pages.count_cash.title'), scouts_bookkeeping_count_cash_path
           %li{:class => "dropdown #{'active' if ['shop', 'child_bookkeeping'].include? params[:controller]}"}
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = t('pages.children_bookkeeping.title')

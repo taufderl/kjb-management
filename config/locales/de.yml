@@ -35,8 +35,9 @@ de:
       
     scouts_account:
       title: 'Gruppenleiterkasse'
+      title2: 'Gruppenleiter'
       billing: 'Abrechnung'
-      overview: 'Úbersicht Verbrauch'
+      overview: 'Übersicht Verbrauch'
       index: 'Übersicht Kasse'
       input: 'Verbrauch eingeben'
       update_consumption: 'Verbrauch aendern'
@@ -44,6 +45,7 @@ de:
       s_account_giro: 'Girokonto'
       consumption: 'Verbrauch'
       payment: 'Ein-/Auszahlung GL'
+      no_consumption: 'Bisher nicht angegeben:'
       
     disbursement:
       title: 'ausgelegtes Geld'

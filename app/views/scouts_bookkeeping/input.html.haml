@@ -5,7 +5,7 @@
 
 .well
   %p
-    Not yet filled in
+    = t('pages.scouts_account.no_consumption')
   %p
     - @scouts.each do |scout|
       = link_to scout.full_name, new_scout_consumption_path(scout), method: :post
