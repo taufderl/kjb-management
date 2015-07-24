@@ -2,7 +2,7 @@
   .col-md-10
     .page-header
       %h1
-        = t('booking.m_closing')
+        = t('pages.closing.m_closing')
         %small= session[:date]
   .col-md-2
     %br
@@ -23,13 +23,13 @@
       = number_to_currency @m_account_date_disbursements      
   .col-md-4
     %h4
-      = t('booking.drawback')
+      = t('pages.closing.drawback')
     %h4
       = number_to_currency @m_account_date_drawback
       
 .col-md-12
   %h3
-    = t('booking.drawback_fits')
+    = t('pages.closing.drawback_fits')
     -# BUTTON: setzt Disbursement auf cleared
 
 %br
@@ -60,5 +60,5 @@
 
 .col-md-12
   %h3
-    = t('booking.balance_fits')
+    = t('pages.closing.balance_fits')
     -# BUTTON: Erstellt automatisch Export "Sicherung_Lagerkasse_Datum" 

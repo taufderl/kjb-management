@@ -78,6 +78,14 @@ de:
   
     children:
       birthdays: 'Geburtstage'
+    
+    closing:
+      title: 'Tagesabschluss'
+      balance_fits: 'Kasse passt.'
+      drawback: 'Rückgeld'
+      drawback_fits: 'Rückgeld passt.'
+      m_closing: 'Tagesabschluss Lagerkasse'
+      s_closing: 'Tagesabschluss GL-Kasse'  
   
   booking:
     account: 'Konto'
@@ -93,12 +101,8 @@ de:
     main_account_balance: 'Stand Lagerkasse'
     child_account_balance: 'Stand Kinderkasse'
     balance_sum: 'gesamter Kassenstand'
-    balance_fits: 'Kasse passt.'
     actions: Actions
-    drawback: 'Rückgeld'
-    drawback_fits: 'Rückgeld passt.'
-    m_closing: 'Tagesabschluss Lagerkasse'
-    s_closing: 'Tagesabschluss GL-Kasse'
+
     
     payment:
       title: 'Ein-/Auszahlungen'

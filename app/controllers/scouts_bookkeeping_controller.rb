@@ -95,6 +95,17 @@ class ScoutsBookkeepingController < ApplicationController
     send_data @csv, filename: "Gruppenleiterkasse_Export_#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
   end
   
+  def daily_closing
+    @s_account = Account.find_by_name('Gruppenleiterkasse')      
+    @s_account_balance = Booking.where(account: @s_account).sum(:amount)
+    
+    @s_account_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
+    @s_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @s_account).where(cleared: false).sum(:amount)
+    @s_account_date_drawback = @s_account_date_disbursements + @s_account_date_balance
+    
+    @count = session[:main_account_cash] || {}
+  end
+  
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params
