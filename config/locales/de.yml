@@ -87,6 +87,13 @@ de:
       m_closing: 'Tagesabschluss Lagerkasse'
       s_closing: 'Tagesabschluss GL-Kasse'  
   
+    transfer:
+      title: 'Überweisung'
+      title_account: 'Überweisung Kasse'
+      child_to_main: 'Überweisung Kinderkasse in Lagerkasse'
+      
+      
+  
   booking:
     account: 'Konto'
     amount: 'Betrag'

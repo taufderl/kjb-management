@@ -58,6 +58,7 @@
             %ul.dropdown-menu
               %li= link_to t('pages.shop.title'), :shop
               %li= link_to t('pages.children_bookkeeping.payment'), :children_bookkeeping_payment
+              %li= link_to t('pages.transfer.title_account'), :children_bookkeeping_transfer
           %li{:class => "dropdown #{'active' if ['children', 'tents', 'scouts', 'accounts', 'users', 'import'].include? params[:controller]}"}
             %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
               = t('pages.data')

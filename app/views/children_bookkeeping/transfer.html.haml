@@ -1,0 +1,39 @@
+.page-header
+  %h1
+    = t('pages.transfer.title')
+    %small= session[:date]
+
+.well.col-md-12
+  .col-md-4
+    %h4
+      = t('booking.main_account_balance')
+    %h4
+      = number_to_currency @m_account_balance
+  .col-md-4
+    %h4
+      = t('booking.child_account_balance')
+    %h4
+      = number_to_currency @c_account_balance
+  .col-md-4
+    %h4
+      = t('booking.balance_sum')
+    %h4
+      = number_to_currency @m_c_account_sum  
+
+%br
+%br
+
+.well.col-md-12
+  = form_for :booking, url: create_transfer_path, method: :post do |f|
+    .col-md-2
+      .form-group
+        = f.label t('booking.amount')
+        = f.text_field :amount, class: "form-control"
+    .col-md-3
+      .form-group
+        = f.label t('booking.remarks')
+        = f.text_field :remarks, class: "form-control"
+    .col-md-4
+      .form-group
+        = f.label t('pages.transfer.child_to_main')
+        = f.submit t('buttons.send'), class: 'btn btn-primary'
