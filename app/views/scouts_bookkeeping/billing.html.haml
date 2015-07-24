@@ -29,13 +29,21 @@
         
 
 
-%h3
-  = t('pages.scouts_account.s_account_cash')
-%br
-%h4
-  = t('booking.date_balance')
-%h4
-  = number_to_currency @s_account_cash_date_balance 
+.well.col-md-12
+  .col-md-4
+    %h3
+      = t('pages.scouts_account.s_account_cash')
+  .col-md-4
+    %h4
+      =t('booking.date_balance')
+    %h4
+      = number_to_currency @s_account_cash_date_balance
+      
+  .col-md-4   
+    %h4
+      = t('booking.balance')
+    %h4
+      = number_to_currency @s_account_cash_balance
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -78,13 +86,21 @@
 %br
 %br            
 
-%h3 
-  = t('pages.scouts_account.s_account_giro')
-%br
-%h4
-  = t('booking.date_balance')
-%h4
-  = number_to_currency @s_account_giro_date_balance  
+.well.col-md-12
+  .col-md-4
+    %h3
+      = t('pages.scouts_account.s_account_giro')
+  .col-md-4
+    %h4
+      =t('booking.date_balance')
+    %h4
+      = number_to_currency @s_account_giro_date_balance
+      
+  .col-md-4    
+    %h4
+      = t('booking.balance')
+    %h4
+      = number_to_currency @s_account_giro_balance 
   
 %table.table.table-bordered.table-condensed.table-hover
   %thead

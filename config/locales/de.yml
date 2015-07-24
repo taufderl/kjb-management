@@ -87,7 +87,7 @@ de:
     created_by: 'gebucht von'
     date: 'Datum'
     balance: 'aktueller Kontostand'
-    date_balance: 'Kontostand bis zu diesem Tag'
+    date_balance: 'Buchungssumme heute'
     actions: Actions
     
     payment:

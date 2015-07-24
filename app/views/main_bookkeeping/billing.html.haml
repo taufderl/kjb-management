@@ -34,13 +34,20 @@
         = f.submit t('buttons.send'), class: 'btn btn-primary'
  
 %br
-%br       
-%h4
-  = t('booking.balance')
-%h4
-  = number_to_currency @m_account_date_balance
-
-
+%br   
+.well.col-md-12
+  .col-md-8
+    %h4
+      =t('booking.date_balance')
+    %h4
+      = number_to_currency @m_account_date_balance
+      
+  .col-md-3    
+    %h4
+      = t('booking.balance')
+    %h4
+      = number_to_currency @m_account_balance
+    
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr

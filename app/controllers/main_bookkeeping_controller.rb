@@ -14,7 +14,8 @@ class MainBookkeepingController < ApplicationController
     @booking = Booking.new
     @bookings = Booking.where(date: @date, account: @m_account)
     
-    @m_account_date_balance = Booking.where(["date <= ?", @date]).where(account: @m_account).sum(:amount)   
+    @m_account_balance = Booking.where(account: @m_account).sum(:amount)
+    @m_account_date_balance = Booking.where(["date = ?", @date]).where(account: @m_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
   end
   
   def count_cash
