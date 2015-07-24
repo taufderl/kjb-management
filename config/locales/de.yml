@@ -90,7 +90,15 @@ de:
     date: 'Datum'
     balance: 'aktueller Kontostand'
     date_balance: 'Buchungssumme heute'
+    main_account_balance: 'Stand Lagerkasse'
+    child_account_balance: 'Stand Kinderkasse'
+    balance_sum: 'gesamter Kassenstand'
+    balance_fits: 'Kasse passt.'
     actions: Actions
+    drawback: 'Rückgeld'
+    drawback_fits: 'Rückgeld passt.'
+    m_closing: 'Tagesabschluss Lagerkasse'
+    s_closing: 'Tagesabschluss GL-Kasse'
     
     payment:
       title: 'Ein-/Auszahlungen'

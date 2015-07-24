@@ -1,0 +1,64 @@
+.row
+  .col-md-10
+    .page-header
+      %h1
+        = t('booking.m_closing')
+        %small= session[:date]
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to "Export", main_bookkeeping_export_path, class: "btn btn-info"
+
+.well.col-md-12
+  .col-md-4
+    %h4
+      =t('booking.date_balance')
+    %h4
+      = number_to_currency @m_account_date_balance   
+  .col-md-4    
+    %h4
+      = t('pages.disbursement.title')
+    %h4
+      = number_to_currency @m_account_date_disbursements      
+  .col-md-4
+    %h4
+      = t('booking.drawback')
+    %h4
+      = number_to_currency @m_account_date_drawback
+      
+.col-md-12
+  %h3
+    = t('booking.drawback_fits')
+    -# BUTTON: setzt Disbursement auf cleared
+
+%br
+%br
+
+.well.col-md-12
+  .col-md-4
+    %h4
+      = t('booking.main_account_balance')
+    %h4
+      = number_to_currency @m_account_balance
+  .col-md-4
+    %h4
+      = t('booking.child_account_balance')
+    %h4
+      = number_to_currency @c_account_balance
+  .col-md-4
+    %h4
+      = t('booking.balance_sum')
+    %h4
+      = number_to_currency @m_c_account_sum  
+      
+%br
+%br
+    
+.col-md-12
+  = render 'main_bookkeeping/count'
+
+.col-md-12
+  %h3
+    = t('booking.balance_fits')
+    -# BUTTON: Erstellt automatisch Export "Sicherung_Lagerkasse_Datum" 

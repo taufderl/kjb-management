@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'main_bookkeeping/count_cash'
   post 'main_bookkeeping/save_cash'
   get 'main_bookkeeping/export'
+  get 'main_bookkeeping/daily_closing'
   
   get 'shop' => 'shop#index', as: :shop
   post 'shop/select_time_of_day', as: :select_time_of_day
