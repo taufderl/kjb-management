@@ -6,25 +6,36 @@
 .well.col-md-12
   = form_for @booking, method: :post do |f|
   
-    .col-md-3
+    .col-md-12
       .field.form-group
         = f.label t('pages.disbursement.account'), class: "sr-only"
         = f.collection_select(:account_id, Account.where("name like ?", '%Gruppenleiter%'), :id, :name, {:selected => @s_account_cash.id} ,class: "input-sm form-control")
-    .col-md-3
+        
+    .col-md-2
       .form-group
         = f.label t('booking.amount')
-        = f.text_field :amount, class: "form-control"
+        .input-group
+          %span.input-group-btn
+            %button.btn.btn-danger{type: :button}
+              %span.glyphicon.glyphicon-minus
+            %button.btn.btn-success{type: :button, active: :true}
+              %span.glyphicon.glyphicon-plus
+          = f.text_field :amount, class: "form-control"
+    .col-md-2 
       .form-group
         = f.label t('booking.note1')
         = f.text_field :note1, class: "form-control"
+    .col-md-4
       .form-group
         = f.label t('booking.note2')
         = f.text_field :note2, class: "form-control"
     .col-md-3
       .form-group
         = f.label t('booking.remarks')
-        = f.text_area :remarks, class: "form-control"
+        = f.text_field :remarks, class: "form-control"
+    .col-md-1
       .form-group
+        = f.label t('booking.actions')
         = f.submit t('buttons.send'), class: 'btn btn-primary'
         
 
