@@ -1,13 +1,17 @@
 
 %table.table.table-condensed
   %tr
-    %h4 Latest news
+    %h4
+      = t('pages.news.latest')
     %table.table
       %thead
         %tr
-          %th Time
-          %th User
-          %th Comment
+          %th 
+            = t('pages.news.time')
+          %th
+            = t('pages.news.user')
+          %th
+            = t('pages.news.comment')
       %tbody
         - @latest_news.each do |news|
           %tr
@@ -18,7 +22,8 @@
             
 
   %tr
-    %h4 Leave a comment
+    %h4
+      = t('pages.news.new')
     = form_for @news do |f|
       .field
         = f.text_area :comment, size: "10x3", class: "form-control"

@@ -91,14 +91,23 @@ de:
       title: 'Überweisung'
       title_account: 'Überweisung Kasse'
       child_to_main: 'Überweisung Kinderkasse in Lagerkasse'
-      
+     
+    news:
+      latest: 'Aktuelle Kommentare'
+      time: 'Zeit'
+      user: 'Name'
+      comment: 'Nachricht'
+      new: 'Neue Nachricht'
+       
       
   
   booking:
     account: 'Konto'
     amount: 'Betrag'
     note1: 'Laden'
+    note1_payment: 'Ein-/Auszahlung'
     note2: 'Waren'
+    note2_payment: 'Konto'
     remarks: 'Bemerkung'
     accounting_number: 'Buchungsnummer'
     created_by: 'gebucht von'
@@ -107,8 +116,10 @@ de:
     date_balance: 'Buchungssumme heute'
     main_account_balance: 'Stand Lagerkasse'
     child_account_balance: 'Stand Kinderkasse'
+    scout_account_balance: 'Stand GL-Kasse'
     balance_sum: 'gesamter Kassenstand'
     actions: Actions
+    add_scout: 'Gutschrift Gruppenleiter'
 
     
     payment:

@@ -35,8 +35,8 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')       
       
-    @bookings_cash = Booking.where(account: @s_account_cash, date: @date)
-    @bookings_giro = Booking.where(account: @s_account_giro, date: @date)    
+    @bookings_cash = Booking.where(account: @s_account_cash, date: @date).where("note1 != ?", "Ein-/Auszahlung")
+    @bookings_giro = Booking.where(account: @s_account_giro, date: @date).where("note1 != ?", "Ein-/Auszahlung")    
     
     @s_account_cash_balance = Booking.where(account: @s_account_cash).sum(:amount)
     @s_account_giro_balance = Booking.where(account: @s_account_giro).sum(:amount)    
@@ -45,7 +45,6 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_giro_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account_giro).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)    
     
     @booking = Booking.new
-    @bookings = Booking.where(date: @date, account: @account)    
   end
   
   def payment
@@ -53,7 +52,8 @@ class ScoutsBookkeepingController < ApplicationController
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
-    @payments = Booking.all
+    @payments = Booking.where("note1 = ?", "Ein-/Auszahlung").where("note2 like ?", "%Gruppenleiter%")
+    # ggf. unter payments noch jeweils den zweiten Buchungssatz hinzufuegen
   end
   
   def count_cash

@@ -27,7 +27,7 @@
         %td= disbursement.note
         %td= disbursement.user ? disbursement.user.name : nil
         %td
-          = link_to clear_disbursement_path(disbursement), method: :post, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs" do 
+          = link_to clear_disbursement_path(disbursement), method: :post, :data => { :confirm => 'Wird als erledigt markiert. Sicher?' }, class: "btn btn-xs" do 
             %span.glyphicon.glyphicon-trash
            
           

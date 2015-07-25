@@ -12,7 +12,7 @@ class MainBookkeepingController < ApplicationController
     @m_account = Account.find_by_name('Lagerkasse Bar')
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @booking = Booking.new
-    @bookings = Booking.where(date: @date, account: @m_account)
+    @bookings = Booking.where(date: @date, account: @m_account).where("note1 != ?", "Ein-/Auszahlung")
     
     @m_account_balance = Booking.where(account: @m_account).sum(:amount)
     @m_account_date_balance = Booking.where(["date = ?", @date]).where(account: @m_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
@@ -36,6 +36,7 @@ class MainBookkeepingController < ApplicationController
   end
   
   def daily_closing
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
     @m_account = Account.find_by_name('Lagerkasse Bar')      
     @m_account_balance = Booking.where(account: @m_account).sum(:amount)
     
