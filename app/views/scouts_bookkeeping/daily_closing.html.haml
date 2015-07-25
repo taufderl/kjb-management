@@ -11,44 +11,37 @@
       = link_to "Export", scouts_bookkeeping_export_path, class: "btn btn-info"
 
 .well.col-md-12
-  .col-md-4
+  .col-md-3
     %h4
       =t('booking.date_balance')
     %h4
       = number_to_currency @s_account_date_balance   
-  .col-md-4    
+  .col-md-3    
     %h4
       = t('pages.disbursement.title')
     %h4
       = number_to_currency @s_account_date_disbursements      
-  .col-md-4
+  .col-md-3
     %h4
       = t('pages.closing.drawback')
     %h4
       = number_to_currency @s_account_date_drawback
-      
-.col-md-12
-  %h3
-    = t('pages.closing.drawback_fits')
-    -# BUTTON: setzt Disbursement auf cleared
+  .col-md-3
+    %button.btn.btn-success{:onclick => "alert('Prost!'); return false;"}
+      = t('pages.closing.drawback_fits')
+      -# BUTTON: setzt Disbursement auf cleared
 
-%br
-%br
 
 .well.col-md-12
-  .col-md-4
+  .col-md-9
     %h4
       = t('booking.main_account_balance')
     %h4
       = number_to_currency @s_account_balance
-      
-%br
-%br
+  .col-md-3
+    %button.btn.btn-success{:onclick => "alert('Prost!'); return false;"}    
+      = t('pages.closing.balance_fits')
+    -# BUTTON: Erstellt automatisch Export "Sicherung_GL-Kasse_Datum" 
     
 .col-md-12
   = render 'scouts_bookkeeping/count'
-
-.col-md-12
-  %h3
-    = t('pages.closing.balance_fits')
-    -# BUTTON: Erstellt automatisch Export "Sicherung_GL-Kasse_Datum" 
