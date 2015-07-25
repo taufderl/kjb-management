@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150712195115) do
+ActiveRecord::Schema.define(version: 20150725133336) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150712195115) do
     t.string   "phone"
     t.binary   "image"
     t.integer  "source_id"
+    t.integer  "number"
   end
 
   add_index "children", ["tent_id"], name: "index_children_on_tent_id"

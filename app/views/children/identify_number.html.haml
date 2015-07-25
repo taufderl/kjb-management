@@ -1,0 +1,33 @@
+.row
+  .col-md-10
+    %h1.page-header
+      Kinder
+      %small
+        = @children.count
+        
+.col-md-12
+  .btn-group
+    = link_to "Nummern neu vergeben", children_identify_new_path, class: "btn btn-info"
+
+%br
+%br
+        
+%table.table.table-bordered.table-condensed.table-hover
+  %thead
+    %tr
+      %th Nummer
+      %th Vorname
+      %th Nachname
+      %th Geburtsdatum
+      %th Zelt
+
+  %tbody
+    - @children_sort.each do |child|
+      %tr
+        %td= child.number
+        %td= link_to child.first_name, child
+        %td= link_to child.last_name, child
+        %td= child.birthday.strftime "%d.%m.%Y"
+        %td
+          - if child.tent
+            = link_to "Zelt #{child.tent.number}", child.tent

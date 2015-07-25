@@ -13,6 +13,7 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
+      %th Nummer
       %th Vorname
       %th Nachname
       %th Geburtsdatum
@@ -25,6 +26,7 @@
   %tbody
     - @children.each do |child|
       %tr
+        %td= child.number
         %td= link_to child.first_name, child
         %td= link_to child.last_name, child
         %td= child.birthday.strftime "%d.%m.%Y"

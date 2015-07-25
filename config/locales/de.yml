@@ -78,6 +78,7 @@ de:
   
     children:
       birthdays: 'Geburtstage'
+      number: 'Kindern Nummern zuweisen'
     
     closing:
       title: 'Tagesabschluss'

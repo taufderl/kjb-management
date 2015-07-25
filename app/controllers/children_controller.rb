@@ -17,6 +17,28 @@ class ChildrenController < ApplicationController
     @child = Child.new
   end
 
+  def identify_number
+    @children = Child.all
+    @children_sort = @children.sort_by{|a| a[:tent]}
+  end
+  
+  def identify_new
+    @children = Child.all
+    @children_sort = @children.sort_by{|a| a[:tent]}
+    i=1    
+    
+    @children_sort.each do |n|
+      n.update('number' => i)
+      i = i+1
+    end
+    
+    respond_to do |format|
+      format.html{ redirect_to children_identify_number_path, notice: 'Successful.'} 
+    end 
+    
+
+  end
+
   # GET /children/1/edit
   def edit
   end
