@@ -4,16 +4,18 @@
     %small= session[:date]
 
 .well.col-md-12
-  = form_for @booking, method: :post do |f|
+  = form_for :booking, url: create_billing_path, method: :post do |f|
     .col-md-2
       .form-group
         = f.label t('booking.amount')
         .input-group
-          %span.input-group-btn
-            %button.btn.btn-danger{type: :button}
-              %span.glyphicon.glyphicon-minus
-            %button.btn.btn-success{type: :button, active: :true}
-              %span.glyphicon.glyphicon-plus
+          %span.input-group-btn{"data-toggle" => "buttons"}
+            %label.btn.btn-primary.active
+              %input#option1{:autocomplete => "off", :checked => "", :name => :sign, :value => "minus", :type => "radio"}
+                %span.glyphicon.glyphicon-minus
+            %label.btn.btn-primary
+              %input#option2{:autocomplete => "off", :name => :sign, :value => "plus", :type => "radio"}
+                %span.glyphicon.glyphicon-plus
           = f.text_field :amount, class: "form-control"
     .col-md-2
       .form-group
