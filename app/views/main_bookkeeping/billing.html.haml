@@ -11,10 +11,10 @@
         .input-group
           %span.input-group-btn{"data-toggle" => "buttons"}
             %label.btn.btn-primary.active
-              %input#option1{:autocomplete => "off", :checked => "", :name => :sign, :value => "minus", :type => "radio"}
+              %input#option1{:autocomplete => "off", :checked => "", :name => 'booking[sign]', :value => "minus", :type => "radio"}
                 %span.glyphicon.glyphicon-minus
             %label.btn.btn-primary
-              %input#option2{:autocomplete => "off", :name => :sign, :value => "plus", :type => "radio"}
+              %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio"}
                 %span.glyphicon.glyphicon-plus
           = f.text_field :amount, class: "form-control"
     .col-md-2
