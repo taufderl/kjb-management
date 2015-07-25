@@ -34,7 +34,13 @@
         = f.label t('booking.actions')
         = f.number_field :account_id, hidden: true, value: @m_account.id
         = f.submit t('buttons.send'), class: 'btn btn-primary'
- 
+    .col-md-3
+      #hourSet
+      %a#addScout{:href => "javascript:;", :id => 'AddScout'} Add Scout
+      
+      #new_scout_form.hide
+        = render partial: "scout_form", locals: {scout: false}
+    
 %br
 %br   
 .well.col-md-12
