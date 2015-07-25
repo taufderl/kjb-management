@@ -96,6 +96,7 @@ class ScoutsBookkeepingController < ApplicationController
   end
   
   def daily_closing
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account = Account.find_by_name('Gruppenleiterkasse')      
     @s_account_balance = Booking.where(account: @s_account).sum(:amount)
     

@@ -36,12 +36,12 @@
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
-      %th= t('booking.account')
       %th= t('booking.accounting_number')
       %th= t('booking.date')
+      %th= t('booking.account')
       %th= t('booking.amount')
-      %th= t('booking.note1')
-      %th= t('booking.note2')
+      %th= t('booking.note1_payment')
+      %th= t('booking.note2_payment')
       %th= t('booking.remarks')
       %th= t('booking.created_by')
         
@@ -49,11 +49,11 @@
     - @payments.each do |p|
       %tr
         = form_for p do |f| 
+          %td= p.accounting_number
+          %td= p.date.strftime "%d.%m.%Y"
           %td
             - if p.account
               = p.account.name
-          %td= p.accounting_number
-          %td= p.date.strftime "%d.%m.%Y"
           %td= number_to_currency p.amount
           %td= p.note1
           %td= p.note2
