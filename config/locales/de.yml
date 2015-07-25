@@ -99,7 +99,9 @@ de:
       user: 'Name'
       comment: 'Nachricht'
       new: 'Neue Nachricht'
-       
+    
+    stats:
+      title: 'Statistik' 
       
   
   booking:

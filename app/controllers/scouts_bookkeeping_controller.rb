@@ -25,12 +25,10 @@ class ScoutsBookkeepingController < ApplicationController
     @bookings_giro = Booking.where(account: s_account_giro)
     
     @s_account_cash_balance = Booking.where(account: s_account_cash).sum(:amount)
-    @s_account_giro_balance = Booking.where(account: s_account_giro).sum(:amount)
-    
+    @s_account_giro_balance = Booking.where(account: s_account_giro).sum(:amount) 
   end
 
   def billing
-
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')       
@@ -105,6 +103,15 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_date_drawback = @s_account_date_disbursements + @s_account_date_balance
     
     @count = session[:main_account_cash] || {}
+  end
+  
+  def stats
+    @consumption = ScoutConsumption.all
+    @count_beer = ScoutConsumption.all.sum(:beer)
+    @count_sausage = ScoutConsumption.all.sum(:sausage)
+    @count_pork = ScoutConsumption.all.sum(:pork)
+    @count_turkey = ScoutConsumption.all.sum(:turkey)
+    @count_corn = ScoutConsumption.all.sum(:corn)
   end
   
   private

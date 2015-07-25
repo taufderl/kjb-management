@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'scouts_bookkeeping/save_cash'
   get 'scouts_bookkeeping/export'
   get 'scouts_bookkeeping/daily_closing'
+  get 'scouts_bookkeeping/stats'
   
   post 'bookings/create_payment' => 'bookings#create_payment', as: :create_payment
   post 'bookings/create_transfer' => 'bookings#create_transfer', as: :create_transfer
