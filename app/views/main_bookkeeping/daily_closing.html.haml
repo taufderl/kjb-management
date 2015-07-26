@@ -15,7 +15,7 @@
     %h4
       = t('pages.disbursement.title')
     %h4
-      = number_to_currency @m_account_date_disbursements      
+      = number_to_currency @m_account_date_disbursement      
   .col-md-3
     %h4
       = t('pages.closing.drawback')
@@ -26,7 +26,10 @@
       %span.glyphicon.glyphicon-ok{"aria-hidden" => "true"}
       = t('pages.closing.drawback_fits')
       -# BUTTON: setzt Disbursement auf cleared
-
+    %br
+    %br
+    .btn-group
+      = link_to "Rückgeld erhalten", main_bookkeeping_clear_disbursement_path, class: "btn btn-info"
 
 .well.col-md-12
   .col-md-3

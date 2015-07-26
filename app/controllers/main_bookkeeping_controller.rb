@@ -46,9 +46,27 @@ class MainBookkeepingController < ApplicationController
     @m_c_account_sum = @m_account_balance + @c_account_balance
     
     @m_account_date_balance = Booking.where(["date = ?", @date]).where(account: @m_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
-    @m_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @m_account).where(cleared: false).sum(:amount)
-    @m_account_date_drawback = @m_account_date_disbursements + @m_account_date_balance
+    @m_account_date_disbursement = Disbursement.where(["date = ?", @date]).where(account: @m_account).where(cleared: false).sum(:amount)
+    @m_account_date_drawback = @m_account_date_disbursement + @m_account_date_balance
     
+    @m_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @m_account)
+
+   
     @count = session[:main_account_cash] || {}
   end
+  
+  def clear_disbursement
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
+    @m_account = Account.find_by_name('Lagerkasse Bar')    
+    @m_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @m_account)
+    
+    @m_account_date_disbursements.each do |e| 
+      e.update('cleared' => true)
+    end
+    
+    respond_to do |format|
+      format.html{ redirect_to main_bookkeeping_daily_closing_path, notice: 'Ausgelegtes Geld als erledigt markiert.'} 
+    end 
+  end
+  
 end

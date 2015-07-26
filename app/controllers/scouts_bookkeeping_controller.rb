@@ -105,6 +105,20 @@ class ScoutsBookkeepingController < ApplicationController
     @count = session[:main_account_cash] || {}
   end
   
+  def clear_disbursement
+    @date = Date.strptime(session[:date], "%d.%m.%Y")
+    @s_account = Account.find_by_name('Gruppenleiterkasse')    
+    @s_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @s_account)
+    
+    @s_account_date_disbursements.each do |e| 
+      e.update('cleared' => true)
+    end
+    
+    respond_to do |format|
+      format.html{ redirect_to scouts_bookkeeping_daily_closing_path, notice: 'Ausgelegtes Geld als erledigt markiert.'} 
+    end 
+  end
+  
   def stats
     @consumption = ScoutConsumption.all
     @count_beer = ScoutConsumption.all.sum(:beer)
