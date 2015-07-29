@@ -1,5 +1,7 @@
 class ShopController < ApplicationController
-  autocomplete :child, :first_name, full: true,  display_value: :full_name, :extra_data => [:last_name]
+  autocomplete :child, :first_name, full: true,  display_value: :full_name, :extra_data => [:last_name, :number]
+  autocomplete :child, :number, display_value: :number, display_value: :nice_number, :extra_data => [:number]
+
   
   def index
     date = Date.strptime(session[:date], "%d.%m.%Y")

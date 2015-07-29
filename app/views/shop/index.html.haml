@@ -19,10 +19,20 @@
         %ul.dropdown-menu
           %li{role: :presentation}= link_to t('time_of_day.noon'), select_time_of_day_path(time_of_day: :noon), method: :post
           %li{role: :presentation}= link_to t('time_of_day.evening'), select_time_of_day_path(time_of_day: :evening), method: :post
-
           
   .well.col-md-12
     .col-md-4
+      .form-group
+        = f.label t('children.number')
+        = f.autocomplete_field :child_number, shop_autocomplete_child_number_path, update_elements: {}, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
+        :javascript
+          update_child = function() {
+            console.log("updating child");
+          };
+          $(document).ready( function() {
+            $('#child_consumption_child_number').on("input", update_child);
+          });
+          
       .form-group
         = f.label t('shop.child')
         = f.autocomplete_field :child_full_name, shop_autocomplete_child_first_name_path, update_elements: {}, 'data-id-element' => '#child_consumption_child_id', class: 'form-control'
@@ -151,12 +161,22 @@
 
 
 :javascript
-  $('#child_consumption_child_full_name').bind('railsAutocomplete.select', function(event, data){
+  $('#child_consumption_child_number').bind('railsAutocomplete.select', function(event, data) {
     child_id = data.item.id;
     $.get('shop/child_data/'+child_id, function(child_data, textStatus) {
       $('#child_consumption_current_balance').val(child_data.account_balance);
       $('#child_image').attr("src", child_data.image);
       $('#child_image_overlay').attr("src", child_data.image);
+      $('#child_consumption_child_full_name').val(child_data.full_name)
+    });
+  }); 
+  $('#child_consumption_child_full_name').bind('railsAutocomplete.select', function(event, data) {
+    child_id = data.item.id;
+    $.get('shop/child_data/'+child_id, function(child_data, textStatus) {
+      $('#child_consumption_current_balance').val(child_data.account_balance);
+      $('#child_image').attr("src", child_data.image);
+      $('#child_image_overlay').attr("src", child_data.image);
+      $('#child_consumption_child_number').val("["+child_data.number.toString()+"]")
     });
   });
   

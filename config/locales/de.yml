@@ -161,6 +161,9 @@ de:
     please_select_time_of_day: "Tageszeit auswählen"
     current_balance: "Aktueller Kontostand"
     new_balance: Neuer Kontostand
+
+  children:
+    number: Nummer
   
   time_of_day:
     noon: "Mittag"

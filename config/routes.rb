@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   
   get 'shop' => 'shop#index', as: :shop
   post 'shop/select_time_of_day', as: :select_time_of_day
+  get 'shop/autocomplete_child_number'
   get 'shop/autocomplete_child_first_name'
   post 'shop/new_entry' => 'shop#new_entry', as: :new_child_consumption
   patch 'shop/update_entry/:child_consumption_id' => 'shop#update_entry', as: :update_child_consumption
