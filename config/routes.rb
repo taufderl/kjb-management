@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :accounts
+  get 'scouts/:id/export' => 'scouts#export', as: :export_scout
   resources :scouts
   resources :tents
   resources :children

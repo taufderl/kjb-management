@@ -1,5 +1,5 @@
 class ScoutsController < ApplicationController
-  before_action :set_scout, only: [:show, :edit, :update, :destroy]
+  before_action :set_scout, only: [:show, :edit, :update, :destroy, :export]
 
   # GET /scouts
   # GET /scouts.json
@@ -20,6 +20,12 @@ class ScoutsController < ApplicationController
   # GET /scouts/1/edit
   def edit
   end
+
+  def export
+    session[:notice] = @scout.to_json
+    send_data "#{@scout.to_json}", filename: "#{@scout.full_name.parameterize.underscore}-#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.json"
+  end
+
 
   # POST /scouts
   # POST /scouts.json
