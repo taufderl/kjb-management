@@ -18,18 +18,13 @@ class ChildrenController < ApplicationController
   end
 
   def identify_number
-    @children = Child.all
-    @children_sort = @children.sort_by{|a| a[:tent]}
+    @children = Child.includes(:tent).order("tents.number ASC")
   end
   
   def identify_new
-    @children = Child.all
-    @children_sort = @children.sort_by{|a| a[:tent]}
-    i=1    
-    
-    @children_sort.each do |n|
-      n.update('number' => i)
-      i = i+1
+    @children = Child.includes(:tent).order("tents.number ASC")
+    @children.each_with_index do |child, i|
+      child.update('number' => i+1)
     end
     
     respond_to do |format|

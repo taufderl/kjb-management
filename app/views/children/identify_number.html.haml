@@ -22,7 +22,7 @@
       %th Zelt
 
   %tbody
-    - @children_sort.each do |child|
+    - @children.each do |child|
       %tr
         %td= child.number
         %td= link_to child.first_name, child

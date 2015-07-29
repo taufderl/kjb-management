@@ -2,6 +2,8 @@ class Child < ActiveRecord::Base
   belongs_to :tent
   has_one :child_account
   has_many :child_consumptions
+
+  default_scope { order :number }
   
   def account
     self.child_account || ChildAccount.create(child: self, name: self.full_name)

@@ -2,6 +2,8 @@ class Scout < ActiveRecord::Base
   belongs_to :tent
   has_one :scout_account
   has_many :scout_consumptions
+
+  default_scope { order :last_name } 
   
   def account
     self.scout_account || ScoutAccount.create(scout: self, name: self.full_name)
