@@ -10,6 +10,14 @@ class ScoutsController < ApplicationController
   # GET /scouts/1
   # GET /scouts/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.pdf {
+                render pdf: "#{@scout.full_name.parameterize.underscore}" , 
+                template: "scouts/show.pdf.haml",
+                disposition: "inline"
+      }
+    end
   end
 
   # GET /scouts/new
@@ -23,7 +31,10 @@ class ScoutsController < ApplicationController
 
   def export
     session[:notice] = @scout.to_json
-    send_data "#{@scout.to_json}", filename: "#{@scout.full_name.parameterize.underscore}-#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.json"
+    html = render_to_string(action: :show, layout: 'pdf.haml')
+    pdf = WickedPdf.new.pdf_from_string(html)
+        
+    send_data pdf, filename: "#{@scout.full_name.parameterize.underscore}-#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.pdf"
   end
 
 
