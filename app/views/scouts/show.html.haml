@@ -32,27 +32,23 @@
 
 %br
 .row
-  .col-md-8
+  .col-md-5
     %h3 Buchungen
     %table.table.table-condensed.table-bordered
       %thead
         %tr
           %th Date
-          %th Account
           %th Amount
           %th Note1
           %th Note2
-          %th Remarks
   
       %tbody
         - @scout.account.bookings.each do |booking|
           %tr
             %td= booking.date.strftime "%d.%m.%Y"
-            %td= booking.account ? booking.account.name : "-"
             %td= number_to_currency booking.amount
             %td= booking.note1
             %td= booking.note2
-            %td= booking.remarks
   
   .col-md-4
     %h3 Verbrauch
@@ -67,4 +63,31 @@
           %tr
             %td= consumption.date.strftime "%d.%m.%Y"
             %td= number_to_currency consumption.total
-    
+   
+  .col-md-3
+    %h3 Statistik
+    %table.table.table-condensed.table-bordered
+      %thead
+        %tr
+          %th was
+          %th wieviel
+      
+      %tbody
+        %tr
+          %td Bier
+          %td= @scout.beer_consumption
+        %tr
+          %td Anti
+          %td= @scout.soft_drink_consumption
+        %tr
+          %td Wurst
+          %td= @scout.sausage_consumption
+        %tr
+          %td Schwein
+          %td= @scout.pork_consumption
+        %tr
+          %td Pute
+          %td= @scout.turkey_consumption
+        %tr
+          %td Mais
+          %td= @scout.corn_consumption
