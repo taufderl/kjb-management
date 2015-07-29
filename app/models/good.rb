@@ -11,6 +11,14 @@ class Good < ActiveRecord::Base
       :corn,
     ]
   end
+
+  def price=(amount)
+    if not amount.class == Float
+      amount.gsub!(',', '.')
+    end
+    write_attribute(:price, amount)
+  end
+
   
   def self.get_price(type, date)
     pricetag = Good.where("type = ? AND date <= ?", type, date.to_date).order(date: "DESC").first

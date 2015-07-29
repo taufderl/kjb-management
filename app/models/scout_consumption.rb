@@ -1,7 +1,14 @@
 class ScoutConsumption < ActiveRecord::Base
   belongs_to :scout
   validates_uniqueness_of :scout_id, :scope => :date
-  
+
+  def other=(amount)
+    if not amount.class == Float
+      amount.gsub!(',', '.')
+    end
+    write_attribute(:other, amount)
+  end
+
   def total
     self.beer.to_i * Good.get_price(:beer, self.date) + 
     self.soft_drink.to_i * Good.get_price(:soft_drink, self.date) + 
