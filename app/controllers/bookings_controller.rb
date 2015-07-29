@@ -60,12 +60,11 @@ class BookingsController < ApplicationController
     bparams = {}
     bparams[:created_by] = User.find_by_name(session[:user])
     bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
-    
+    bparams[:account_id] = pparams[:account_id]    
     bparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
     bparams[:note1] = pparams[:note1]
     bparams[:note2] = pparams[:note2]
     bparams[:remarks] = pparams[:remarks]
-    bparams[:account_id] = pparams[:account_id]
     
     # plus/minus Button
     if pparams[:sign] == 'minus'

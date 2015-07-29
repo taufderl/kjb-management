@@ -18,22 +18,22 @@
 %h4
   = number_to_currency @s_account_cash_balance 
 
-%table.table.table-bordered.table-condensed.table-hover
+%table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
   %thead
     %tr
-      %th 
+      %th{:style=> "width: 10%"}
         = t('booking.accounting_number')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.date')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.amount')
-      %th
+      %th{:style=> "width: 15%"}
         = t('booking.note1')
-      %th
+      %th{:style=> "width: 30%"}
         = t('booking.note2')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.created_by')
-      %th
+      %th{:style=> "width: 15%"}
         = t('booking.remarks')
 
    
@@ -67,22 +67,22 @@
 %h4
   = number_to_currency @s_account_giro_balance
 
-%table.table.table-bordered.table-condensed.table-hover
+%table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
   %thead
     %tr
-      %th 
+      %th{:style=> "width: 10%"}
         = t('booking.accounting_number')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.date')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.amount')
-      %th
+      %th{:style=> "width: 15%"}
         = t('booking.note1')
-      %th
+      %th{:style=> "width: 30%"}
         = t('booking.note2')
-      %th
+      %th{:style=> "width: 10%"}
         = t('booking.created_by')
-      %th
+      %th{:style=> "width: 15%"}
         = t('booking.remarks')
    
   %tbody
