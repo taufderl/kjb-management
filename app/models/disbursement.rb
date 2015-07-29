@@ -9,7 +9,7 @@ class Disbursement < ActiveRecord::Base
     write_attribute(:amount, amount)
   end
 
-  do |disbursement|
+  after_create do |disbursement|
     self.update_attributes(cleared: false)
   end
   
