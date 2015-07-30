@@ -53,6 +53,7 @@ gem 'rails4-autocomplete'
 #gem 'bootstrap-typeahead-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'cocoon'
 
 
 

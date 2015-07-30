@@ -13,6 +13,8 @@ class MainBookkeepingController < ApplicationController
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @booking = Booking.new
     @bookings = Booking.where(date: @date, account: @m_account).where("note1 != ?", "Ein-/Auszahlung")
+    @scouts = Scout.all
+    @scout_accounts = ScoutAccount.all
     
     @m_account_balance = Booking.where(account: @m_account).sum(:amount)
     @m_account_date_balance = Booking.where(["date = ?", @date]).where(account: @m_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
@@ -70,3 +72,4 @@ class MainBookkeepingController < ApplicationController
   end
   
 end
+
