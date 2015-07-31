@@ -1,22 +1,27 @@
 .fields
-  .col-md-5
+  .col-md-3.col-md-offset-2
     .form-group
       = f.label t('controller.scouts')
-      = f.collection_select "account_id", @scouts, :id, :full_name, {}, class: "form-control"
-  .col-md-3
+      = f.collection_select "account_id", @scout_accounts, :id, :name, {}, class: "form-control"
+  .col-md-2
     .form-group
       = f.label t('booking.amount')
       .input-group
-        %span.input-group-addon
-          %span.glyphicon.glyphicon-euro
+        %span.input-group-btn{"data-toggle" => "buttons"}
+          %label.btn.btn-default
+            %input#option1{:autocomplete => "off", :name => 'booking[sign]', :value => "minus", :type => "radio"}
+              %span.glyphicon.glyphicon-minus
+          %label.btn.btn-default.active
+            %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio", :checked => ""}
+              %span.glyphicon.glyphicon-plus
         = f.text_field "amount", data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: "form-control"
-  .col-md-3
+  .col-md-4
     .form-group
-      = f.label t('booking.remarks')
-      = f.text_field "remarks", class: "form-control"
-
+      = f.label t('booking.note2')
+      = f.text_field "note2", class: "form-control"
+      = f.text_field "note1", hidden: true, value: "Gutschrift Lagerkasse"
   .col-md-1
     .form-group
       = f.label t('booking.actions')
-      = link_to_remove_association "remove task", f, class: "btn btn-danger"
+      = link_to_remove_association "remove task", f, class: "btn btn-info"
 
