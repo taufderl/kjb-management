@@ -2,7 +2,7 @@
   .col-md-3.col-md-offset-2
     .form-group
       = f.label t('controller.scouts')
-      = f.collection_select "account_id", @scout_accounts, :id, :name, {}, class: "form-control"
+      = f.collection_select "account_id", Account.where(actable: ScoutAccount), :id, :name, {}, class: "form-control"
   .col-md-2
     .form-group
       = f.label t('booking.amount')
@@ -19,9 +19,12 @@
     .form-group
       = f.label t('booking.note2')
       = f.text_field "note2", class: "form-control"
-      = f.text_field "note1", hidden: true, value: "Gutschrift Lagerkasse"
   .col-md-1
     .form-group
       = f.label t('booking.actions')
-      = link_to_remove_association "remove task", f, class: "btn btn-info"
+      = f.text_field "note1", hidden: true, value: "Gutschrift Lagerkasse"
+      = f.text_field "date", hidden: true, value: @date
+      -# = f.text_field "created_by", hidden: true, value: @user
+      = f.text_field "accounting_number", hidden: true, value: @accounting_number
+      = link_to_remove_association "remove", f, class: "btn btn-info"
 

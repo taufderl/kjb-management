@@ -16,6 +16,9 @@ class MainBookkeepingController < ApplicationController
     @scouts = Scout.all
     @scout_accounts = ScoutAccount.all
     
+    @accounting_number = Booking.where(account_id: @m_account).map {|b| b.accounting_number}.compact.max.to_i+1
+    @user = User.find_by_name(session[:user])
+    
     @m_account_balance = Booking.where(account: @m_account).sum(:amount)
     @m_account_date_balance = Booking.where(["date = ?", @date]).where(account: @m_account).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)   
   end

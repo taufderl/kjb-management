@@ -64,13 +64,19 @@ class BookingsController < ApplicationController
     bparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
     bparams[:note1] = pparams[:note1]
     bparams[:note2] = pparams[:note2]
-    bparams[:remarks] = pparams[:remarks]
-    bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes]
-    bparams[:sub_bookings_attributes].each do |attr|
-      attr[:date] = session[:date]
-    end
-
-    # plus/minus Button
+    bparams[:remarks] = pparams[:remarks] 
+      
+   
+    # plus/minus Button Sub-Booking
+    # pparams[:sub_bookings_attributes].each do |b|
+    #   if b[:sign] == "minus"
+    #     b[:amount] = - b[:amount].to_f
+    #   end
+    # end
+    # Sub-Booking Parameter
+    bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes] 
+        
+    # plus/minus Button Main-Booking
     if pparams[:sign] == 'minus'
       bparams[:amount] = - pparams[:amount].to_f
     else
@@ -187,6 +193,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:account_id, :amount, :remarks])
+      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:account_id, :amount, :note1, :note2, :sign, :date, :created_by, :accounting_number])
     end
 end
