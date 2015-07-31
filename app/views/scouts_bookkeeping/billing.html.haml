@@ -4,7 +4,7 @@
     %small= session[:date]
 
 .well.col-md-12
-  = form_for :booking, url: create_billing_path, method: :post do |f|
+  = form_for @booking, url: create_billing_path, method: :post do |f|
   
     .col-md-12
       .field.form-group
@@ -38,7 +38,8 @@
       .form-group
         = f.label t('booking.actions')
         = f.submit t('buttons.send'), class: 'btn btn-primary'
-        
+    .col-md-12
+      = link_to_add_association "Add scout booking", f, :sub_bookings, class: 'btn btn-primary', role: 'button'        
 
 
 .well.col-md-12

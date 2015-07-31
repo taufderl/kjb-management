@@ -1,0 +1,23 @@
+.fields
+  .col-md-5
+    .form-group
+      = f.label t('controller.scouts')
+      = f.collection_select "account_id", @scout_accounts, :id, :name, {}, class: "form-control"
+  .col-md-3
+    .form-group
+      = f.label t('booking.amount')
+      .input-group
+        %span.input-group-addon
+          %span.glyphicon.glyphicon-euro
+        = f.text_field "amount", data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: "form-control"
+  .col-md-3
+    .form-group
+      = f.label t('booking.note2')
+      = f.text_field "note2", class: "form-control"
+      = f.text_field "note1", hidden: true, value: "Einkauf GL-Kasse"
+
+  .col-md-1
+    .form-group
+      = f.label t('booking.actions')
+      = link_to_remove_association "remove task", f, class: "btn btn-danger"
+

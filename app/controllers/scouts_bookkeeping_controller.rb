@@ -42,6 +42,8 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_cash_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account_cash).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)
     @s_account_giro_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account_giro).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)    
     
+    @scout_accounts = ScoutAccount.all
+    
     @booking = Booking.new
   end
   

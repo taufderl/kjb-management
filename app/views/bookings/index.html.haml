@@ -25,7 +25,7 @@
   %tbody
     - @bookings.each do |booking|
       %tr
-        %td= booking.date.strftime "%d.%m.%Y"
+        %td= booking.date ? booking.date.strftime("%d.%m.%Y") : nil
         %td= booking.account ? booking.account.name : booking.account
         %td= number_to_currency booking.amount
         %td= booking.note1
