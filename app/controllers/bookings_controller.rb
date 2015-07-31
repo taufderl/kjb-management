@@ -66,6 +66,9 @@ class BookingsController < ApplicationController
     bparams[:note2] = pparams[:note2]
     bparams[:remarks] = pparams[:remarks]
     bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes]
+    bparams[:sub_bookings_attributes].each do |attr|
+      attr[:date] = session[:date]
+    end
 
     # plus/minus Button
     if pparams[:sign] == 'minus'
@@ -184,6 +187,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:account_id, :amount, :reamarks])
+      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:account_id, :amount, :remarks])
     end
 end
