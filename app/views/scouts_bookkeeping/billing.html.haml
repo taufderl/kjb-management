@@ -15,10 +15,10 @@
         = f.label t('booking.amount')
         .input-group
           %span.input-group-btn{"data-toggle" => "buttons"}
-            %label.btn.btn-danger.active
+            %label.btn.btn-default.active
               %input#option1{:autocomplete => "off", :checked => "", :name => 'booking[sign]', :value => "minus", :type => "radio"}
                 %span.glyphicon.glyphicon-minus
-            %label.btn.btn-success
+            %label.btn.btn-default
               %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio"}
                 %span.glyphicon.glyphicon-plus
           = f.text_field :amount, class: "form-control"
@@ -39,7 +39,7 @@
         = f.label t('booking.actions')
         = f.submit t('buttons.send'), class: 'btn btn-primary'
     .col-md-12
-      = link_to_add_association "Add scout booking", f, :sub_bookings, class: 'btn btn-primary', role: 'button'        
+      = link_to_add_association "Burchung hinzufügen", f, :sub_bookings, class: 'btn btn-info', role: 'button'        
 
 
 .well.col-md-12

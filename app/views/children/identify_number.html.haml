@@ -5,13 +5,12 @@
       %small
         = @children.count
         
-.col-md-12
-  .btn-group
-    = link_to "Nummern neu vergeben", children_identify_new_path, class: "btn btn-info"
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to "Nummern neu vergeben", children_identify_new_path, class: "btn btn-info"
 
-%br
-%br
-        
 %table.table.table-bordered.table-condensed.table-hover
   %thead
     %tr
