@@ -1,12 +1,12 @@
 .row
   .col-md-10
     %h1.page-header
-      Disbursements
+      Kommentare
   .col-md-2
     %br
     %br
     .btn-group
-      = link_to 'New Disbursement', new_disbursement_path, class: "btn btn-primary"
+      = link_to 'Neuer Kommentar', new_news_path, class: "btn btn-primary"
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -25,5 +25,8 @@
             = news.user.name
         %td= news.comment
         %td
-          = link_to 'Edit', edit_news_path(news), class: "btn btn-xs btn-primary"
-          = link_to 'Destroy', news, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+          .btn-group
+            = link_to edit_news_path(news), class: "btn btn-xs btn-default" do
+              %span.glyphicon.glyphicon-edit
+            = link_to news, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger" do
+              %span.glyphicon.glyphicon-trash

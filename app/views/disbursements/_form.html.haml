@@ -1,5 +1,3 @@
-%h4 new disbursement
-
 = form_for @disbursement do |f|
   - if @disbursement.errors.any?
     #error_explanation
@@ -10,18 +8,21 @@
           
   .field
     = f.label :date
-    = f.date_select :date
+    = f.date_select :date, {}, class: 'form-control'
   .field
     = f.label :account
-    = f.collection_select(:account_id, Account.all, :id, :name)
+    = f.collection_select :account_id, Account.where(actable_type: MainAccount), :id, :name, {}, class: 'form-control'
   .field
     = f.label :cleared
     = f.check_box :cleared
   .field
     = f.label :amount
-    = f.text_field :amount
+    = f.text_field :amount, class: 'form-control'
   .field
     = f.label :user
-    = f.number_field :user_id
+    = f.collection_select :user_id, User.all, :id, :name, {}, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"
+

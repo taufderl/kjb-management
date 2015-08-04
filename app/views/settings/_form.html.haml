@@ -8,9 +8,12 @@
 
   .field
     = f.label :key
-    = f.text_field :key
+    = f.text_field :key, class: 'form-control'
   .field
     = f.label :value
-    = f.text_field :value
+    = f.text_field :value, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"
+

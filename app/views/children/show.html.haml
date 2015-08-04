@@ -1,15 +1,17 @@
 .row
-  .col-md-10
+  .col-md-9
     %h1.page-header
       = @child.first_name
       = @child.last_name
       %small
         = @child.number
   
-  .col-md-2
+  .col-md-3
     %br
     %br
-    = link_to 'Bearbeiten', edit_child_path(@child), class: "btn btn-primary"
+    .btn-group
+      = link_to 'Bearbeiten', edit_child_path(@child), class: "btn btn-primary"
+      = link_to 'Übersicht', children_path, class: "btn btn-success"
 
 .row  
   .col-md-2

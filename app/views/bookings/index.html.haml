@@ -35,5 +35,8 @@
         %td= booking.updated_by ? booking.created_by.name : '-'
         %td= booking.accounting_number
         %td
-          = link_to 'Edit', edit_booking_path(booking), class: "btn btn-xs btn-primary"
-          = link_to 'Destroy', booking, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+          .btn-group
+            = link_to edit_booking_path(booking), class: "btn btn-xs btn-default" do
+              %span.glyphicon.glyphicon-edit
+            = link_to booking, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger" do
+              %span.glyphicon.glyphicon-trash

@@ -8,6 +8,8 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: "form-control"
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"

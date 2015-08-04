@@ -136,6 +136,8 @@ de:
     tents: 'Zelte'
     goods: 'Waren'
     disbursements: 'ausgelegtes Geld'
+    settings: Einstellungen
+    news: Kommentare
     
   goods:
     beer: 'Bier'

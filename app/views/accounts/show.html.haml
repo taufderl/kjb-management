@@ -1,9 +1,12 @@
-%p#notice= notice
+.row
+  .col-md-9
+    %h1.page-header
+      Account:
+      = @account.name 
 
-%p
-  %b Name:
-  = @account.name
-
-= link_to 'Edit', edit_account_path(@account)
-\|
-= link_to 'Back', accounts_path
+  .col-md-3
+    %br
+    %br
+    .btn-group
+      = link_to 'Bearbeiten', edit_account_path(@account), class: "btn btn-primary"
+      = link_to 'Übersicht', accounts_path, class: "btn btn-success"

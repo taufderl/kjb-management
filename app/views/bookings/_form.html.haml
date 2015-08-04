@@ -8,30 +8,24 @@
 
   .field
     = f.label :date
-    = f.date_select :date
+    = f.date_select :date, {}, class: 'form-control'
   .field
     = f.label :account
-    = f.text_field :account
+    = f.collection_select :account_id, Account.all, :id, :name, {}, class: 'form-control'
   .field
     = f.label :amount
-    = f.text_field :amount
+    = f.text_field :amount, class: 'form-control'
   .field
     = f.label :note1
-    = f.text_field :note1
+    = f.text_field :note1, class: 'form-control'
   .field
     = f.label :note2
-    = f.text_field :note2
+    = f.text_field :note2, class: 'form-control'
   .field
     = f.label :remarks
-    = f.text_field :remarks
-  .field
-    = f.label :created_by
-    = f.text_field :created_by_id
-  .field
-    = f.label :updated_by
-    = f.text_field :updated_by_id
-  .field
-    = f.label :accounting_number
-    = f.text_field :accounting_number
+    = f.text_field :remarks, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"
+

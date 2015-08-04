@@ -1,7 +1,7 @@
 .row
   .col-md-10
     %h1.page-header
-      Settings
+      Einstellungen
   .col-md-2
     %br
     %br
@@ -21,5 +21,8 @@
         %td= setting.key
         %td= setting.value
         %td
-          = link_to 'Edit', edit_setting_path(setting), class: "btn btn-xs btn-primary"
-          = link_to 'Destroy', setting, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+          .btn-group
+            = link_to edit_setting_path(setting), class: "btn btn-xs btn-default" do
+              %span.glyphicon.glyphicon-edit
+            = link_to setting, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger" do
+              %span.glyphicon.glyphicon-trash

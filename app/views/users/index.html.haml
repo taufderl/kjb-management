@@ -25,5 +25,8 @@
         %td= user.bookings_created.count
         %td= user.bookings_updated.count
         %td
-          = link_to 'Edit', edit_user_path(user), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          .btn-group
+            = link_to edit_user_path(user), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash  

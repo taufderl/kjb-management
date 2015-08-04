@@ -1,7 +1,7 @@
 .row
   .col-md-10
     %h1.page-header
-      Waren
+      Waren/Preise
   .col-md-2
     %br
     %br
@@ -23,5 +23,9 @@
         %td= number_to_currency good.price
         %td= good.date.strftime "%d.%m.%Y"
         %td
-          = link_to 'Edit', edit_good_path(good), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', good, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          .btn-group
+            = link_to edit_good_path(good), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to good, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash
+                

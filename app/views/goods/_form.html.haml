@@ -8,12 +8,15 @@
 
   .field
     = f.label :type
-    = f.collection_select :type, Good.types, :to_s, lambda { |type| t('goods.'+type.to_s) }
+    = f.collection_select :type, Good.types, :to_s, lambda { |type| t('goods.'+type.to_s) }, {}, class: 'form-control'
   .field
     = f.label :price
-    = f.text_field :price
+    = f.text_field :price, class: 'form-control'
   .field
     = f.label :date
-    = f.date_select :date
+    = f.date_select :date, {}, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"
+

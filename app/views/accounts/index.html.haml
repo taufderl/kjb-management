@@ -6,7 +6,7 @@
     %br
     %br
     .btn-group
-      = link_to 'New Account', new_account_path, class: "btn btn-primary"
+      = link_to 'Neuer Account', new_account_path, class: "btn btn-primary"
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -23,5 +23,8 @@
         %td= link_to account.name, account
         %td= number_to_currency account.balance
         %td
-          = link_to 'Edit', edit_account_path(account), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', account, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          .btn-group
+            = link_to edit_account_path(account), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to account, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash

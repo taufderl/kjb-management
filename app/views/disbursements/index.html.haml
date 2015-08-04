@@ -1,12 +1,12 @@
 .row
   .col-md-10
     %h1.page-header
-      Disbursements
+      Geldausgaben
   .col-md-2
     %br
     %br
     .btn-group
-      = link_to 'New Disbursement', new_disbursement_path, class: "btn btn-primary"
+      = link_to 'Neue Geldausgabe', new_disbursement_path, class: "btn btn-primary"
 
 %table.table.table-bordered.table-condensed
   %thead
@@ -35,5 +35,9 @@
             = disbursement.user.name
         %td= disbursement.cleared
         %td
-          = link_to 'Edit', edit_disbursement_path(disbursement), class: "btn btn-xs btn-primary"
-          = link_to 'Destroy', disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger"
+          .btn-group
+            = link_to edit_disbursement_path(disbursement), class: "btn btn-xs btn-default" do
+              %span.glyphicon.glyphicon-edit
+            = link_to disbursement, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-xs btn-danger" do
+              %span.glyphicon.glyphicon-trash
+

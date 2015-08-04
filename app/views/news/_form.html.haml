@@ -8,9 +8,12 @@
 
   .field
     = f.label :user
-    = f.text_field :user
+    = f.collection_select :user_id, User.all, :id, :name, {}, class: 'form-control'
   .field
     = f.label :comment
-    = f.text_area :comment
+    = f.text_area :comment, class: 'form-control'
   .actions
-    = f.submit 'Save'
+    .btn-group
+      = f.submit 'Speichern', class: "btn btn-primary"
+      = link_to "Zurück", :back, class: "btn btn-default"
+
