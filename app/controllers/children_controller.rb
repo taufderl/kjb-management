@@ -17,10 +17,6 @@ class ChildrenController < ApplicationController
     @child = Child.new
   end
 
-  def identify_number
-    @children = Child.includes(:tent).order("tents.number ASC")
-  end
-  
   def identify_new
     @children = Child.includes(:tent).order("tents.number ASC")
     @children.each_with_index do |child, i|
@@ -28,10 +24,8 @@ class ChildrenController < ApplicationController
     end
     
     respond_to do |format|
-      format.html{ redirect_to children_identify_number_path, notice: 'Successful.'} 
+      format.html{ redirect_to children_path, notice: 'Successful.'} 
     end 
-    
-
   end
 
   # GET /children/1/edit

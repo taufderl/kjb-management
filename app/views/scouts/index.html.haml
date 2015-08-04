@@ -29,9 +29,9 @@
           - if scout.tent
             = link_to "Zelt #{scout.tent.number}", scout.tent
         %td
-          = link_to 'Edit', edit_scout_path(scout), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', scout, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          .btn-group
+            = link_to edit_scout_path(scout), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to scout, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash
 
-%br
-
-= link_to 'New Scout', new_scout_path

@@ -50,7 +50,6 @@ Rails.application.routes.draw do
   patch 'shop/update_entry/:child_consumption_id' => 'shop#update_entry', as: :update_child_consumption
   get 'shop/child_data/:child_id' => 'shop#child_data'
 
-  get 'children/identify_number'
   get 'children/identify_new'
   
   get 'import/index', as: :import

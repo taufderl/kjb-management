@@ -1,14 +1,16 @@
 .row
-  .col-md-10
+  .col-md-8
     %h1.page-header
       Kinder
       %small
         = @children.count
-  .col-md-2
+  .col-md-4
     %br
     %br
     .btn-group
-      = link_to 'New Child', new_child_path, class: "btn btn-primary"
+      = link_to 'Neues Kind', new_child_path, class: "btn btn-primary"
+      = link_to "Nummern neu vergeben", children_identify_new_path, class: "btn btn-info"
+
 
 %table.table.table-bordered.table-condensed.table-hover
   %thead
@@ -18,7 +20,6 @@
       %th Nachname
       %th Geburtsdatum
       %th Alter
-      %th Telefon
       %th Bild
       %th Zelt
       %th
@@ -31,7 +32,6 @@
         %td= link_to child.last_name, child
         %td= child.birthday.strftime "%d.%m.%Y"
         %td= child.age
-        %td= truncate child.phone, length: 80
         %td
           - if child.image
             %img.center-block.img-rounded#child_image{style: "width: 18px; heigth: 18px;", src: "#{child.image}",  "data-toggle" => "modal", 'data-target' => "#myModal"}
@@ -57,7 +57,10 @@
         %td
           - if child.tent
             = link_to "Zelt #{child.tent.number}", child.tent
-        %td
-          = link_to 'Edit', edit_child_path(child), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', child, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+        %td{width: '70px;'}
+          .btn-group
+            = link_to edit_child_path(child), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to child, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash
 

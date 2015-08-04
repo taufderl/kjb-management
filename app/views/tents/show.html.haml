@@ -1,16 +1,16 @@
 .row
-  .col-md-10
+  .col-md-9
     %h1.page-header
       Zelt
       = @tent.number
       %small
         = @tent.scouts.map {|s| s.first_name }.join ", "
-  .col-md-2
+  .col-md-3
     %br
     %br
     .btn-group
-      = link_to 'Edit', edit_tent_path(@tent), class: "btn btn-primary"
-      = link_to 'Overview', tents_path, class: "btn btn-success"
+      = link_to 'Bearbeiten', edit_tent_path(@tent), class: "btn btn-primary"
+      = link_to 'Übersicht', tents_path, class: "btn btn-success"
     
     
 .row  

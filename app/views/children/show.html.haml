@@ -21,7 +21,9 @@
       %p
         %b= @child.tent.scouts.map {|a| a.first_name}.join(', ')
       %p
-        = @child.tent.children.map {|a| a.full_name}.join(', ')
+        %ul
+        - @child.tent.children.each do |child|
+          %li= child.full_name
     - else
       Zelt Zuteilung fehlt
   

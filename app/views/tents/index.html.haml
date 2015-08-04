@@ -30,5 +30,8 @@
           = tent.children.map {|a| a.first_name + ' ' + a.last_name[0] + '.'}.join(', ')
         %td= tent.children.count
         %td
-          = link_to 'Edit', edit_tent_path(tent), class: "btn btn-default btn-xs"
-          = link_to 'Destroy', tent, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+          .btn-group
+            = link_to edit_tent_path(tent), class: "btn btn-default btn-xs" do
+              %span.glyphicon.glyphicon-edit
+            = link_to tent, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs" do
+              %span.glyphicon.glyphicon-trash
