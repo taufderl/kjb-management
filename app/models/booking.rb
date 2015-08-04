@@ -6,6 +6,8 @@ class Booking < ActiveRecord::Base
   has_many :sub_bookings, class_name: Booking, foreign_key: :root_booking_id
   accepts_nested_attributes_for :sub_bookings
 
+  validates_presence_of :account, :created_by, :date, :amount
+
   def amount=(amount)
     if not amount.class == Float
       amount.gsub!(',', '.')

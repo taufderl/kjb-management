@@ -2,6 +2,8 @@ class Disbursement < ActiveRecord::Base
   belongs_to :account
   belongs_to :user
 
+  validates_presence_of :user, :account, :amount
+
   def amount=(amount)
     if not amount.class == Float
       amount.gsub!(',', '.')

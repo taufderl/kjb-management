@@ -3,6 +3,8 @@ class Scout < ActiveRecord::Base
   has_one :scout_account
   has_many :scout_consumptions
 
+  validates_presence_of :first_name, :last_name
+
   default_scope { order :last_name } 
   
   def account

@@ -1,6 +1,8 @@
 class ChildConsumption < ActiveRecord::Base
   belongs_to :child
   validates_uniqueness_of :child_id, :scope => [:date, :time_of_day]
+
+  validates_presence_of :child, :date, :time_of_day, :created_by
   
   def other=(amount)
     if not amount.class == Float

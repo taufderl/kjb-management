@@ -2,6 +2,8 @@ class ScoutConsumption < ActiveRecord::Base
   belongs_to :scout
   validates_uniqueness_of :scout_id, :scope => :date
 
+  validates_presence_of :date, :scout, :date, :created_by
+
   def other=(amount)
     if not amount.class == Float
       amount.gsub!(',', '.')

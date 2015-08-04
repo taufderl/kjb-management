@@ -3,6 +3,9 @@ class Child < ActiveRecord::Base
   has_one :child_account
   has_many :child_consumptions
 
+  validates_presence_of :first_name, :last_name
+
+
   default_scope { order :number }
   
   def account

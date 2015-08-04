@@ -1,5 +1,7 @@
 class Good < ActiveRecord::Base
   self.inheritance_column = nil
+
+  validates_presence_of :type, :price, :date
   
   def self.types
     [
