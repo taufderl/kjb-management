@@ -13,7 +13,7 @@ class ScoutsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.pdf {
-                render pdf: "#{@scout.full_name.parameterize.underscore}" , 
+                render pdf: "#{@scout.full_name.parameterize.underscore}",
                 template: "scouts/show.pdf.haml",
                 disposition: "inline"
       }

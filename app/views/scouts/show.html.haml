@@ -22,7 +22,9 @@
       %p
         %b= @scout.tent.scouts.map {|a| a.first_name}.join(', ')
       %p
-        = @scout.tent.children.map {|a| a.full_name}.join(', ')
+        %ul
+        - @scout.tent.children.each do |child|
+          %li= child.full_name
     - else
       Zelt Zuteilung fehlt
   
@@ -56,8 +58,8 @@
     %table.table.table-condensed.table-bordered
       %thead
         %tr
-          %th Date
-          %th Amount
+          %th Datum
+          %th Betrag
           
       %tbody
         - @scout.scout_consumptions.each do |consumption|

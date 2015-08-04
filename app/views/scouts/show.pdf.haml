@@ -6,12 +6,6 @@
       %small
         = @scout.birthday.strftime "%d.%m.%Y"
 
-  .col-md-2
-    %br
-    %br
-    = link_to 'Bearbeiten', edit_scout_path(@scout), class: "btn btn-primary"
-    = link_to 'Export', export_scout_path(@scout), class: "btn btn-info"
-
 .row  
   .col-md-5
     - if @scout.tent
