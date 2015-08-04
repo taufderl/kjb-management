@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/count_cash'
   post 'scouts_bookkeeping/save_cash'
   get 'scouts_bookkeeping/export'
+  get 'scouts_bookkeeping/export_giro'
   get 'scouts_bookkeeping/daily_closing'
   get 'scouts_bookkeeping/stats'
   get 'scouts_bookkeeping/clear_disbursement'

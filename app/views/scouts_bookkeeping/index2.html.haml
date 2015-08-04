@@ -3,20 +3,13 @@
     .page-header
       %h1
         = t('pages.scouts_account.title')
-        %small= session[:date]
+        %small= number_to_currency @s_account_cash_balance 
   .col-md-2
     %br
     %br
     .btn-group
       = link_to "Export", scouts_bookkeeping_export_path, class: "btn btn-info"
  
-%h3
-  = t('pages.scouts_account.s_account_cash')
-%br
-%h4
-  = t('booking.balance')
-%h4
-  = number_to_currency @s_account_cash_balance 
 
 %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
   %thead
@@ -55,18 +48,19 @@
             = c.created_by.name
           %td 
             = c.remarks
-
-%br
-%br
-
-%h3
-  = t('pages.scouts_account.s_account_giro')
-%br
-%h4
-  = t('booking.balance')
-%h4
-  = number_to_currency @s_account_giro_balance
-
+.row
+  .col-md-10
+    .page-header
+      %h1
+        = t('pages.scouts_account.s_account_giro')
+        %small
+          = number_to_currency @s_account_giro_balance
+  .col-md-2
+    %br
+    %br
+    .btn-group
+      = link_to "Export", scouts_bookkeeping_export_giro_path, class: "btn btn-info"
+ 
 %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
   %thead
     %tr

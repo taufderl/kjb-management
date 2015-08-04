@@ -90,11 +90,16 @@ class ScoutsBookkeepingController < ApplicationController
   
   def export
     account_cash = Account.find_by_name('Gruppenleiterkasse')
-    account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
-    @csv = Booking.to_csv({account: [account_cash, account_giro]}, {})
+    @csv = Booking.to_csv({account: account_cash}, {})
     send_data @csv, filename: "Gruppenleiterkasse_Export_#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
   end
   
+  def export_giro
+    account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')
+    @csv = Booking.to_csv({account: account_giro}, {})
+    send_data @csv, filename: "Gruppenleiterkasse_Girokonto_Export_#{Time.now.strftime("%Y-%m-%d_%H-%M-%S")}.csv"
+  end
+
   def daily_closing
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @s_account = Account.find_by_name('Gruppenleiterkasse')      
