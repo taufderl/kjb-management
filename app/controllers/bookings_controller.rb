@@ -74,7 +74,9 @@ class BookingsController < ApplicationController
     #   end
     # end
     # Sub-Booking Parameter
-    bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes] 
+    if (pparams[:sub_bookings_attributes])
+      bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes] 
+    end
         
     # plus/minus Button Main-Booking
     if pparams[:sign] == 'minus'
