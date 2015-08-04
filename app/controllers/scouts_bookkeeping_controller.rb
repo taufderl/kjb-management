@@ -41,7 +41,9 @@ class ScoutsBookkeepingController < ApplicationController
     
     @s_account_cash_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account_cash).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)
     @s_account_giro_date_balance = Booking.where(["date = ?", @date]).where(account: @s_account_giro).where("note1 != ?", "Ein-/Auszahlung").sum(:amount)    
-    
+
+    @accounting_number = Booking.where(account_id: @s_account_cash).map {|b| b.accounting_number}.compact.max.to_i+1
+        
     @scout_accounts = ScoutAccount.all
     
     @booking = Booking.new
@@ -109,7 +111,7 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_date_disbursements = Disbursement.where(["date = ?", @date]).where(account: @s_account).where(cleared: false).sum(:amount)
     @s_account_date_drawback = @s_account_date_disbursements + @s_account_date_balance
     
-    @count = session[:main_account_cash] || {}
+    @count = session[:scouts_account_cash] || {}
   end
   
   def clear_disbursement
