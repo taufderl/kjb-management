@@ -29,7 +29,6 @@
       %tr
         %th Datum
         %th Verbrauch
-        %th Buchungen
         %th Kontostand
   
     %tbody
@@ -37,5 +36,4 @@
         %tr
           %td= date.strftime "%d.%m.%Y"
           %td= number_to_currency @consumption[date]
-          %td  TODO
           %td= number_to_currency @balance[date]
