@@ -2,7 +2,7 @@
   .col-md-3.col-md-offset-2
     .form-group
       = f.label t('booking.account')
-      = f.collection_select "account_id", Account.where(actable_type: [ScoutAccount, ChildAccount]), :id, :name, {}, class: "form-control"
+      = f.collection_select "account_id", Account.where(actable_type: ScoutAccount), :id, :name, {}, class: "form-control"
   .col-md-2
     .form-group
       = f.label t('booking.amount')
