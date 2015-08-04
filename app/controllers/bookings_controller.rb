@@ -58,34 +58,26 @@ class BookingsController < ApplicationController
   def create_billing  
     pparams = params[:booking]
     bparams = {}
-    bparams[:created_by] = User.find_by_name(session[:user])
-    bparams[:date] = Date.strptime(session[:date], "%d.%m.%Y")
-    bparams[:account_id] = pparams[:account_id]    
-    bparams[:accounting_number] = Booking.where(account_id: bparams[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
-    bparams[:note1] = pparams[:note1]
-    bparams[:note2] = pparams[:note2]
-    bparams[:remarks] = pparams[:remarks] 
+    params[:booking][:created_by] = User.find_by_name(session[:user])
+    params[:booking][:date] = Date.strptime(session[:date], "%d.%m.%Y")
+    params[:booking][:accounting_number] = Booking.where(account_id: params[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       
-   
-    # plus/minus Button Sub-Booking
-    # pparams[:sub_bookings_attributes].each do |b|
-    #   if b[:sign] == "minus"
-    #     b[:amount] = - b[:amount].to_f
-    #   end
-    # end
     # Sub-Booking Parameter
-    if (pparams[:sub_bookings_attributes])
-      bparams[:sub_bookings_attributes] = pparams[:sub_bookings_attributes] 
+    if (params[:booking][:sub_bookings_attributes])
+      #params[:booking][:sub_bookings_attributes] = params[:booking][:sub_bookings_attributes]
+      pparams[:sub_bookings_attributes].each do |key, value|
+        if value[:sign] == "minus"
+          value[:amount] = - value[:amount].to_f
+        end
+      end
     end
         
     # plus/minus Button Main-Booking
-    if pparams[:sign] == 'minus'
-      bparams[:amount] = - pparams[:amount].to_f
-    else
-      bparams[:amount] = pparams[:amount]
+    if params[:booking][:sign] == 'minus'
+      params[:booking][:amount] = - params[:booking][:amount].to_f
     end
-      
-    @booking = Booking.new(bparams)
+    params[:booking].delete :sign
+    @booking = Booking.new(params[:booking].permit!)
 
     respond_to do |format|
       if @booking.save
@@ -195,6 +187,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:account_id, :amount, :note1, :note2, :sign, :date, :created_by, :accounting_number])
+      params.require(:booking).permit(:date, :account_id, :amount, :note1, :note2, :remarks, :created_by_id, :updated_by_id, :accounting_number, :sign, sub_bookings_attributes: [:id, :account_id, :amount, :note1, :note2, :sign, :date, :created_by, :accounting_number])
     end
 end

@@ -10,7 +10,7 @@
         %th Name
         %th Balance
         %th
-  
+
     %tbody
       - @scouts.each do |scout|
         %tr
@@ -21,7 +21,6 @@
               = link_to t('pages.scouts_account.update_consumption'), update_scout_consumption_path(scout.scout_consumptions.where(date: session[:date])), method: :post, class: "btn btn-default btn-xs"
             - else
               = link_to t('pages.scouts_account.input'), new_scout_consumption_path(scout), method: :post, class: "btn btn-primary btn-xs"
-              
 
 .col-md-6
   %table.table.table-bordered.table-condensed.table-hover
@@ -30,7 +29,7 @@
         %th Datum
         %th Verbrauch
         %th Kontostand
-  
+
     %tbody
       - @dates.each do |date|
         %tr
