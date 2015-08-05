@@ -33,8 +33,8 @@ class ScoutsBookkeepingController < ApplicationController
     @s_account_cash = Account.find_by_name('Gruppenleiterkasse')
     @s_account_giro = Account.find_by_name('Gruppenleiterkasse Girokonto')       
       
-    @bookings_cash = Booking.where(account: @s_account_cash, date: @date).where("note1 != ?", "Ein-/Auszahlung")
-    @bookings_giro = Booking.where(account: @s_account_giro, date: @date).where("note1 != ?", "Ein-/Auszahlung")    
+    @bookings_cash = Booking.where(account: @s_account_cash, date: @date).where("note1 != ?", "Ein-/Auszahlung").order('accounting_number DESC')
+    @bookings_giro = Booking.where(account: @s_account_giro, date: @date).where("note1 != ?", "Ein-/Auszahlung").order('accounting_number DESC')
     
     @s_account_cash_balance = Booking.where(account: @s_account_cash).sum(:amount)
     @s_account_giro_balance = Booking.where(account: @s_account_giro).sum(:amount)    

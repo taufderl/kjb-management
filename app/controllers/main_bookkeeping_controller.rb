@@ -12,7 +12,7 @@ class MainBookkeepingController < ApplicationController
     @m_account = Account.find_by_name('Lagerkasse Bar')
     @date = Date.strptime(session[:date], "%d.%m.%Y")
     @booking = Booking.new
-    @bookings = Booking.where(date: @date, account: @m_account).where("note1 != ?", "Ein-/Auszahlung")
+    @bookings = Booking.where(date: @date, account: @m_account).where("note1 != ?", "Ein-/Auszahlung").order('accounting_number DESC')
     @scouts = Scout.all
     @scout_accounts = ScoutAccount.all
     
