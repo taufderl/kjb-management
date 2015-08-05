@@ -60,17 +60,17 @@ class BookingsController < ApplicationController
     bparams = {}
     params[:booking][:created_by] = User.find_by_name(session[:user])
     params[:booking][:date] = Date.strptime(session[:date], "%d.%m.%Y")
-    params[:booking][:accounting_number] = Booking.where(account_id: params[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
+    params[:booking][:accounting_number] = Booking.where(account_id: params[:booking][:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       
     # Sub-Booking Parameter
-    if (params[:booking][:sub_bookings_attributes])
+    # if (params[:booking][:sub_bookings_attributes])
       #params[:booking][:sub_bookings_attributes] = params[:booking][:sub_bookings_attributes]
-      pparams[:sub_bookings_attributes].each do |key, value|
-        if value[:sign] == "minus"
-          value[:amount] = - value[:amount].to_f
-        end
-      end
-    end
+      # pparams[:sub_bookings_attributes].each do |key, value|
+      #   if value[:sign] == "minus"
+      #     value[:amount] = - value[:amount].to_f
+      #   end
+      # end
+    # end
         
     # plus/minus Button Main-Booking
     if params[:booking][:sign] == 'minus'

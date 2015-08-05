@@ -7,13 +7,13 @@
     .form-group
       = f.label t('booking.amount')
       .input-group
-        %span.input-group-btn{"data-toggle" => "buttons"}
-          %label.btn.btn-default
-            %input#option1{:autocomplete => "off", :name => 'booking[sign]', :value => "minus", :type => "radio"}
-              %span.glyphicon.glyphicon-minus
-          %label.btn.btn-default.active
-            %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio", :checked => ""}
-              %span.glyphicon.glyphicon-plus
+        -#   %span.input-group-btn{"data-toggle" => "buttons"}
+        -#     %label.btn.btn-default
+        -#       %input#option1{:autocomplete => "off", :name => 'booking[sign]', :value => "minus", :type => "radio"}
+        -#         %span.glyphicon.glyphicon-minus
+        -#     %label.btn.btn-default.active
+        -#       %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio", :checked => ""}
+        -#         %span.glyphicon.glyphicon-plus
         = f.text_field "amount", data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: "form-control"
   .col-md-4
     .form-group
