@@ -1,0 +1,39 @@
+%h1 Statistics#index
+%p Find me in app/views/statistics/index.html.haml
+
+#example-chart
+  :javascript
+    $(function () {
+      $('#example-chart').highcharts({
+        title: {
+            text: 'Gruppenleiter Konsum',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: #{@dates.to_json}
+        },
+        yAxis: {
+            title: {
+                text: 'Anzahl'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Bier',
+            data: #{@beer_consumption}
+        }]
+      });
+    });

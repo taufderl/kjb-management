@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'statistics/index'
+
   get 'children_bookkeeping/payment'
   get 'children_bookkeeping/export'
   get 'children_bookkeeping/transfer'

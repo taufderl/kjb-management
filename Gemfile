@@ -54,7 +54,7 @@ gem 'rails4-autocomplete'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'cocoon'
-
+gem 'highcharts-rails'
 
 
 group :development, :test do
