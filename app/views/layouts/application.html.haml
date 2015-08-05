@@ -79,6 +79,7 @@
               %li= link_to t('controller.import'), :import
               %li.divider
               %li= link_to t('controller.settings'), :settings
+          %li{:class => "#{'active' if params[:controller] == 'statistics'}"}= link_to t('links.statistics'), statistics_index_path
               
         
         %ul.nav.navbar-nav.navbar-right
