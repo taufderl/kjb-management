@@ -60,7 +60,7 @@ class BookingsController < ApplicationController
     bparams = {}
     params[:booking][:created_by] = User.find_by_name(session[:user])
     params[:booking][:date] = Date.strptime(session[:date], "%d.%m.%Y")
-    params[:booking][:accounting_number] = Booking.where(account_id: params[:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
+    params[:booking][:accounting_number] = Booking.where(account_id: params[:booking][:account_id]).map {|b| b.accounting_number}.compact.max.to_i+1
       
     # Sub-Booking Parameter
     if (params[:booking][:sub_bookings_attributes])
