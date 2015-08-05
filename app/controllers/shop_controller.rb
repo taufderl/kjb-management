@@ -6,6 +6,9 @@ class ShopController < ApplicationController
   def index
     date = Date.strptime(session[:date], "%d.%m.%Y")
     @child_consumptions = ChildConsumption.where(date: date).joins(:child)
+    if not session[:time_of_day]
+      flash[:alert] = "Remember to to select a time of day before you start!"
+    end
   end
     
   def new_entry
