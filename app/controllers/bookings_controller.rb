@@ -64,11 +64,11 @@ class BookingsController < ApplicationController
       
     # Sub-Booking Parameter
     if (params[:booking][:sub_bookings_attributes])
-      #params[:booking][:sub_bookings_attributes] = params[:booking][:sub_bookings_attributes]
       pparams[:sub_bookings_attributes].each do |key, value|
         if value[:sign] == "minus"
           value[:amount] = - value[:amount].to_f
         end
+        value.delete :sign
       end
     end
         

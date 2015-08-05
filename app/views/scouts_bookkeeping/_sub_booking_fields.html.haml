@@ -9,10 +9,10 @@
       .input-group
         %span.input-group-btn{"data-toggle" => "buttons"}
           %label.btn.btn-default.active
-            %input#option1{:autocomplete => "off", :name => 'booking[sign]', :value => "minus", :type => "radio"}
+            %input#option1{:autocomplete => "off", :name => "booking#{f.object_name[7..100]}[sign]", :value => "minus", :type => "radio"}
               %span.glyphicon.glyphicon-minus
           %label.btn.btn-default
-            %input#option2{:autocomplete => "off", :name => 'booking[sign]', :value => "plus", :type => "radio", :checked => ""}
+            %input#option2{:autocomplete => "off", :name => "booking#{f.object_name[7..100]}[sign]", :value => "plus", :type => "radio", :checked => ""}
               %span.glyphicon.glyphicon-plus
         = f.text_field "amount", data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: "form-control"
   .col-md-4
