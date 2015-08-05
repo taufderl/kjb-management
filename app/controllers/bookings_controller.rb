@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
   
   def update
     respond_to do |format|
-      if @booking.update(booking_params)
+      if @booking.update(booking_params.merge({updated_by: @user}))
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
         format.json { render :show, status: :ok, location: @booking }
       else
