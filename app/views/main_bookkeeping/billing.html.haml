@@ -41,13 +41,17 @@
 %br
 %br   
 .well.col-md-12
-  .col-md-8
+  .col-md-4
+    %h4
+      =t('booking.next_accounting_number')
+    %h4
+      = @accounting_number
+  .col-md-4
     %h4
       =t('booking.date_balance')
     %h4
-      = number_to_currency @m_account_date_balance
-      
-  .col-md-3    
+      = number_to_currency @m_account_date_balance     
+  .col-md-4   
     %h4
       = t('booking.balance')
     %h4

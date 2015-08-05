@@ -113,6 +113,7 @@ de:
     note2_payment: 'Konto'
     remarks: 'Bemerkung'
     accounting_number: 'Buchungsnr'
+    next_accounting_number: 'nächste Buchungsnummer'
     created_by: 'gebucht von'
     date: 'Datum'
     balance: 'aktueller Kontostand'

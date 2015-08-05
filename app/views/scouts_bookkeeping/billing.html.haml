@@ -43,16 +43,21 @@
 
 
 .well.col-md-12
-  .col-md-4
+  .col-md-3
     %h3
       = t('pages.scouts_account.s_account_cash')
-  .col-md-4
+  .col-md-3
+    %h4
+      =t('booking.next_accounting_number')
+    %h4
+      = @accounting_number
+  .col-md-3
     %h4
       =t('booking.date_balance')
     %h4
       = number_to_currency @s_account_cash_date_balance
       
-  .col-md-4   
+  .col-md-43  
     %h4
       = t('booking.balance')
     %h4
