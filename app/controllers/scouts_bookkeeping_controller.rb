@@ -128,25 +128,6 @@ class ScoutsBookkeepingController < ApplicationController
     end 
   end
   
-  def stats
-    @consumption = ScoutConsumption.all
-    @count_beer = ScoutConsumption.all.sum(:beer)
-    @count_sausage = ScoutConsumption.all.sum(:sausage)
-    @count_pork = ScoutConsumption.all.sum(:pork)
-    @count_turkey = ScoutConsumption.all.sum(:turkey)
-    @count_corn = ScoutConsumption.all.sum(:corn)
-    
-    @count_scouts_softdrink = ScoutConsumption.all.sum(:soft_drink)
-    @count_children_softdrink = ChildConsumption.all.sum(:soft_drink)
-    @count_softdrink = @count_scouts_softdrink + @count_children_softdrink
-    
-    @count_beer_crate = (@count_beer.to_d/24)
-    @count_softdrink_crate = (@count_softdrink.to_d/24)
-    
-    @scouts = Scout.all
-    # @scout_beer = @scouts.max_by{|a| a.beer_consumption}    
-  end
-  
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params

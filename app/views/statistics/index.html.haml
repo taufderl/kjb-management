@@ -1,41 +1,108 @@
-%h1 Statistics#index
-%p Find me in app/views/statistics/index.html.haml
+.page-header
+  %h1
+    = t('pages.statistics')
+    %small= session[:date]
 
-#example-chart
-  :javascript
-    $(function () {
-      $('#example-chart').highcharts({
-        title: {
-            text: 'Gruppenleiter Konsum',
-            x: -20 //center
-        },
-        xAxis: {
-            categories: #{@dates.to_json}
-        },
-        yAxis: {
-            title: {
-                text: 'Anzahl'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: [{
-            name: 'Bier',
-            data: #{@beer_consumption}
-        },{ name: 'Wurst',
-            data: #{@sausage_consumption}
-        }]
+
+
+.col-md-12
+  #example-chart
+    :javascript
+      $(function () {
+        $('#example-chart').highcharts({
+          title: {
+              text: 'Gruppenleiter Konsum',
+              x: -20 //center
+          },
+          xAxis: {
+              categories: #{@dates.to_json}
+          },
+          yAxis: {
+              title: {
+                  text: 'Anzahl'
+              },
+              plotLines: [{
+                  value: 0,
+                  width: 1,
+                  color: '#808080'
+              }]
+          },
+          legend: {
+              layout: 'vertical',
+              align: 'right',
+              verticalAlign: 'middle',
+              borderWidth: 0
+          },
+          series: [{
+              name: 'Bier',
+              data: #{@beer_consumption.to_json}
+          },{ name: 'Anti',
+              data: #{@softdrink_consumption.to_json}
+          },{ name: 'Wurst',
+              data: #{@sausage_consumption.to_json}
+          },{ name: 'Schwein',
+              data: #{@pork_consumption.to_json}
+          },{ name: 'Pute',
+              data: #{@turkey_consumption.to_json}
+          },{ name: 'Mais',
+              data: #{@corn_consumption.to_json}
+          }]
+        });
       });
-    });
+      
+.well.col-md-6
+  %h3
+    Bisher verbraucht
+  %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
+    %thead
+      %tr
+        %th{:style=> "width: 20%"} Bier
+        %th{:style=> "width: 20%"} Wurst
+        %th{:style=> "width: 20%"} Schwein
+        %th{:style=> "width: 20%"} Pute
+        %th{:style=> "width: 20%"} Mais
+  
+    %tbody
+      %tr
+        %td= @count_beer
+        %td= @count_sausage
+        %td= @count_pork
+        %td= @count_turkey
+        %td= @count_corn
+  
+  %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
+    %thead
+      %tr
+        %th{:style=> "width: 33%"} Anti GL
+        %th{:style=> "width: 33%"} Anti Kinder
+        %th{:style=> "width: 33%"} Anti gesamt
+  
+    %tbody
+      %tr
+        %td= @count_scouts_softdrink
+        %td= @count_children_softdrink
+        %td= @count_softdrink
+
+  %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
+    %thead
+      %tr
+        %th{:style=> "width: 50%"} Kästen Bier
+        %th{:style=> "width: 50%"} Kästen Anti
+  
+    %tbody
+      %tr
+        %td= @count_beer_crate   
+        %td= @count_softdrink_crate
+
+-# .col-md-3.col-md-offset-1.well
+-#  %h3 Bierkönig
+-#  %table.table.table-bordered.table-condensed.table-hover
+-#    %thead
+-#      %tr
+-#        %th Name
+-#        %th Anzahl Bier
+-#    %tbody
+-#      @scouts.each do |c| 
+-#        %tr
+-#          %td= c.full_name
+-#          %td= c.beer_consumption

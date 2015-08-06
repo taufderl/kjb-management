@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   get 'scouts_bookkeeping/export'
   get 'scouts_bookkeeping/export_giro'
   get 'scouts_bookkeeping/daily_closing'
-  get 'scouts_bookkeeping/stats'
   get 'scouts_bookkeeping/clear_disbursement'
   
   post 'bookings/create_payment' => 'bookings#create_payment', as: :create_payment
