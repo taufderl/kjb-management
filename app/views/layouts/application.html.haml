@@ -72,12 +72,12 @@
               %li= link_to t('controller.goods'), :goods
               %li= link_to t('controller.disbursements'), :disbursements
               %li= link_to t('controller.news'), :news_index
-              %li= link_to t('controller.bookings'), :bookings
+              %li= link_to t('booking.title'), :bookings
               %li.divider
               %li= link_to t('controller.import'), :import
               %li.divider
               %li= link_to t('controller.settings'), :settings
-          %li{:class => "#{'active' if params[:controller] == 'statistics'}"}= link_to t('links.statistics'), statistics_index_path
+          %li{:class => "#{'active' if params[:controller] == 'statistics'}"}= link_to t('pages.statistics.title'), statistics_index_path
               
         
         %ul.nav.navbar-nav.navbar-right

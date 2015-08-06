@@ -100,11 +100,17 @@ de:
       comment: 'Nachricht'
       new: 'Neue Nachricht'
     
-    stats:
-      title: 'Statistik' 
+    statistics:
+      title: 'Statistik'
+      consumption: 'Bisher verbraucht'
+      softdrink_scouts: 'Gruppenleiter Anti'
+      softdrink_children: 'Kinder Anti'
+      softdrink_sum: 'Anti gesamt'
+      crate_beer: 'Kästen Bier'
+      crate_softdrink: 'Kästen Anti'
       
-  
   booking:
+    title: 'Buchungen'
     account: 'Konto'
     amount: 'Betrag'
     note1: 'Wo?'
@@ -115,6 +121,7 @@ de:
     accounting_number: 'Buchungsnr'
     next_accounting_number: 'nächste Buchungsnummer'
     created_by: 'gebucht von'
+    updated_by: 'geändert von'
     date: 'Datum'
     balance: 'aktueller Kontostand'
     date_balance: 'Buchungssumme heute'
@@ -131,14 +138,14 @@ de:
     
   controller:
     children: 'Kinder'
-    scouts: "Gruppenleiter"
+    scouts: 'Gruppenleiter'
     accounts: 'Konten'
     users: 'Benutzer'
     tents: 'Zelte'
     goods: 'Waren'
     disbursements: 'ausgelegtes Geld'
-    settings: Einstellungen
-    news: Kommentare
+    settings: 'Einstellungen'
+    news: 'Kommentare'
     
   goods:
     beer: 'Bier'
@@ -166,7 +173,14 @@ de:
     new_balance: Neuer Kontostand
 
   children:
-    number: Nummer
+    number: 'Nummer'
+    age: 'Alter'
+    pic: 'Foto'
+  
+  user:
+    news_written: 'Anzahl Kommentare'
+    bookings_created: 'Anzahl Buchungen'
+    bookings_updated: 'Anzahl geänderter Buchungen'
   
   time_of_day:
     noon: "Mittag"
@@ -174,3 +188,13 @@ de:
   buttons:
     save: 'Speichern'
     send: 'Senden'
+  
+  overview:
+    id: 'ID'
+    name: 'Name'
+    first_name: 'Vorname'
+    surname: 'Nachname'
+    balance: 'Kontostand'
+    birthday: 'Geburtstag'
+    tent: 'Zelt'
+    date: 'Datum'

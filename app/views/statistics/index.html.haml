@@ -1,6 +1,6 @@
 .page-header
   %h1
-    = t('pages.statistics')
+    = t('pages.statistics.title')
     %small= session[:date]
 
 
@@ -52,15 +52,20 @@
       
 .well.col-md-6
   %h3
-    Bisher verbraucht
+    = t('pages.statistics.consumption')
   %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
     %thead
       %tr
-        %th{:style=> "width: 20%"} Bier
-        %th{:style=> "width: 20%"} Wurst
-        %th{:style=> "width: 20%"} Schwein
-        %th{:style=> "width: 20%"} Pute
-        %th{:style=> "width: 20%"} Mais
+        %th{:style=> "width: 20%"} 
+          = t('goods.beer')
+        %th{:style=> "width: 20%"}
+          = t('goods.sausage')
+        %th{:style=> "width: 20%"}
+          = t('goods.pork')
+        %th{:style=> "width: 20%"}
+          = t('goods.turkey')
+        %th{:style=> "width: 20%"}
+          =t('goods.corn')
   
     %tbody
       %tr
@@ -73,9 +78,12 @@
   %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
     %thead
       %tr
-        %th{:style=> "width: 33%"} Anti GL
-        %th{:style=> "width: 33%"} Anti Kinder
-        %th{:style=> "width: 33%"} Anti gesamt
+        %th{:style=> "width: 33%"}
+          = t('pages.statistics.softdrink_scouts')
+        %th{:style=> "width: 33%"}
+          = t('pages.statistics.softdrink_children')
+        %th{:style=> "width: 33%"}
+          = t('pages.statistics.softdrink_sum')
   
     %tbody
       %tr
@@ -86,8 +94,10 @@
   %table.table.table-bordered.table-condensed.table-hover{:style=> "width: 100%"}
     %thead
       %tr
-        %th{:style=> "width: 50%"} Kästen Bier
-        %th{:style=> "width: 50%"} Kästen Anti
+        %th{:style=> "width: 50%"}
+          = t('pages.statistics.crate_beer')
+        %th{:style=> "width: 50%"}
+          = t('pages.statistics.crate_softdrink')
   
     %tbody
       %tr
