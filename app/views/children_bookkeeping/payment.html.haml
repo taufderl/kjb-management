@@ -7,9 +7,21 @@
   = form_for :booking, url: create_payment_path, method: :post do |f|
     .col-md-4
       .form-group
+        = f.label t('children.number')
+        = f.autocomplete_field :child_number, shop_autocomplete_child_number_path, update_elements: {}, 'data-id-element' => '#booking_child_id', class: 'form-control'
+        :javascript
+          update_child = function() {
+            console.log("updating child");
+          };
+          $(document).ready( function() {
+            $('#booking_child_number').on("input", update_child);
+          });
+          
+      .form-group
         = f.label t('shop.child')
         = f.autocomplete_field :child_full_name, shop_autocomplete_child_first_name_path, update_elements: {}, 'data-id-element' => '#booking_child_id', class: 'form-control'
         = f.text_field :child_id, hidden: true
+      
       .form-group
         = f.label t('booking.payment.title')
         = f.collection_select(:payment_type, {in: 'Einzahlung', out: 'Auszahlung'}, :first, :last, {}, class: "form-control")
@@ -17,6 +29,12 @@
       .form-group
         = f.label t('booking.account')
         = f.collection_select(:account_id, Account.where("name like ?", '%Kinder%'), :id, :name, {}, class: "form-control")  
+      .form-group
+        = f.label t('shop.current_balance')
+        .input-group#form-control
+          %span.input-group-addon#form-control
+            %span.glyphicon.glyphicon-euro
+          = f.text_field :current_balance, data: {autonumeric: {aSign: ' €', pSign: 's'}}, class: 'form-control', readonly: true
       .form-group
         = f.label t('booking.amount')
         .input-group
@@ -63,3 +81,18 @@
           %td
             = p.remarks
 
+:javascript
+  $('#booking_child_number').bind('railsAutocomplete.select', function(event, data) {
+    child_id = data.item.id;
+    $.get('children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
+      $('#booking_current_balance').val(child_data.account_balance);
+      $('#booking_child_full_name').val(child_data.full_name)
+    });
+  }); 
+  $('#booking_child_full_name').bind('railsAutocomplete.select', function(event, data) {
+    child_id = data.item.id;
+    $.get('children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
+      $('#booking_current_balance').val(child_data.account_balance);
+      $('#booking_child_number').val(child_data.number.toString())
+    });
+  });
