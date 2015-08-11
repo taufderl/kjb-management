@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'children_bookkeeping/payment'
   get 'children_bookkeeping/export'
   get 'children_bookkeeping/transfer'
+  get 'children_bookkeeping/child_data/:child_id' => 'shop#child_data'
 
   resources :news
   resources :bookings

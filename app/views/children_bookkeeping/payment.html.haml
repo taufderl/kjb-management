@@ -84,15 +84,16 @@
 :javascript
   $('#booking_child_number').bind('railsAutocomplete.select', function(event, data) {
     child_id = data.item.id;
-    $.get('children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
+    $.get('/children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
       $('#booking_current_balance').val(child_data.account_balance);
       $('#booking_child_full_name').val(child_data.full_name)
     });
   }); 
   $('#booking_child_full_name').bind('railsAutocomplete.select', function(event, data) {
     child_id = data.item.id;
-    $.get('children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
+    $.get('/children_bookkeeping/child_data/'+child_id, function(child_data, textStatus) {
       $('#booking_current_balance').val(child_data.account_balance);
       $('#booking_child_number').val(child_data.number.toString())
     });
   });
+
